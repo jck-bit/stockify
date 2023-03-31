@@ -4,7 +4,7 @@ import { Rootstate, CartItem, deleteCart } from '../state';
 
 
 const Cart: React.FC = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
 
   const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);

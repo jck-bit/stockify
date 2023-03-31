@@ -2,7 +2,6 @@
   font-family: Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: #242424;
 
@@ -37,13 +36,26 @@ h1 {
   width: 100%;
   text-align: center;
   z-index: 1;
+  background-color: #006400;
+  
 }
 
 .navbar_homepage li{
+  position: relative;
   padding:5px 40px; 
   list-style: none;
   display: inline-block;
   transition: background-color 0.3s ease-in-out;
+}
+
+.cart_item{
+  background-color: red;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  font-size: 15px;
+  margin-left: 5px;
+  padding: 0px 7px auto;
 }
 
 .navbar_homepage a{
@@ -51,11 +63,17 @@ h1 {
   color: black;
 }
 
+.unordered_list_nav{
+  position: relative;
+ 
+}
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 50px;
+  padding: 50px;
 }
 
 
@@ -76,7 +94,6 @@ h1 {
   font-size: 24px;
   margin: 0;
 }
-
 
 .product-price {
   font-size: 20px;

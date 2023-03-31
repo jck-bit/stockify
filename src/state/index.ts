@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Products from "../widgets/Products";
 
 interface Product {
   id: number;
@@ -35,7 +34,7 @@ const initialState: AuthState = {
 console.log(initialState.cart);
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: "cart",
   initialState,
   reducers: {
     setLogin: (state, action: PayloadAction<{ user: any; token: string }>) => {
@@ -51,7 +50,9 @@ export const authSlice = createSlice({
       action: PayloadAction<{ products: Product[] }>
     ) => {
       state.products = action.payload.products;
-      
+      console.log(`${state.products.map((product) =>{
+        console.log(product.id)
+      })}`)      
     },
     setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
       state.sales = action.payload.sales;
@@ -59,7 +60,6 @@ export const authSlice = createSlice({
 
     setCart: (state, action: PayloadAction<{ cart: CartItem[] }>) => {
       state.cart = action.payload.cart;
-      
     },
 
     addToCart: (state, action: PayloadAction<{ product: Product }>) => {
@@ -73,7 +73,7 @@ export const authSlice = createSlice({
       } else {
         state.cart.push({ ...product, quantity: 1 });
       }
-    },    
+    }, 
     
       deleteCart:(state, action:PayloadAction)=>{
         state.cart =[]
