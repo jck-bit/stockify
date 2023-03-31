@@ -1,9 +1,11 @@
 import {Link } from 'react-router-dom'
 import { BsCart4} from 'react-icons/bs'
 import { useSelector } from 'react-redux';
+import { Rootstate, CartItem } from '../state';
 
 const Navbar = () => {
   const { cart } = useSelector((state:any) => state)
+  const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   return (
     <nav className='navbar_homepage'>
         <ul className='unordered_list_nav'>
@@ -16,11 +18,11 @@ const Navbar = () => {
             <li>
               <Link to="/cart">cart</Link>
               <span><BsCart4/></span>
-              {cart.length > 0 && (
+              {
                 <div className="cart_item">
-                  {cart.length}
+                  {cartItems?.length}
                 </div>
-              )}
+              }
             </li>
         </ul>
     </nav>

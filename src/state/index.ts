@@ -74,11 +74,15 @@ export const authSlice = createSlice({
         state.cart.push({ ...product, quantity: 1 });
       }
     }, 
-    
       deleteCart:(state, action:PayloadAction)=>{
         state.cart =[]
-      }
-      
+      },
+
+      deleteOneProduct:(state:any, action:any) =>{
+        const removeItem =  state.cart.filter((item:any) => item.id !== action.payload)
+        state.cart = removeItem
+
+      },
   },
 });
 
@@ -87,11 +91,11 @@ export const {
   addToCart,
   setProducts,
   setCart,
+  deleteOneProduct,
   setSales,
   deleteCart,
   setLogout,
 } = authSlice.actions;
 
 export default authSlice.reducer;
-
 export type Rootstate = ReturnType<typeof authSlice.reducer>;
