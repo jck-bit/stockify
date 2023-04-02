@@ -4,7 +4,6 @@ import {Product} from '../types'
 import  { setProducts, addToCart,deleteOneProduct, CartItem ,Rootstate} from '../state'
 import { useSnackbar } from 'notistack';
 
-
 const Products =  () => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -29,7 +28,7 @@ const Products =  () => {
     dispatch(addToCart({product}));
     enqueueSnackbar(`product added to your cart successfully`,{
       variant:"success",
-      autoHideDuration:1000,
+      autoHideDuration:2000,
     });
   };
 
@@ -37,7 +36,7 @@ const Products =  () => {
     dispatch(deleteOneProduct(product.id))
     enqueueSnackbar(`Item removed from your Cart`, {
       variant: "warning",
-      autoHideDuration: 1000
+      autoHideDuration: 2000
     })
   }
 
@@ -51,13 +50,13 @@ const Products =  () => {
               <p className='product-description'>{product.quantity} units remaining</p>
               <div className="product-price">{product.price} Ksh</div>
               
-              {cartItems.some((p:any) => p.id === product.id) ? (
+              {cartItems.some((p) => p.id === product.id) ? (
 
               <button
                 className="remove-from-cart" 
                 onClick={() =>
                 handleRemoveFromCart(product)
-              }>remove Item
+              }>remove from cart
               </button>
               ):(
               <button 

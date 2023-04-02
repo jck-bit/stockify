@@ -10,19 +10,21 @@ const Navbar = () => {
     <nav className='navbar_homepage'>
         <ul className='unordered_list_nav'>
             <li>
-              <Link to="/products">Products</Link>
+              <Link to="/products">Home</Link>
             </li>
             <li>
               <Link to="/sales">sales</Link>
             </li>
             <li>
-              <Link to="/cart">cart</Link>
-              <span><BsCart4/></span>
-              {
-                <div className="cart_item">
-                  {cartItems?.length}
-                </div>
-              }
+              <Link to="/cart">cart
+                <span><BsCart4/></span>
+                {cartItems.length > 0 && (
+                  <div className="cart_item">
+                    {cartItems.length}
+                  </div>
+                )}
+              </Link>
+              
             </li>
         </ul>
     </nav>
