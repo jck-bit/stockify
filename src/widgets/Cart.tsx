@@ -1,10 +1,11 @@
 import React,{useState, useEffect} from 'react';
-import {Product} from '../types'
+import {Product, CartItem} from '../types'
+import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import {IoMdTrash} from "react-icons/io";
 import {Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { Rootstate, CartItem, deleteCart,deleteOneProduct } from '../state';
+import { Rootstate, deleteCart,deleteOneProduct } from '../state';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch()
@@ -28,6 +29,28 @@ const Cart: React.FC = () => {
     })
   }
 
+  const handleCheckout = async () => {
+    try {
+      const saleItems = cartItems.map((item) => ({
+        product_id: item.id,
+        quantity: item.quantity,
+      }));
+
+      await axios.post('http://localhost:5000/sales', { saleItems });
+      dispatch(deleteCart());
+      enqueueSnackbar(`Your order has been placed!`, {
+        variant: 'success',
+        autoHideDuration: 1500,
+      });
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar(`Failed to place order. Please try again later.`, {
+        variant: 'error',
+        autoHideDuration: 1500,
+      });
+    }
+  };
+
   return (
     <div className="cart">
       <h2 className="cart__title">Cart Items</h2>
@@ -39,7 +62,7 @@ const Cart: React.FC = () => {
         </Link>
        </div>        
       ) : (
-        <div>
+        <div className='whole_cart'>
             {cartItems.map(item => (
           <ul className="cart__list" key={item.id}>
               <li className="cart__item">
@@ -52,10 +75,11 @@ const Cart: React.FC = () => {
               </li>
           </ul>
             ))}
-          
-          <p className="cart__total">Total:Ksh {totalAmount}</p>
-          <button className="cart__checkout-button">Checkout</button>
-          <button onClick={() =>{handleDelete()}}>DeleteCart</button>
+          <div className="cart_summary">
+            <p className="cart__total">Total:Ksh {totalAmount}</p>
+            <button className="cart__checkout-button" onClick={handleCheckout}>Checkout</button>
+            <button onClick={() =>{handleDelete()}}>DeleteCart</button>
+          </div>
         </div>
       )}
     </div>
