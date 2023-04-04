@@ -13,7 +13,7 @@ export const authSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setLogin: (state, action: PayloadAction<{ user: any; token: string }>) => {
+    setLogin: (state, action: PayloadAction<{ user: string; token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
