@@ -12,6 +12,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.home_page{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 a{
   text-decoration: none;
 }

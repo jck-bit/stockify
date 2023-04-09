@@ -1,52 +1,62 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 import {setLogin} from '../state'
 import '../loginPage.css';
-
 
 const LoginPage = () => {
     const dispatch = useDispatch()
     const{enqueueSnackbar} = useSnackbar()
-    const [username, setUsername] = useState("")
+    const navigate = useNavigate()
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-      
-        try {
-          const res = await fetch('http://127.0.0.1:5000/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-          });
-
-          const data = await res.json();
-          enqueueSnackbar(data.message, { variant: "success", autoHideDuration:1500 });
-          console.log(data);
-
-        } catch (err:any) {
-          enqueueSnackbar(err.message, { variant: 'error', autoHideDuration:1500 });
-
+      e.preventDefault();
+    
+      try {
+        const res = await fetch('http://localhost:5000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+    
+        const data = await res.json();
+        if (res.ok) {
+          if (data) {
+            dispatch(setLogin({
+              user: data.user,
+              token: data.accessToken
+            }));
+            console.log(data.accessToken)
+            navigate('/');
+            enqueueSnackbar(data.message, { variant: "success", autoHideDuration:1500 });
+          }
+        } else {
+          const error = data?.message || "Login failed. Please try again.";
+          enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
         }
+      } catch (err) {
+        const error = "Failed to reach the server. Please try again later.";
+        enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
       }
-      
-
+    }
+    
   return (
     <div className="login-page">
       <div className="login-container">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            username:
+            email:
             <input 
-              type="username" 
-              name="username" 
-              value={username}
-              onChange={(e) =>setUsername(e.target.value)}
+              type="email" 
+              name="email" 
+              value={email}
+              onChange={(e) =>setEmail(e.target.value)}
               required />
           </label>
           <label>
