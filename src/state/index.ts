@@ -1,27 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  date_added: Date;
-}
-
-export interface CartItem {
-  id: number;
-  quantity: number;
-  price:any
-  name:any
-}
-
-interface AuthState {
-  user: null | any;
-  token: null | string;
-  products: Product[];
-  sales: any[];
-  cart: CartItem[];
-}
+import { AuthState, CartItem,Product } from "../types";
 
 const initialState: AuthState = {
   user: null,
@@ -31,13 +9,11 @@ const initialState: AuthState = {
   cart: [],
 };
 
-console.log(initialState.cart);
-
 export const authSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setLogin: (state, action: PayloadAction<{ user: any; token: string }>) => {
+    setLogin: (state, action: PayloadAction<{ user: string; token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },

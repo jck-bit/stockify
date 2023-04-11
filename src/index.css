@@ -12,6 +12,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.home_page{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 a{
   text-decoration: none;
 }
@@ -184,6 +191,7 @@ button.remove-from-cart:hover {
 .cart__item__quantity {
   margin-right: 10px;
 }
+
 
 .cart__item__price {
   font-weight: bold;
