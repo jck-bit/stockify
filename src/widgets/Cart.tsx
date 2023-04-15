@@ -14,8 +14,8 @@ const Cart: React.FC = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const user = useSelector((state: any) => state.user);
   const cart = useSelector((state: any) => state.cart);
-  const [quantity, setQuantity] = useState<any>()
-  const [product_id, setProduct_id] = useState<any>()
+  const [quantities, setQuantity] = useState<any>()
+  const [product_ids, setProduct_id] = useState<any>()
   const [user_id, setUser_id] = useState<any>()
 
   useEffect(() => {
@@ -39,15 +39,15 @@ const Cart: React.FC = () => {
   
   useEffect(() => {
     setQuantity(
-      cartItems.reduce((acc, item) => acc + item.quantity, 0)
+      cartItems.map(item => item.quantity)
     );
     setProduct_id(
-      cartItems.reduce((acc, item) => acc + item.id, 0)
-    );
+      cartItems.map(item => item.id)
+    )
     setUser_id(user.id);
   }, [cartItems, user]);
   
-  console.log(quantity)  
+  console.log(quantities)  
   
   const handleCheckout = async () => {
     try {
@@ -55,9 +55,9 @@ const Cart: React.FC = () => {
       const response = await axios.post(
         "http://localhost:5000/users/sales",
         {
-          quantity,
+          quantities,
           user_id,
-          product_id
+          product_ids
         },
         {
           headers: {

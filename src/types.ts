@@ -8,8 +8,8 @@ export interface Product {
 
   export interface CartItem {
     id: number;
-    quantity: number;
-    price:number
+    quantity: any;
+    price:any
     name:any
     date_added:Date
   }
