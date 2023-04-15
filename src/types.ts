@@ -9,7 +9,7 @@ export interface Product {
   export interface CartItem {
     id: number;
     quantity: number;
-    price:any
+    price:number
     name:any
     date_added:Date
   }
