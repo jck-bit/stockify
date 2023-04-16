@@ -84,7 +84,7 @@ const Cart: React.FC = () => {
           }
         
       }
-    } catch (error:any) {
+    } catch (error:Error | any) {
       console.error(error);
       enqueueSnackbar(`${error.response.data.error}`|| "Failed to place order. Please try again later", {
         variant: "error",
