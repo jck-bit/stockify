@@ -42,6 +42,9 @@ const Products =  () => {
   return (
     <div className='product-list'>
       {products && products.map((product:Product) => {
+        if (product.quantity < 1){
+          return null
+        }
         return (
           <div key={product.id} className='product'>
             <div className="product-details">
