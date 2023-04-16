@@ -66,15 +66,27 @@ const Cart: React.FC = () => {
         }
       );
       const data = await response.data;
-      console.log(data);
-      dispatch(deleteCart());
-      enqueueSnackbar(`${data.message}`, {
-        variant: "success",
-        autoHideDuration: 1500,
-      });
-    } catch (error) {
+      console.log(data)
+      if (response.status == 200){
+        if(data){
+          dispatch(deleteCart());
+          enqueueSnackbar(`${data.message}`, {
+            variant: "success",
+            autoHideDuration: 1500,
+          });
+        
+        }else{
+          const error = data?.error.message || "Something went wrong,please try again later";
+           enqueueSnackbar(`${error || "error"}`, {
+            variant: "error",
+            autoHideDuration: 1500,
+            });
+          }
+        
+      }
+    } catch (error:any) {
       console.error(error);
-      enqueueSnackbar(`Failed to place order. Please try again later.`, {
+      enqueueSnackbar(`${error.response.data.error}`|| "Failed to place order. Please try again later", {
         variant: "error",
         autoHideDuration: 1500,
       });

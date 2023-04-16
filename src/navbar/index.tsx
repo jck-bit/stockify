@@ -1,34 +1,31 @@
-import {Link } from 'react-router-dom'
-import { BsCart4} from 'react-icons/bs'
+import { Link } from 'react-router-dom';
+import { BsCart4 } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
-import { Rootstate, CartItem } from '../state';
+import { Rootstate } from '../state';
+import { CartItem } from '../types';
 
 const Navbar = () => {
-  const { cart } = useSelector((state:any) => state)
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   return (
     <nav className='navbar_homepage'>
-        <ul className='unordered_list_nav'>
-            <li>
-              <Link to="/products">Home</Link>
-            </li>
-            <li>
-              <Link to="/sales">sales</Link>
-            </li>
-            <li>
-              <Link to="/cart">cart
-                <span><BsCart4/></span>
-                {cartItems.length > 0 && (
-                  <div className="cart_item">
-                    {cartItems.length}
-                  </div>
-                )}
-              </Link>
-              
-            </li>
-        </ul>
+      <ul className='unordered_list_nav'>
+        <li>
+          <Link to='/products'>Home</Link>
+        </li>
+        <li>
+          <Link to='/sales'>Sales</Link>
+        </li>
+        <li>
+          <Link to='/cart'>
+            <span className='cart_icon'><BsCart4 /></span>
+            <span className='cart_text'>
+              Cart{cartItems.length > 0 && ` (${cartItems.length})`}
+            </span>
+          </Link>
+        </li>
+      </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
