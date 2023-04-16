@@ -1,18 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import {Product} from '../types'
-import  { setProducts, addToCart,deleteOneProduct, CartItem ,Rootstate} from '../state'
+import {Product, CartItem} from '../types'
+import  { setProducts, addToCart,deleteOneProduct ,Rootstate} from '../state'
 import { useSnackbar } from 'notistack';
 
 const Products =  () => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state:any) => state.products)
-  const { cart } = useSelector((state:any) => state)
   const { enqueueSnackbar } = useSnackbar();
 
   const getProducts = async () => {
-    const response = await fetch( "http://127.0.0.1:5000/products", {
+    const response = await fetch( "https://stockify-store-management.vercel.app/products", {
       method: "GET",
     });
     const data = await response.json();

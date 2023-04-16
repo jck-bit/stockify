@@ -6,15 +6,15 @@ export interface Product {
     date_added:Date
   }
 
-  export interface CartItem {
+export interface CartItem {
     id: number;
     quantity: any;
     price:any
     name:any
     date_added:Date
   }
-  
-   export interface AuthState {
+   
+export interface AuthState {
     user: null | any;
     token: null | string;
     products: Product[];
