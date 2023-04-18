@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Product, CartItem} from '../types'
 import  { setProducts, addToCart,deleteOneProduct ,Rootstate} from '../state'
 import { useSnackbar } from 'notistack';
+import image from  "../assets/images/store.png"
 
 const Products =  () => {
   const dispatch = useDispatch();
@@ -40,6 +41,11 @@ const Products =  () => {
   }
 
   return (
+    <div className="container">
+    <div className="welcome_banner">
+      <h1>shop now</h1>
+      <img src={image} alt="" />
+    </div>
     <div className='product-list'>
       {products && products.map((product:Product) => {
         if (product.quantity < 1){
@@ -72,6 +78,7 @@ const Products =  () => {
           </div>
         )
       })}
+    </div>
     </div>
   )
 }
