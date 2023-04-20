@@ -13,7 +13,6 @@ const Cart: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const user = useSelector((state: any) => state.user);
-  const cart = useSelector((state: any) => state.cart);
   const [quantities, setQuantity] = useState<any>()
   const [product_ids, setProduct_id] = useState<any>()
   const [user_id, setUser_id] = useState<any>()
@@ -105,26 +104,28 @@ const Cart: React.FC = () => {
         </div>
       ) : (
         <div className="whole_cart">
+          <div className="containter_cart">
           {cartItems.map((item) => (
             <ul className="cart__list" key={item.id}>
               <li className="cart__item">
                 <h1 className="cart__item__name">{item.name}</h1>
-                <span className="cart__item__price">$ {item.price}</span>
+                <span className="cart__item__price">Ksh {item.price}</span>
 
-                <div onClick={() => handleRemoveFromCart(item)}>
-                  <span className="remove_one_cart">
+                <div onClick={() => handleRemoveFromCart(item)} className="remove_one_cart">
+                  <span>
                     <IoMdTrash />
                   </span>
                 </div>
               </li>
             </ul>
           ))}
+          </div>
           <div className="cart_summary">
-            <p className="cart__total">Total:Ksh {totalAmount}</p>
+            <p className="cart__total">Your Total Ksh:{totalAmount}</p>
             <button className="cart__checkout-button" onClick={handleCheckout}>
-              Checkout
+              proced to checkout
             </button>
-            <button onClick={() => handleDelete()}>DeleteCart</button>
+            <button onClick={() => handleDelete()} className="cart__delete-button">Delete Cart</button>
           </div>
         </div>
       )}
