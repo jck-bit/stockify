@@ -43,7 +43,10 @@ const Products =  () => {
   return (
     <div className="container">
     <div className="welcome_banner">
-      <h1>shop now</h1>
+      <div className="shop_now">
+        <h1>shop now</h1>
+        <button>view all</button>
+      </div>
       <img src={image} alt="" />
     </div>
     <div className='product-list'>
