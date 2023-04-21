@@ -7,6 +7,7 @@ import Cart from './widgets/Cart';
 import Navbar from './navbar';
 import { SnackbarProvider } from "notistack";
 import LoginPage from './login';
+import SalesTable from './widgets/Sales';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
@@ -24,6 +25,7 @@ function App() {
           <Route path='/' element={<HomePage/>}/>
           <Route path='/products' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
+          <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/login' element={<LoginPage/>}/>
         </Routes>
         </SnackbarProvider>

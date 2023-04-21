@@ -6,6 +6,14 @@ export interface Product {
     date_added:Date
   }
 
+export interface Sale {
+    id: number;
+    product: number;
+    date:number
+    user: number;
+    total_sale:number;  
+  }
+
 export interface CartItem {
     id: number;
     quantity: any;

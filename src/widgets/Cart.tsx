@@ -52,7 +52,7 @@ const Cart: React.FC = () => {
     try {
       
       const response = await axios.post(
-        "http://localhost:5000/users/sales",
+        "https://stockify-store-management.vercel.app/users/sales",
         {
           quantities,
           user_id,

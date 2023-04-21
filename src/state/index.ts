@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthState, CartItem,Product } from "../types";
+import { AuthState, CartItem,Product, Sale } from "../types";
 
 const initialState: AuthState = {
   user: null,
@@ -30,9 +30,19 @@ export const authSlice = createSlice({
         console.log(product.id)
       })}`)      
     },
-    setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
+    
+    setSales: (
+      state,
+      action: PayloadAction<{ sales: Sale[] }>
+    ) => {
       state.sales = action.payload.sales;
+      console.log(`${state.sales.map((sale) =>{
+        console.log(sale.id)
+      })}`)      
     },
+    // setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
+    //   state.sales = action.payload.sales;
+    // },
 
     setCart: (state, action: PayloadAction<{ cart: CartItem[] }>) => {
       state.cart = action.payload.cart;
