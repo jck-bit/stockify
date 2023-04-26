@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthState, CartItem,Product, Sale } from "../types";
 
+const  storedUser = localStorage.getItem("user");
+const  storedToken = localStorage.getItem("token");
+
 const initialState: AuthState = {
-  user: null,
-  token: null,
+  user: storedUser,
+  token: storedToken,
   products: [],
   sales: [],
   cart: [],
@@ -16,33 +19,29 @@ export const authSlice = createSlice({
     setLogin: (state, action: PayloadAction<{ user:string, token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
+
+      //store the user data in the local storage
+
+      localStorage.setItem("user", JSON.stringify(state.user));
+      localStorage.setItem("token", state.token);
     },
     setLogout: (state) => {
       state.user = null;
       state.token = null;
+
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     },
     setProducts: (
       state,
       action: PayloadAction<{ products: Product[] }>
     ) => {
-      state.products = action.payload.products;
-      console.log(`${state.products.map((product) =>{
-        console.log(product.id)
-      })}`)      
+      state.products = action.payload.products; 
     },
-    
-    setSales: (
-      state,
-      action: PayloadAction<{ sales: Sale[] }>
-    ) => {
+
+    setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
       state.sales = action.payload.sales;
-      console.log(`${state.sales.map((sale) =>{
-        console.log(sale.id)
-      })}`)      
     },
-    // setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
-    //   state.sales = action.payload.sales;
-    // },
 
     setCart: (state, action: PayloadAction<{ cart: CartItem[] }>) => {
       state.cart = action.payload.cart;

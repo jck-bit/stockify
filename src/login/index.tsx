@@ -16,7 +16,7 @@ const LoginPage = () => {
       e.preventDefault();
     
       try {
-        const res = await fetch('https://stockify-store-management-git-flaskapi-jck-bit.vercel.app/login', {
+        const res = await fetch('http://127.0.0.1:5000/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -29,9 +29,9 @@ const LoginPage = () => {
           if (data) {
             dispatch(setLogin({
               user: data.user,
-              token: data.accessToken
+              token: data.access_token
             }));
-            console.log(data.accessToken)
+            console.log(data.access_token)
             navigate('/');
             enqueueSnackbar(data.message, { variant: "success", autoHideDuration:1500 });
           }
@@ -44,7 +44,7 @@ const LoginPage = () => {
         enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
       }
     }
-    
+
   return (
     <div className="login-page">
       <div className="login-container">

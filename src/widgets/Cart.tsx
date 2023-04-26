@@ -44,7 +44,7 @@ const Cart: React.FC = () => {
       cartItems.map(item => item.id)
     )
     setUser_id(user.id);
-  }, [cartItems, user]);
+  }, [cartItems, user]);               
   
   console.log(quantities)  
   
