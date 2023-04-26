@@ -30,18 +30,18 @@ const Products =  () => {
 
   const handleAddToCart =(product:any) =>{
     dispatch(addToCart({product}));
-    enqueueSnackbar(`product added to your cart successfully`,{
-      variant:"success",
-      autoHideDuration:2000,
-    });
+    // enqueueSnackbar(`product added to your cart successfully`,{
+    //   variant:"success",
+    //   autoHideDuration:2000,
+    // });
   };
 
   const handleRemoveFromCart = (product: Product) => {
     dispatch(deleteOneProduct(product.id))
-    enqueueSnackbar(`Item removed from your Cart`, {
-      variant: "warning",
-      autoHideDuration: 2000
-    })
+    // enqueueSnackbar(`Item removed from your Cart`, {
+    //   variant: "warning",
+    //   autoHideDuration: 2000
+    // })
   }
 
   return (
