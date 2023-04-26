@@ -45,11 +45,14 @@ body {
   padding: 0;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 li {
   margin: 0;
+  color: #fff;
 }
+
 
 a {
   display: flex;
@@ -63,7 +66,20 @@ a:hover {
   background-color: #333;
 }
 
-.cart_icon {
+.logout_container{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logout_icon {
+  font-size: 1.5rem;
+  align-items: center;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.cart_icon{
   display: flex;
   align-items: center;
   font-size: 1.5rem;

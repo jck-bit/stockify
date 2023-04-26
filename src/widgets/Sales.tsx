@@ -43,53 +43,10 @@ useEffect(() =>{
 },[])
 
   return (
-    <div id="container">
-      <div id="sideMenu">
-        <h1>Sales Report</h1>
+     <div className="sales-table" style={{width: "1000px"}}>
+      <BarChart  chartData={chartData} />
+     </div>
+  ) 
 
-        <ul className="menu">
-          <li>Main</li>
-          <li>Dashboard</li>
-          <li>
-            Reports <span className="notification">8</span>
-          </li>
-          <li>Groups</li>
-        </ul>
-        <ul className="menu">
-          <li>Users</li>
-        </ul>
-        <div className="addCategory">
-          <span className="plus">+</span> Add sale
-        </div>
-      </div>
-      <div id="content">
-        <div className="mainChart">
-          <BarChart chartData={chartData} />
-          <h2>Total Sales</h2>
-
-          <div className="clearFix"></div>
-
-          <div id="totalSales">
-            <div className="col">
-              <div id="creditSales" className="progressBar"></div>
-              <h3>$36,059</h3>
-              <span className="progressTitle">Credit Sales</span>
-            </div>
-            <div className="col">
-              <div id="channelSales" className="progressBar"></div>
-              <h3>$24,834</h3>
-              <span className="progressTitle">Channel Sales</span>
-            </div>
-            <div className="col">
-              <div id="directSales" className="progressBar"></div>
-              <h3>$15,650</h3>
-              <span className="progressTitle">Direct Sales</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+}
 export default SalesTable
