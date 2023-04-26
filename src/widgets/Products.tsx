@@ -10,13 +10,17 @@ const Products =  () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state:any) => state.products)
   const { enqueueSnackbar } = useSnackbar();
+  const access_token = localStorage.getItem("token");
+  
 
   const getProducts = async () => {
-    const response = await fetch( "https://stockify-store-management.vercel.app/products", {
+    const response = await fetch( "http://localhost:5000/products", {
       method: "GET",
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      }
     });
     const data = await response.json();
-    console.log(data);
     dispatch(setProducts({products: data.products}));
   };
   

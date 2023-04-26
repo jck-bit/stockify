@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../SalesTable.css";
 import { setSales } from "../state";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ const SalesTable  = () => {
   const dispatch = useDispatch();
   const salesData = useSelector((state: any) => state.sales);
   console.log(salesData)
+  const access_token = localStorage.getItem('token')
 
   const [chartData, setChartData] = useState({
     labels: salesData.map((sale: Sale) => sale.date),
@@ -25,17 +26,21 @@ const SalesTable  = () => {
     }]
   });
   const getSales = async () => {
-    const response = await fetch("https://stockify-store-management.vercel.app/sales", {
+    const response = await fetch("http://127.0.0.1:5000/sales", {
       method: "GET",
+      headers:{
+        'Authorization': `Bearer ${access_token}`
+      }
     });
     const data = await response.json();
     console.log(data);
     dispatch(setSales({ sales: data.sales }));
-
-  useEffect(() => {
-    getSales();
-  }, []);
 }
+
+useEffect(() =>{
+  getSales()
+
+},[])
 
   return (
     <div id="container">
@@ -52,15 +57,6 @@ const SalesTable  = () => {
         </ul>
         <ul className="menu">
           <li>Users</li>
-          <li>
-            Credit Sales <span className="colorIcon red"></span>
-          </li>
-          <li>
-            Channel Sales <span className="colorIcon orange"></span>
-          </li>
-          <li>
-            Direct Sales <span className="colorIcon green"></span>
-          </li>
         </ul>
         <div className="addCategory">
           <span className="plus">+</span> Add sale

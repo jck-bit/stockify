@@ -1,39 +1,11 @@
-/* 
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 80%;
-    margin: 20px auto;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-    color: black;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-    color: black;
-  }
-   */
 
    #container {
     display: table;
-    width: 1200px;
     background: #202b33;
-    margin: 60px auto;
+    margin: 60px;
     border-radius: 4px;
-    overflow: hidden;
+    overflow:scroll;
+    
   }
   
   /* Side Bar */
