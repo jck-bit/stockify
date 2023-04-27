@@ -103,6 +103,7 @@ const Cart: React.FC = () => {
           <Link to={"/products"}>
             <button>Shop now</button>
           </Link>
+
         </div>
       ) : (
         <div className="whole_cart">
