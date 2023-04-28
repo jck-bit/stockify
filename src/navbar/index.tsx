@@ -4,14 +4,18 @@ import {  BiLogOut } from 'react-icons/bi';
 import { useSelector,useDispatch } from 'react-redux';
 import { Rootstate,setLogout } from '../state';
 import { CartItem } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
+  const isAuth = Boolean(useSelector((state:any) => state.token))
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = () => {
     dispatch(setLogout());
+    navigate('/login');
   }
 
   return (
@@ -31,14 +35,16 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li>
-          <div className='logout_container' onClick={logout}>
-            <span className='logout_icon'>
-                <BiLogOut/>
-              </span>
-            <span>Logout</span>
-          </div>
-        </li>
+        {isAuth && (
+                  <li>
+                  <div className='logout_container' onClick={logout}>
+                    <span className='logout_icon'>
+                        <BiLogOut/>
+                      </span>
+                    <span>Logout</span>
+                  </div>
+                </li>
+        )}
       </ul>
     </nav>
   );
