@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className='navbar_homepage'>
       <ul className='unordered_list_nav'>
         <li>
-          <Link to='/products'>Home</Link>
+          <Link to='/products'>shop</Link>
         </li>
         <li>
           <Link to='/sales'>Sales</Link>
