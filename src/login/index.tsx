@@ -3,19 +3,23 @@ import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import {setLogin} from '../state'
+import Loader from '../components/Loader'
 import '../loginPage.css';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
     const dispatch = useDispatch()
     const{enqueueSnackbar} = useSnackbar()
     const navigate = useNavigate()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [isloading, setIsLoading] = useState<boolean>(false);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
     
       try {
+        setIsLoading(true);
         const res = await fetch('http://127.0.0.1:5000/login', {
           method: 'POST',
           headers: {
@@ -39,15 +43,23 @@ const LoginPage = () => {
           const error = data?.message || "Login failed. Please try again.";
           enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
         }
+        setIsLoading(false);
       } catch (err) {
         const error = "Failed to reach the server. Please try again later.";
         enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
-      }
+        setIsLoading(false);
+      }finally{
+        setIsLoading(false)
     }
+      if(isloading){
+    return <Loader/>
+  }
+
+  }
 
   return (
       <div className="login-container">
-        <h1>store Manager</h1>
+        <h1>Stockify</h1>
         <p>manage user sales</p>
         <form onSubmit={handleSubmit}>
           <label>
@@ -68,6 +80,18 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required />
           </label>
+          <div className='register_div'>
+            <p>
+              <Link to={"/privacy_policy"}>
+                Privacy policy
+              </Link>
+            </p>
+            <p>
+              <Link to={"/register"}>
+                Need an account ?
+              </Link>
+            </p>
+          </div>
           <button type="submit">login</button>
         </form>
       </div>
