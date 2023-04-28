@@ -46,12 +46,12 @@ const LoginPage = () => {
     }
 
   return (
-    <div className="login-page">
       <div className="login-container">
-        <h1>Login</h1>
+        <h1>store Manager</h1>
+        <p>manage user sales</p>
         <form onSubmit={handleSubmit}>
           <label>
-            email:
+            email
             <input 
               type="email" 
               name="email" 
@@ -60,7 +60,7 @@ const LoginPage = () => {
               required />
           </label>
           <label>
-            Password:
+            Password
             <input  
               type="password" 
               name="password" 
@@ -68,17 +68,9 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required />
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit">login</button>
         </form>
       </div>
-      <div className="animation-container">
-        <div className="animation-content">
-          <div className="animation-circle"></div>
-          <div className="animation-circle"></div>
-          <div className="animation-circle"></div>
-        </div>
-      </div>
-    </div>
   );
 };
 
