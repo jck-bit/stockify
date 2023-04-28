@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import {Product, CartItem} from '../types'
-import  { setProducts, addToCart,deleteOneProduct ,Rootstate} from '../state'
+import  { setProducts, addToCart,deleteOneProduct ,Rootstate, setLogout} from '../state'
 import { useSnackbar } from 'notistack';
 import image from  "../assets/images/store.png"
+import { useNavigate } from 'react-router-dom';
 
 const Products =  () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Products =  () => {
   const products = useSelector((state:any) => state.products)
   const { enqueueSnackbar } = useSnackbar();
   const access_token = localStorage.getItem("token");
+  const navigate = useNavigate();
   
 
   const getProducts = async () => {
@@ -20,28 +22,31 @@ const Products =  () => {
         'Authorization': `Bearer ${access_token}`
       }
     });
-    const data = await response.json();
-    dispatch(setProducts({products: data.products}));
-  };
-  
+
+    if (response.ok){
+      const data = await response.json();
+      dispatch(setProducts({products:data.products}))
+    }else{
+      const errorData = await response.json();
+      if(errorData?.msg === "Token has expired"){
+        //Navigating to the login page
+        dispatch(setLogout());
+        navigate("/login");
+      }
+    }
+  }
+
   useEffect(() =>{
-    getProducts()
-  },[])
+    getProducts();
+  
+  })
 
   const handleAddToCart =(product:any) =>{
     dispatch(addToCart({product}));
-    // enqueueSnackbar(`product added to your cart successfully`,{
-    //   variant:"success",
-    //   autoHideDuration:2000,
-    // });
   };
 
   const handleRemoveFromCart = (product: Product) => {
     dispatch(deleteOneProduct(product.id))
-    // enqueueSnackbar(`Item removed from your Cart`, {
-    //   variant: "warning",
-    //   autoHideDuration: 2000
-    // })
   }
 
   return (

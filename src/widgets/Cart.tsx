@@ -6,6 +6,7 @@ import { IoMdTrash } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Rootstate, deleteCart,deleteOneProduct } from '../state';
+import Loader from "../components/Loader";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const Cart: React.FC = () => {
   const [quantities, setQuantity] = useState<any>()
   const [product_ids, setProduct_id] = useState<any>()
   const [user_id, setUser_id] = useState<any>()
+  const [isloading, setIsLoading] = useState<boolean>(false)
+
 
   useEffect(() => {
     setTotalAmount(
@@ -50,7 +53,7 @@ const Cart: React.FC = () => {
   
   const handleCheckout = async () => {
     try {
-      
+      setIsLoading(true);
       const response = await axios.post(
         "http://localhost:5000/users/sales",
         {
@@ -85,15 +88,23 @@ const Cart: React.FC = () => {
           }
         
       }
+      setIsLoading(false);
     } catch (error:Error | any) {
       console.error(error);
       enqueueSnackbar(`${error.response.data.error}`|| "Failed to place order. Please try again later", {
         variant: "error",
         autoHideDuration: 1500,
       });
+      setIsLoading(false);
+    }finally{
+      setIsLoading(false);
     }
   };
 
+  if(isloading){
+    return <Loader/>
+  }
+  
   return (
     <div className="cart">
       <h2 className="cart__title">Cart Items</h2>
@@ -103,6 +114,7 @@ const Cart: React.FC = () => {
           <Link to={"/products"}>
             <button>Shop now</button>
           </Link>
+
         </div>
       ) : (
         <div className="whole_cart">
