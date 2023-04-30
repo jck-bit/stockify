@@ -30,8 +30,9 @@ const Navbar = () => {
         <li>
           <Link to='/cart'>
             <span className='cart_icon'><BsCart4 /></span>
+            
             <span className='cart_text'>
-              Cart{cartItems.length > 0 && ` (${cartItems.length})`}
+              Cart{isAuth && cartItems.length > 0 && ` (${cartItems.length})`}
             </span>
           </Link>
         </li>

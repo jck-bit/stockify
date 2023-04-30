@@ -51,10 +51,10 @@ const LoginPage = () => {
       }finally{
         setIsLoading(false)
     }
-      if(isloading){
-    return <Loader/>
   }
 
+  if(isloading){
+    return <Loader/>
   }
 
   return (
@@ -92,7 +92,7 @@ const LoginPage = () => {
               </Link>
             </p>
           </div>
-          <button type="submit">login</button>
+          <button type="submit">Login</button>
         </form>
       </div>
   );

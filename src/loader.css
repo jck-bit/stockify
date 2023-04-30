@@ -8,6 +8,11 @@
     background-color: transparent;
 }
 
+.loader-container p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .animation-container {
     flex: 1;
