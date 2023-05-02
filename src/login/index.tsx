@@ -51,6 +51,9 @@ const LoginPage = () => {
       }finally{
         setIsLoading(false)
     }
+
+    setEmail("")
+    setPassword("")
   }
 
   if(isloading){

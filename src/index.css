@@ -48,6 +48,56 @@ body {
   align-items: center;
 }
 
+.modal_container {
+  position: fixed;
+  z-index: 1000;
+  padding: 20px;
+  
+}
+
+.modal_box {
+  position: absolute;
+  transform: translate(-50%);
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  background-color: #000000;
+}
+
+.modal_username{
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+}
+
+.logout_container {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 5px;
+  width: 100% auto;
+  cursor: pointer;
+  }
+
+.logout_container:hover{
+  background-color: #333;
+}
+
+
+.user_image{
+  width:30px;
+  height:30px;
+  border-radius:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  cursor: pointer;
+}
+
 .unordered_list_nav li {
   margin: 0;
   color: #fff;
@@ -73,7 +123,7 @@ a:hover {
 }
 
 .logout_icon {
-  font-size: 1.5rem;
+  font-size: 1rem;
   align-items: center;
   margin-right: 5px;
   margin-top: 10px;
@@ -117,9 +167,8 @@ a:hover {
   margin: 1rem 1rem;
   display: flex;
   flex-direction: column;
-
-
 }
+
 .welcome_banner {
   display: flex;
   align-items: center;
@@ -255,7 +304,8 @@ button.remove-from-cart:hover {
 }
 
 .cart__item {
-  border: 1px solid;
+  border: none;
+  background-color: #ebebeb;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -284,8 +334,8 @@ button.remove-from-cart:hover {
   align-items: center;
   justify-content: center; 
   cursor: pointer;
-  height: 50px;
-  width: 50px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
   transition-property: transform;
   transition-duration: 300ms;

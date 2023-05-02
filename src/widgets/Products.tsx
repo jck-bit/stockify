@@ -39,7 +39,7 @@ const Products =  () => {
   useEffect(() =>{
     getProducts();
   
-  })
+  },[])
 
   const handleAddToCart =(product:any) =>{
     dispatch(addToCart({product}));
