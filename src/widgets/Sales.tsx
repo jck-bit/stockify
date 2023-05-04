@@ -1,15 +1,17 @@
 import  { useEffect, useState } from "react";
 import "../SalesTable.css";
-import { setSales } from "../state";
+import { setLogout, setSales } from "../state";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Sale } from "../types";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
 
 const SalesTable  = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const salesData = useSelector((state: any) => state.sales);
-  console.log(salesData)
   const access_token = localStorage.getItem('token')
 
   const [chartData, setChartData] = useState({
@@ -33,10 +35,18 @@ const SalesTable  = () => {
         'Authorization': `Bearer ${access_token}`
       }
     });
-    const data = await response.json();
-    console.log(data);
-    dispatch(setSales({ sales: data.sales }));
-}
+    if (response.ok){
+      const data = await response.json();
+      console.log(data);
+      dispatch(setSales({ sales: data.sales }));    
+    }else{
+      const errorData = await response.json();
+      if (errorData?.msg === "Token has expired"){
+        dispatch(setLogout());
+        navigate('/login');
+      }
+    }
+  }
 
 useEffect(() =>{
   getSales()
