@@ -1,6 +1,6 @@
 import './App.css'
 import HomePage from './homepage'
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
 import Cart from './widgets/Cart';
@@ -10,9 +10,11 @@ import LoginPage from './login';
 import SalesTable from './widgets/Sales';
 import Register from './login/register';
 import PrivacyPolicy from './components/private_policy';
+import Profile from './profile';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -31,6 +33,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
         </SnackbarProvider>
       </BrowserRouter>

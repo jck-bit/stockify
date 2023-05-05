@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { BsCart4 } from 'react-icons/bs';
+import { IoMdSettings} from 'react-icons/io'
 import {  BiLogOut } from 'react-icons/bi';
 import { useSelector,useDispatch } from 'react-redux';
 import { Rootstate,setLogout } from '../state';
 import { CartItem } from '../types';
 import { useNavigate } from 'react-router-dom';
 import {useState } from 'react';
-
 
 const Navbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -60,11 +60,16 @@ const Navbar = () => {
                     </span>
                     <span>Logout</span>
                   </div>
+                  <div className='logout_container'>
+                    <span className='logout_icon'>
+                        <IoMdSettings/>
+                    </span>
+                    <span>settings</span>
+                  </div>
               </div>
             </div>
           )}
         </li>
-
         )}
       </ul>
     </nav>
