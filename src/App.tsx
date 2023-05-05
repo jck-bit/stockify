@@ -30,10 +30,10 @@ function App() {
           <Route path='/products' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
+          <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-          <Route path='/profile' element={<Profile/>}/>
         </Routes>
         </SnackbarProvider>
       </BrowserRouter>
