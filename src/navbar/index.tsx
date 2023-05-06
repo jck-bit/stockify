@@ -64,7 +64,9 @@ const Navbar = () => {
                     <span className='logout_icon'>
                         <IoMdSettings/>
                     </span>
+                    <Link to={'/profile'}>
                     <span>settings</span>
+                    </Link>
                   </div>
               </div>
             </div>

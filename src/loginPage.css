@@ -30,7 +30,7 @@
 
   .register_div a{
     color: rgb(17, 3, 125); 
-    
+    text-decoration: none;
   }
 
   .register_div a:hover{

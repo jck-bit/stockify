@@ -11,6 +11,7 @@ import SalesTable from './widgets/Sales';
 import Register from './login/register';
 import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
+import UserProfileUpdate from './profile/UserProfileUpdate';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
@@ -34,6 +35,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
+          <Route path='/profile-change' element={<UserProfileUpdate/>}/>
         </Routes>
         </SnackbarProvider>
       </BrowserRouter>
