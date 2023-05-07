@@ -14,7 +14,6 @@ const Navbar = () => {
   const user = useSelector((state:any) => state.user)
   const  [showModal, setShowModal] = useState(false);
 
-  console.log(user?.user_image)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,12 +47,12 @@ const Navbar = () => {
         {isAuth && (
         <li>
           <div className="user_image_container" onClick={handleImageClicked}>
+          <span className=''>{user?.username}</span>
             <img src={user?.user_image} alt="" className="user_image" />
           </div>
           {showModal && (
             <div className="modal_container" onClick={() => setShowModal(false)}>
               <div className="modal_box" onClick={(e) => e.stopPropagation()}>
-                <span className='modal_username'> hi {user?.username}</span>
                   <div className='logout_container' onClick={logout}>
                     <span className='logout_icon'>
                         <BiLogOut/>

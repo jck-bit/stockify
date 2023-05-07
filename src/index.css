@@ -64,6 +64,12 @@ body {
   background-color: rgb(152, 148, 148);
 }
 
+.user_image_container{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
 .modal_container {
   position: fixed;
   z-index: 1000;
