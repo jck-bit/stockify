@@ -5,6 +5,7 @@ import  { setProducts, addToCart,deleteOneProduct ,Rootstate, setLogout} from '.
 import { useSnackbar } from 'notistack';
 import image from  "../assets/images/store.png"
 import { useNavigate } from 'react-router-dom';
+import { myFetch } from '../utils/Myfetch';
 
 const Products =  () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Products =  () => {
   
 
   const getProducts = async () => {
-    const response = await fetch( "http://localhost:5000/products", {
+    const response:any = await myFetch( "http://localhost:5000/products", {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${access_token}`

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Rootstate, deleteCart,deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
+import { myFetch } from "../utils/Myfetch";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -54,53 +55,46 @@ const Cart: React.FC = () => {
   const handleCheckout = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        "http://localhost:5000/users/sales",
-        {
-          quantities,
-          user_id,
-          product_ids
+      const token = localStorage.getItem('token');
+      const response:any = await myFetch("http://localhost:5000/users/sales", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
-          
-          },
-        }
-      );
-      const data = await response.data;
+        body: JSON.stringify({ quantities, user_id, product_ids }),
+      });
+      const data = await response.json();
       console.log(data)
-      if (response.status == 200){
-        if(data){
+      if (response.ok) {
+        if (data) {
           dispatch(deleteCart());
           enqueueSnackbar(`${data.message}`, {
             variant: "success",
             autoHideDuration: 1500,
           });
-        
-        }else{
-          const error = data?.error.message || "Something went wrong,please try again later";
-           enqueueSnackbar(`${error || "error"}`, {
+        } else {
+          const error = data?.error.message || "Something went wrong, please try again later";
+          enqueueSnackbar(`${error || "error"}`, {
             variant: "error",
             autoHideDuration: 1500,
-            });
-          }
-        
+          });
+        }
       }
       setIsLoading(false);
     } catch (error:Error | any) {
       console.error(error);
-      enqueueSnackbar(`${error.response.data.error}`|| "Failed to place order. Please try again later", {
+      enqueueSnackbar(`${error?.response?.data?.error || "Failed to place order. Please try again later"}`, {
         variant: "error",
         autoHideDuration: 1500,
       });
       setIsLoading(false);
-    }finally{
+    } finally {
       setIsLoading(false);
     }
   };
-
+  
+ 
   if(isloading){
     return <Loader/>
   }
