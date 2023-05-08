@@ -3,20 +3,21 @@ import { useSelector } from 'react-redux'
 import '../css/profile_page.css'
 import { Sale } from '../types'
 import SingleUserLine from '../components/SingleUserLine'
+import { Link } from 'react-router-dom'
 
 interface ChartData {
-  labels: string[];
+  labels: any;
   datasets: {
     label: string;
     data: number[];
-    backgroundColor: string;
+    backgroundColor: string[];
   }[];
 }
 
 const Profile = () => {
   const user = useSelector((state:any) => state.user)
   const access_token = localStorage.getItem("token")
-  const [chartData, setChartData] = useState<ChartData>({ labels: [], datasets: [] })
+  const [chartData, setChartData] = useState<ChartData>({labels:[], datasets:[{label:'', data:[], backgroundColor:[]}]})
 
   const getUSerSales = async () => {
     const  res = await fetch(`http://localhost:5000/sales/user/${user?.id}`,{
@@ -28,16 +29,24 @@ const Profile = () => {
     const data: { sales: Sale[] } = await res.json();
     console.log(data);
 
-    const chartData = {
-      labels: data.sales.map(item => item.date),
+    const chartData:ChartData = {
+      labels: data.sales.map(sale => sale.date),
       datasets: [
         {
-          label: 'Sales',
-          data: data.sales.map(item => item.total_sale),
-          backgroundColor: '#3f51b5'
-        }
+
+          label: "Sales",
+          data: data.sales.map(sale => sale.total_sale),
+          backgroundColor: [
+            "rgba(75,192,192,1)",
+            "#ecf0f1",
+            "#50AF95",
+            "#f3ba2f",
+            "#2a71d0",
+          ],
+          }
       ]
-};
+
+    };
 
    setChartData(chartData);
   }
@@ -73,10 +82,12 @@ const Profile = () => {
               </div>
            </section>
            <section className='edit_profile'>
-            <button>Edit profile</button>
+            <Link to={"profile-change"}>
+              <button>Edit profile</button>
+            </Link>
            </section>
         </div>
-        <div className="view_user_sales">
+        <div className="view_user_sales" style={{width:'100%'}}>
             <SingleUserLine chartData={chartData}/>
         </div>
     </div>
