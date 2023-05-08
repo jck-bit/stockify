@@ -35,7 +35,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-          <Route path='/profile-change' element={<UserProfileUpdate/>}/>
+          <Route path='/profile/profile-change' element={<UserProfileUpdate/>}/>
         </Routes>
         </SnackbarProvider>
       </BrowserRouter>

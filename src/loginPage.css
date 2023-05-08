@@ -44,7 +44,9 @@
     font-weight: 500;
   }
 
-  .login-container input {
+  .login-container input[type="text"],
+  .login-container input[type="email"],
+  .login-container input[type="password"] {
     display: block;
     height: 50px;
     width: 100%;

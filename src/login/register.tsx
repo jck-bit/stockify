@@ -55,13 +55,12 @@ const Register = () => {
           name="email" 
           value={email}
           onChange={(e) =>setEmail(e.target.value)}
-          
           required />
       </label>
       <label>
         username
         <input 
-          type="username" 
+          type="text" 
           name="username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}

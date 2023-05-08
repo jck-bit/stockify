@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import '../css/profile_page.css'
 import { Sale } from '../types'
 import SingleUserLine from '../components/SingleUserLine'
+import { Link } from 'react-router-dom'
 
 interface ChartData {
   labels: any;
@@ -81,7 +82,9 @@ const Profile = () => {
               </div>
            </section>
            <section className='edit_profile'>
-            <button>Edit profile</button>
+            <Link to={"profile-change"}>
+              <button>Edit profile</button>
+            </Link>
            </section>
         </div>
         <div className="view_user_sales" style={{width:'100%'}}>
