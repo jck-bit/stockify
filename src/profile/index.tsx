@@ -4,6 +4,7 @@ import '../css/profile_page.css'
 import { Sale } from '../types'
 import SingleUserLine from '../components/SingleUserLine'
 import { Link } from 'react-router-dom'
+import { myFetch } from '../utils/Myfetch'
 
 interface ChartData {
   labels: any;
@@ -20,7 +21,7 @@ const Profile = () => {
   const [chartData, setChartData] = useState<ChartData>({labels:[], datasets:[{label:'', data:[], backgroundColor:[]}]})
 
   const getUSerSales = async () => {
-    const  res = await fetch(`http://localhost:5000/sales/user/${user?.id}`,{
+    const  res:any = await myFetch(`http://localhost:5000/sales/user/${user?.id}`,{
       method:'GET',
       headers:{
         'Authorization': `Bearer ${access_token}`

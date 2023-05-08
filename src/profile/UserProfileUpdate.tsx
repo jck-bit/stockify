@@ -4,17 +4,7 @@ import { useSnackbar } from 'notistack'
 import Loader from '../components/Loader';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../state';
-
-
-interface Token_data {
-  token: string;
-  user: {
-    id: number;
-    username: string;
-    email: string;
-    image_file: string;
-  }
-}
+import { myFetch } from '../utils/Myfetch';
 
 function UserProfileUpdate() {
   const dispatch = useDispatch();
@@ -48,7 +38,7 @@ function UserProfileUpdate() {
 
     try {
       setIsLoading(true)
-      const response = await fetch('http://127.0.0.1:5000/users/profile', {
+      const response:any = await myFetch('http://127.0.0.1:5000/users/profile', {
         method: 'POST',
         headers: myHeaders,
         body: formData,

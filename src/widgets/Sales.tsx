@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Sale } from "../types";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
+import { myFetch } from "../utils/Myfetch";
 
-const SalesTable  = () => {
+const SalesTable  = () => { 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ const SalesTable  = () => {
     }]
   });
   const getSales = async () => {
-    const response = await fetch("http://127.0.0.1:5000/sales", {
+    const response:any = await myFetch("http://127.0.0.1:5000/sales", {
       method: "GET",
       headers:{
         'Authorization': `Bearer ${access_token}`
