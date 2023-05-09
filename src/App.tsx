@@ -13,6 +13,7 @@ import Register from './login/register';
 import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
+import Run from './navbar/run';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
@@ -37,6 +38,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
+          <Route path='/run' element={<Run/>}/>
           
         </Routes>
         </SnackbarProvider>
