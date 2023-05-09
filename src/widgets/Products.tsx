@@ -11,7 +11,6 @@ const Products =  () => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state:any) => state.products)
-  const { enqueueSnackbar } = useSnackbar();
   const access_token = localStorage.getItem("token");
   const navigate = useNavigate();
   
