@@ -13,13 +13,9 @@ import Register from './login/register';
 import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
-import { setLogout } from './state';
-import { useDispatch } from 'react-redux';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
-
-
 
   return (
     <div className="App">
@@ -37,10 +33,11 @@ function App() {
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
+          <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-          <Route path='/profile/profile-change' element={<UserProfileUpdate/>}/>
+          
         </Routes>
         </SnackbarProvider>
       </BrowserRouter>

@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack'
 import Loader from '../components/Loader';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../state';
-import { myFetch } from '../utils/Myfetch';
+import { myFetch } from '../../utils/Myfetch';
 
 function UserProfileUpdate() {
   const dispatch = useDispatch();

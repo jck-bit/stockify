@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Rootstate, deleteCart,deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
-import { myFetch } from "../utils/Myfetch";
+import { myFetch } from "../../utils/Myfetch";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@ import '../css/profile_page.css'
 import { Sale } from '../types'
 import SingleUserLine from '../components/SingleUserLine'
 import { Link } from 'react-router-dom'
-import { myFetch } from '../utils/Myfetch'
+import { myFetch } from '../../utils/Myfetch'
 
 interface ChartData {
   labels: any;

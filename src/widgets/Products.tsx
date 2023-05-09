@@ -5,7 +5,7 @@ import  { setProducts, addToCart,deleteOneProduct ,Rootstate, setLogout} from '.
 import { useSnackbar } from 'notistack';
 import image from  "../assets/images/store.png"
 import { useNavigate } from 'react-router-dom';
-import { myFetch } from '../utils/Myfetch';
+import { myFetch } from '../../utils/Myfetch';
 
 const Products =  () => {
   const dispatch = useDispatch();
