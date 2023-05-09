@@ -14,6 +14,7 @@ import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
 
+
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
 
