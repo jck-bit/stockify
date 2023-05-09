@@ -62,7 +62,6 @@ const Navbar = () => {
             </div>
             {showModal && (
               <div
-              
                 className="modal_container"
                 onClick={() => setShowModal(true)}
               >
