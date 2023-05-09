@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Product, CartItem } from "../types";
-import axios from "axios";
 import { useSnackbar } from "notistack";
 import { IoMdTrash } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -8,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Rootstate, deleteCart,deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
 import { myFetch } from "../../utils/Myfetch";
+import { useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const Cart: React.FC = () => {
   const [product_ids, setProduct_id] = useState<any>()
   const [user_id, setUser_id] = useState<any>()
   const [isloading, setIsLoading] = useState<boolean>(false)
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const Cart: React.FC = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response:any = await myFetch("http://localhost:5000/users/sales", {
+      const response:any = await fetch("http://localhost:5000/users/sales", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,11 +75,16 @@ const Cart: React.FC = () => {
             autoHideDuration: 1500,
           });
         } else {
-          const error = data?.error.message || "Something went wrong, please try again later";
-          enqueueSnackbar(`${error || "error"}`, {
-            variant: "error",
-            autoHideDuration: 1500,
-          });
+          const error = data?.msg || "Something went wrong, please try again later";
+          if(error.msg === "Token has expired"){
+            enqueueSnackbar(`${error}`, {
+              variant: "error",
+              autoHideDuration: 1500,
+            });
+            localStorage.removeItem('token');
+            navigate('/login');
+          
+          }
         }
       }
       setIsLoading(false);
