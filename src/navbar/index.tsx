@@ -33,6 +33,9 @@ const Navbar = () => {
   return (
     <nav className="navbar_homepage" ref={ref}>
       <ul className="unordered_list_nav">
+      <li>
+          <Link to="/">Home</Link>
+        </li>
         <li>
           <Link to="/products">shop</Link>
         </li>
@@ -41,7 +44,7 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="/cart">
-            <span className="cart_icon">
+             <span className="cart_icon">
               <BsCart4 />
             </span>
 
