@@ -1,5 +1,4 @@
 import './App.css'
-import { useEffect } from 'react';
 import HomePage from './homepage'
 import { BrowserRouter, Routes, Route, Navigate, Router,useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -13,7 +12,6 @@ import Register from './login/register';
 import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
-
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
