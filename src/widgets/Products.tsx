@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import {Product, CartItem} from '../types'
 import  { setProducts, addToCart,deleteOneProduct ,Rootstate, setLogout} from '../state'
-import { useSnackbar } from 'notistack';
 import image from  "../assets/images/store.png"
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
@@ -25,6 +24,7 @@ const Products =  () => {
 
     if (response.ok){
       const data = await response.json();
+      console.log(data?.products)
       dispatch(setProducts({products:data.products}))
     }else{
       const errorData = await response.json();
@@ -54,22 +54,22 @@ const Products =  () => {
     <div className="welcome_banner">
       <div className="shop_now">
         <h1>shop now</h1>
-        <button>view all</button>
       </div>
       <img src={image} alt="" />
     </div>
     <div className='product-list'>
       {products && products.map((product:Product) => {
-        if (product.quantity < 1){
-          return null
-        }
+        console.log(product)
         return (
           <div key={product.id} className='product'>
+            <div className="product_image">
+                <img src={product.product_pic} alt=""  className='product-image'/>
+              </div>
             <div className="product-details">
-              <h2 className='product-name'>{product.name}</h2>
-              <p className='product-description'>{product.quantity} units remaining</p>
-              <div className="product-price">{product.price} Ksh</div>
-              
+              <div className="descrptions">
+                <h2 className='product-name'>{product.name}</h2>
+                <span className="product-price">{product.price} Ksh</span>
+              </div>
               {cartItems.some((p) => p.id === product.id) ? (
 
               <button
