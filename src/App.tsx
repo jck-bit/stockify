@@ -27,8 +27,8 @@ function App() {
       >
       <Navbar/>
         <Routes>
-          <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/>
-          <Route path='/products' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
+          {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
+          <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>

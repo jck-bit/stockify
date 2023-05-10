@@ -119,7 +119,7 @@ const Cart: React.FC = () => {
       ) : (
         <div className="whole_cart">
           <div className="containter_cart">
-          {cartItems.map((item) => (
+          {cartItems.map((item:CartItem) => (
             <ul className="cart__list" key={item.id}>
               <li className="cart__item">
                 <h1 className="cart__item__name">{item.name}</h1>

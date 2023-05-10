@@ -33,11 +33,8 @@ const Navbar = () => {
   return (
     <nav className="navbar_homepage" ref={ref}>
       <ul className="unordered_list_nav">
-      <li>
-          <Link to="/">Home</Link>
-        </li>
         <li>
-          <Link to="/products">shop</Link>
+          <Link to="/">shop</Link>
         </li>
         <li>
           <Link to="/sales">Sales</Link>

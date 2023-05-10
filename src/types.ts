@@ -21,6 +21,7 @@ export interface CartItem {
     price:any
     name:any
     date_added:Date
+    product_pic: string;
   }
    
 export interface AuthState {
