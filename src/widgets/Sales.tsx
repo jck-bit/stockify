@@ -30,7 +30,7 @@ const SalesTable  = () => {
     }]
   });
   const getSales = async () => {
-    const response:any = await myFetch("http://127.0.0.1:5000/sales", {
+    const response:any = await myFetch("https://stockify-store-management.vercel.app/sales", {
       method: "GET",
       headers:{
         'Authorization': `Bearer ${access_token}`

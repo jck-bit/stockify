@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response:any = await myFetch("http://localhost:5000/users/sales", {
+      const response:any = await myFetch("https://stockify-store-management.vercel.app/users/sales", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

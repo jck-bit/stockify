@@ -15,7 +15,7 @@ const Products =  () => {
   
 
   const getProducts = async () => {
-    const response:any = await myFetch( "http://localhost:5000/products", {
+    const response:any = await myFetch( "https://stockify-store-management.vercel.app/products", {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${access_token}`
