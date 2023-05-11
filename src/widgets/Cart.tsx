@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response:any = await fetch("http://localhost:5000/users/sales", {
+      const response:any = await myFetch("http://localhost:5000/users/sales", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ const Cart: React.FC = () => {
       {cartItems.length === 0 ? (
         <div className="empty_cart_navigate">
           <h1>Your Cart is empty</h1>
-          <Link to={"/products"}>
+          <Link to={"/"}>
             <button>Shop now</button>
           </Link>
 
@@ -122,6 +122,7 @@ const Cart: React.FC = () => {
           {cartItems.map((item:CartItem) => (
             <ul className="cart__list" key={item.id}>
               <li className="cart__item">
+                <img src={item.product_pic} alt="" style={{width: '100px', height: '100px' ,marginRight: '10px'}}/>
                 <h1 className="cart__item__name">{item.name}</h1>
                 <span className="cart__item__price">Ksh {item.price}</span>
 

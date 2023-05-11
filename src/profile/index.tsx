@@ -88,7 +88,7 @@ const Profile = () => {
             </Link>
            </section>
         </div>
-        <div className="view_user_sales" style={{width:'100%'}}>
+        <div className="view_user_sales" style={{width:'700px'}}>
             <SingleUserLine chartData={chartData}/>
         </div>
     </div>
