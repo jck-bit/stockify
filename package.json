@@ -1,5 +1,4 @@
 {
-  "homepage": "http://jck-bit.github.io/stockify",
   "name": "store-manager-frontend",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "deploy":"gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview"
   },
