@@ -1,9 +1,9 @@
 .container_profile{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap ;
     align-items: center;
-    justify-content:flex-start;
-    margin: 50px;
+    justify-content:space-evenly;
+    padding: 20px;
 }
 
 .view_user_profile{
