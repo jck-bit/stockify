@@ -35,7 +35,6 @@ const LoginPage = () => {
               user: data.user,
               token: data.access_token
             }));
-            console.log(data.access_token)
             navigate('/');
             enqueueSnackbar(data.message, { variant: "success", autoHideDuration:1500 });
           }

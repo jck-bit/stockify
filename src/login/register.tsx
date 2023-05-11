@@ -24,7 +24,6 @@ const Register = () => {
              });
      
              const data = await res.json();
-             console.log(data);
              if(res.ok){
                  if(data){
                      enqueueSnackbar(`${data.message}`, {variant: "success"})

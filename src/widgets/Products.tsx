@@ -24,7 +24,6 @@ const Products =  () => {
 
     if (response.ok){
       const data = await response.json();
-      console.log(data?.products)
       dispatch(setProducts({products:data.products}))
     }else{
       const errorData = await response.json();
@@ -59,7 +58,6 @@ const Products =  () => {
     </div>
     <div className='product-list'>
       {products && products.map((product:Product) => {
-        console.log(product)
         return (
           <div key={product.id} className='product'>
             <div className="product_image">

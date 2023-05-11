@@ -51,7 +51,6 @@ const Cart: React.FC = () => {
     setUser_id(user.id);
   }, [cartItems, user]);               
   
-  console.log(quantities)  
   
   const handleCheckout = async () => {
     try {
@@ -66,7 +65,6 @@ const Cart: React.FC = () => {
         body: JSON.stringify({ quantities, user_id, product_ids }),
       });
       const data = await response.json();
-      console.log(data)
       if (response.ok) {
         if (data) {
           dispatch(deleteCart());
@@ -89,7 +87,6 @@ const Cart: React.FC = () => {
       }
       setIsLoading(false);
     } catch (error:Error | any) {
-      console.error(error);
       enqueueSnackbar(`${error?.response?.data?.error || "Failed to place order. Please try again later"}`, {
         variant: "error",
         autoHideDuration: 1500,

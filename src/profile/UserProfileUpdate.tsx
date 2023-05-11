@@ -45,7 +45,6 @@ function UserProfileUpdate() {
       });
 
       const data = await response.json();
-      console.log(data)
       if(!response.ok){
         throw new Error(data.message)
       }
@@ -68,7 +67,6 @@ function UserProfileUpdate() {
       const error = err?.message || 'Something went wrong';
       enqueueSnackbar(`${error}`, { variant: 'error' })
       setIsLoading(false)
-      console.error(error);
 
     }
 
