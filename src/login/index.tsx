@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import {setLogin} from '../state'
 import Loader from '../components/Loader'
-import '../loginPage.css';
+import '../css/loginPage.css';
 import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
