@@ -1,14 +1,14 @@
 {
-  "homepage": "http://jck-bit.github.io/stockify-store-management-fronted",
+  "homepage": "http://jck-bit.github.io/stockify",
   "name": "store-manager-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "tsc && vite build",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -29,8 +29,6 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "gh-pages": "^5.0.0",
-    "gulp": "^4.0.2",
-    "gulp-gh-pages": "^0.5.4",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
   }
