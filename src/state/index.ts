@@ -49,7 +49,6 @@ export const authSlice = createSlice({
     addToCart: (state, action: PayloadAction<{ product: Product }>) => {
       const { product } = action.payload;
     
-      console.log(state.cart)
       const existingCartItem = state.cart.find((item) => item && item.id === product.id);
       
       if (existingCartItem) {

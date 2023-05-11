@@ -38,7 +38,6 @@ const SalesTable  = () => {
     });
     if (response.ok){
       const data = await response.json();
-      console.log(data);
       dispatch(setSales({ sales: data.sales }));    
     }else{
       const errorData = await response.json();

@@ -28,7 +28,6 @@ const Profile = () => {
       }
     })
     const data: { sales: Sale[] } = await res.json();
-    console.log(data);
 
     const chartData:ChartData = {
       labels: data.sales.map(sale => sale.date),

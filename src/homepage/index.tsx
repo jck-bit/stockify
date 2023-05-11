@@ -22,7 +22,6 @@ const HomePage = () => {
   const getUsers =async () => {
     const response = await myFetch('https://stockify-store-management.vercel.app/users')
     const data = await response.json()
-    console.log(data.users)
     setUsers(data.users)
   }
   getUsers()
