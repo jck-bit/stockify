@@ -21,7 +21,7 @@ const Profile = () => {
   const [chartData, setChartData] = useState<ChartData>({labels:[], datasets:[{label:'', data:[], backgroundColor:[]}]})
 
   const getUSerSales = async () => {
-    const  res:any = await myFetch(`http://localhost:5000/sales/user/${user?.id}`,{
+    const  res:any = await myFetch(`https://stockify-store-management.vercel.app/sales/user/${user?.id}`,{
       method:'GET',
       headers:{
         'Authorization': `Bearer ${access_token}`

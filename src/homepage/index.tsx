@@ -20,7 +20,7 @@ const HomePage = () => {
 
  useEffect(() =>{
   const getUsers =async () => {
-    const response = await myFetch('http://localhost:5000/users')
+    const response = await myFetch('https://stockify-store-management.vercel.app/users')
     const data = await response.json()
     console.log(data.users)
     setUsers(data.users)

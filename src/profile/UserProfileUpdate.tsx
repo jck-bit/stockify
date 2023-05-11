@@ -38,7 +38,7 @@ function UserProfileUpdate() {
 
     try {
       setIsLoading(true)
-      const response:any = await myFetch('http://127.0.0.1:5000/users/profile', {
+      const response:any = await myFetch('https://stockify-store-management.vercel.app/users/profile', {
         method: 'POST',
         headers: myHeaders,
         body: formData,
