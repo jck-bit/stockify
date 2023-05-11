@@ -16,7 +16,7 @@ export const authSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setLogin: (state, action: PayloadAction<{ user:string, token: string }>) => {
+    setLogin: (state:any, action: PayloadAction<{ user:string, token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
 
@@ -25,7 +25,7 @@ export const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state.user));
       localStorage.setItem("token", state.token);
     },
-    setLogout: (state) => {
+    setLogout: (state:any) => {
       state.user = null;
       state.token = null;
 

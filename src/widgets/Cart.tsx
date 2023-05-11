@@ -15,16 +15,16 @@ const Cart: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const user = useSelector((state: any) => state.user);
-  const [quantities, setQuantity] = useState<any>()
-  const [product_ids, setProduct_id] = useState<any>()
-  const [user_id, setUser_id] = useState<any>()
+  const [quantities, setQuantity] = useState<CartItem | any>()
+  const [product_ids, setProduct_id] = useState<CartItem | any>()
+  const [user_id, setUser_id] = useState<string>()
   const [isloading, setIsLoading] = useState<boolean>(false)
   const navigate = useNavigate();
 
 
   useEffect(() => {
     setTotalAmount(
-      cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+      cartItems.reduce((acc, item: CartItem) => acc + item.price * item.quantity, 0)
     );
   }, [cartItems]);
 

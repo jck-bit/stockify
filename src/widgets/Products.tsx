@@ -70,7 +70,7 @@ const Products =  () => {
                 <h2 className='product-name'>{product.name}</h2>
                 <span className="product-price">{product.price} Ksh</span>
               </div>
-              {cartItems.some((p) => p.id === product.id) ? (
+              {cartItems.some((p: CartItem) => p.id === product.id) ? (
 
               <button
                 className="remove-from-cart" 
