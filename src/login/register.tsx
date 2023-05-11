@@ -15,7 +15,7 @@ const Register = () => {
         e.preventDefault()
         
         try {
-            const res = await fetch("https://stockify-store-management.vercel.app/register", {
+            const res = await fetch("https://stockify-store-management.vercel.app/api/register", {
                 method: "POST",
                 headers: {
                  "Content-Type": "application/json"
