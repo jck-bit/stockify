@@ -5,7 +5,7 @@ import { BiLogOut } from 'react-icons/bi';
 import { useSelector, useDispatch } from 'react-redux';
 import { Rootstate, setLogout } from '../state';
 import { CartItem } from '../types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import useOnClickOutside from '../../utils/outsideClick';
 
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const ref = useRef(null);
 
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,13 +35,17 @@ const Navbar = () => {
     <nav className="navbar_homepage" ref={ref}>
       <ul className="unordered_list_nav">
         <li>
-          <Link to="/">shop</Link>
+          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+            shop
+          </Link>
         </li>
         <li>
-          <Link to="/sales">Sales</Link>
+          <Link to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
+            Sales
+          </Link>
         </li>
         <li>
-          <Link to="/cart">
+          <Link to="/cart" className={location.pathname === '/cart' ? 'active' : ''}>
              <span className="cart_icon">
               <BsCart4 />
             </span>
@@ -57,7 +62,7 @@ const Navbar = () => {
               className="user_image_container"
               onClick={handleImageClicked}
             >
-              <span className="">{user?.username}</span>
+              <span style={{color:'#fff'}}>{user?.username}</span>
               <img src={user?.user_image} alt="" className="user_image" />
             </div>
             {showModal && (
@@ -76,11 +81,11 @@ const Navbar = () => {
                     <span>Logout</span>
                   </div>
                   <div className="logout_container">
+                    <Link to={'/profile'} className={location.pathname === '/profile' ? 'active' : ''}>
                     <span className="logout_icon">
                       <IoMdSettings />
                     </span>
-                    <Link to={'/profile'}>
-                      <span>settings</span>
+                      <span>profile</span>
                     </Link>
                   </div>
                 </div>

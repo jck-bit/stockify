@@ -48,13 +48,21 @@ body {
   background-color: transparent;
 }
 
-.unordered_list_nav li {
+.unordered_list_nav li{
+  padding: 5px;
+}
+
+.unordered_list_nav a {
    color: #fff;
-   padding: 20px;
+   padding: 15px;
+}
+
+.active{
+  background-color: #8f8888;
 }
 
 .unordered_list_nav li:hover{
-  background-color: rgb(47, 46, 46);
+  background-color: transparent;
 }
 
 .user_image_container{
