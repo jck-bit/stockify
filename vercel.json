@@ -3,14 +3,14 @@
   "build": {
     "target": "serverless"
   },
-  "pages": {
-    "/": "pages/index.js",
-    "/cart": "pages/cart.js",
-    "/sales": "pages/sales.js",
-    "/profile": "pages/profile.js",
-    "/profile/profile-change": "pages/profile-change.js",
-    "/login": "pages/login.js",
-    "/register": "pages/register.js",
-    "/privacy_policy": "pages/privacy_policy.js"
+  "routes": {
+    "/": "routes/Products.tsx",
+    "/cart": "routes/cart.tsx",
+    "/sales": "routes/sales.tsx",
+    "/profile": "routes/profile.tsx",
+    "/profile/profile-change": "routes/profile-change.tsx",
+    "/login": "routes/login.tsx",
+    "/register": "routes/register.tsx",
+    "/privacy_policy": "routes/privacy_policy.tsx"
   }
 }

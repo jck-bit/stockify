@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      
       <SnackbarProvider 
         anchorOrigin={{
          vertical: "bottom",
@@ -38,7 +38,6 @@ function App() {
           
         </Routes>
         </SnackbarProvider>
-      </BrowserRouter>
     </div>
   )
 }

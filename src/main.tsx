@@ -5,6 +5,7 @@ import './index.css'
 import authReducer from './state'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from "react-router-dom"
 
 import {
   persistStore,
@@ -36,7 +37,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
    <Provider store={store}>
      <PersistGate loading={null} persistor={persistStore(store)}>
-      <App/>
+      <BrowserRouter>
+       <App/>
+      </BrowserRouter>
      </PersistGate>
    </Provider>
   </React.StrictMode>,
