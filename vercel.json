@@ -1,0 +1,16 @@
+{
+  "framework": "react",
+  "build": {
+    "target": "serverless"
+  },
+  "pages": {
+    "/": "pages/index.js",
+    "/cart": "pages/cart.js",
+    "/sales": "pages/sales.js",
+    "/profile": "pages/profile.js",
+    "/profile/profile-change": "pages/profile-change.js",
+    "/login": "pages/login.js",
+    "/register": "pages/register.js",
+    "/privacy_policy": "pages/privacy_policy.js"
+  }
+}
