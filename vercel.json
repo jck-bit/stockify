@@ -1,6 +1,16 @@
 {
-    "routes": [
-      { "src": "/(.*)", "dest": "/index.html" }
-    ]
+  "framework": "react",
+  "build": {
+    "target": "serverless"
+  },
+  "routes": {
+    "/": "Products.tsx",
+    "/cart": "cart.tsx",
+    "/sales": "sales.tsx",
+    "/profile": "profile.tsx",
+    "/profile/profile-change": "profile-change.tsx",
+    "/login": "login.tsx",
+    "/register": "register.tsx",
+    "/privacy_policy": "privacy_policy.tsx"
   }
-  
+}
