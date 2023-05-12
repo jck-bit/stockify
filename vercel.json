@@ -4,13 +4,13 @@
     "target": "serverless"
   },
   "routes": {
-    "/": "routes/Products.tsx",
-    "/cart": "routes/cart.tsx",
-    "/sales": "routes/sales.tsx",
-    "/profile": "routes/profile.tsx",
-    "/profile/profile-change": "routes/profile-change.tsx",
-    "/login": "routes/login.tsx",
-    "/register": "routes/register.tsx",
-    "/privacy_policy": "routes/privacy_policy.tsx"
+    "/": "Products.tsx",
+    "/cart": "cart.tsx",
+    "/sales": "sales.tsx",
+    "/profile": "profile.tsx",
+    "/profile/profile-change": "profile-change.tsx",
+    "/login": "login.tsx",
+    "/register": "register.tsx",
+    "/privacy_policy": "privacy_policy.tsx"
   }
 }
