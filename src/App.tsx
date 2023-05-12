@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import HomePage from './homepage'
 import { BrowserRouter, Routes, Route, Navigate, Router,useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -14,11 +13,7 @@ import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    setIsAuth(useSelector((state:any) => state.token))
-  }, [useSelector])
+  const isAuth = Boolean(useSelector((state:any) => state.token))
 
   return (
     <div className="App">
@@ -31,6 +26,7 @@ function App() {
       >
       <Navbar/>
         <Routes>
+          {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
           <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
