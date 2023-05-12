@@ -3,6 +3,7 @@
   "build": {
     "target": "serverless"
   },
+  
   "routes": {
     "/": "Products.tsx",
     "/cart": "cart.tsx",
