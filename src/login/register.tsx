@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
+import Loader from '../components/Loader'
 
 const Register = () => {
     const navigate = useNavigate();
@@ -9,11 +10,11 @@ const Register = () => {
     const[username, setUsername] = useState<string>("");
     const[email, setEmail] = useState<string>("");
     const[password, setPassword] = useState<string>("");
-
+   const [loading , setLoading] = useState<boolean>(false);
 
     const handleSubmit =async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
+        setLoading(true);        
         try {
             const res = await fetch("https://stockify-store-management.vercel.app/api/register", {
                 method: "POST",
@@ -33,14 +34,19 @@ const Register = () => {
                  const error = data?.message || "Something went wrong";
                  enqueueSnackbar(error, {variant: "error"})
          }
+         setLoading(false);
         } catch (err) {
             const error = "Failed to reach the server. Please try again later.";
             enqueueSnackbar(error, { variant: 'error', autoHideDuration:1500 });
+            setLoading(false);
         }
         setPassword("");
         setEmail("");
         setUsername("");      
 
+}
+if(loading){
+  return <Loader/>
 }
   return (
     <div className="login-container">
