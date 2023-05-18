@@ -10,10 +10,20 @@ const Register = () => {
     const[username, setUsername] = useState<string>("");
     const[email, setEmail] = useState<string>("");
     const[password, setPassword] = useState<string>("");
-   const [loading , setLoading] = useState<boolean>(false);
+    const[loading , setLoading] = useState<boolean>(false);
+    const[confirmPassword, setConfirmPassword] = useState<string>("");
 
     const handleSubmit =async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if(password !== confirmPassword){
+            enqueueSnackbar("Passwords do not match", {variant: "error", autoHideDuration:1000})
+            // setConfirmPassword('')
+            // setEmail("")
+            // setPassword("")
+            // setUsername("")
+            return;
+        }
+
         setLoading(true);        
         try {
             const res = await fetch("https://stockify-store-management.vercel.app/api/register", {
@@ -80,6 +90,17 @@ if(loading){
           onChange={(e) =>setPassword(e.target.value)}
           required />
       </label>
+      <label>
+      Confirm Password
+      <input  
+        type="password" 
+        name="confirmPassword" 
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        required 
+      />
+    </label>
+
       <div className='register_div'>
             <p>
                 <Link to={"/privacy_policy"}>
