@@ -71,12 +71,10 @@
     cursor: pointer;
     border-radius:5px;
     border: none;
-    color: #fff;
+    color: #333;
     transition: background-color(0.2s ease-in-out);
-    background-color: rgb(31, 34, 31);
+    background-color: #c7c6c6;
     
   }
 
-  .login-container button:hover {
-    background-color: rgb(52, 48, 48);
-  }
+

@@ -380,7 +380,6 @@ a:hover {
 .cart_summary{
   display: flex;
   flex-direction: column;
- 
 }
 
 .cart__total {
