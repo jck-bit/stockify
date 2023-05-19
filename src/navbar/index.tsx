@@ -32,7 +32,11 @@ const Navbar = () => {
   useOnClickOutside(ref, () => setShowModal(false));
 
   return (
+    // user cannot see the navbar without being authenticated
+    
+
     <nav className="navbar_homepage" ref={ref}>
+      {isAuth && (
       <ul className="unordered_list_nav">
         <li>
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
@@ -94,6 +98,7 @@ const Navbar = () => {
           </li>
         )}
       </ul>
+      )}
     </nav>
   );
 };
