@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Product, CartItem } from "../types";
-import { useSnackbar } from "notistack";
-import { IoMdTrash } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Rootstate, deleteCart,deleteOneProduct } from '../state';
+import { Link } from "react-router-dom";
+import { IoMdTrash } from "react-icons/io";
+import { useSnackbar } from "notistack";
+import { Rootstate, deleteCart, deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
 import { myFetch } from "../../utils/Myfetch";
 import { useNavigate } from "react-router-dom";
-import '../css/cart.css'
+import { CartItem, Product } from "../types";
+import '../css/cart.css';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,12 +16,11 @@ const Cart: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const user = useSelector((state: any) => state.user);
-  const [quantities, setQuantity] = useState<CartItem | any>()
-  const [product_ids, setProduct_id] = useState<CartItem | any>()
-  const [user_id, setUser_id] = useState<string>()
-  const [isloading, setIsLoading] = useState<boolean>(false)
+  const [isloading, setIsLoading] = useState<boolean>(false);
+  const [quantities, setQuantity] = useState<any>()
+  const [product_ids, setProduct_id] = useState<any>()
+  const [user_id, setUser_id] = useState<any>()
   const navigate = useNavigate();
-
 
   useEffect(() => {
     setTotalAmount(
@@ -33,15 +32,6 @@ const Cart: React.FC = () => {
     dispatch(deleteCart());
   };
 
-  const handleRemoveFromCart = (product: Product) => {
-    dispatch(deleteOneProduct(product.id));
-    enqueueSnackbar(`Item removed from your Cart`, {
-      variant: "warning",
-      
-      autoHideDuration: 1500,
-    });
-  };
-  
   useEffect(() => {
     setQuantity(
       cartItems.map(item => item.quantity)
@@ -52,7 +42,16 @@ const Cart: React.FC = () => {
     setUser_id(user.id);
   }, [cartItems, user]);               
   
-  
+  console.log(quantities)  
+
+  const handleRemoveFromCart = (product: Product) => {
+    dispatch(deleteOneProduct(product.id));
+    enqueueSnackbar(`Item removed from your Cart`, {
+      variant: "warning",
+      autoHideDuration: 1500,
+    });
+  };
+
   const handleCheckout = async () => {
     try {
       setIsLoading(true);
@@ -65,7 +64,7 @@ const Cart: React.FC = () => {
         },
         body: JSON.stringify({ quantities, user_id, product_ids }),
       });
-      const data = await response.json();
+      const data = await response.json();3
       if (response.ok) {
         if (data) {
           dispatch(deleteCart());
@@ -75,19 +74,18 @@ const Cart: React.FC = () => {
           });
         } else {
           const error = data?.msg || "Something went wrong, please try again later";
-          if(error.msg === "Token has expired"){
+          if (error.msg === "Token has expired") {
             enqueueSnackbar(`${error}`, {
               variant: "error",
               autoHideDuration: 1500,
             });
             localStorage.removeItem('token');
             navigate('/login');
-          
           }
         }
       }
       setIsLoading(false);
-    } catch (error:Error | any) {
+    } catch (error: Error | any) {
       enqueueSnackbar(`${error?.response?.data?.error || "Failed to place order. Please try again later"}`, {
         variant: "error",
         autoHideDuration: 1500,
@@ -97,48 +95,56 @@ const Cart: React.FC = () => {
       setIsLoading(false);
     }
   };
-  
- 
-  if(isloading){
-    return <Loader/>
+
+  if (isloading) {
+    return <Loader />;
   }
-  
+
   return (
     <div className="cart">
       <h2 className="cart__title">Cart Items</h2>
       {cartItems.length === 0 ? (
-        <div className="empty_cart_navigate">
-          <h1>Your Cart is empty</h1>
+        <div  className=" vh-100 d-flex  justify-content-center align-items-center flex-column">
+          <p>Your Cart is empty</p>
           <Link to={"/"}>
-            <button>Shop now</button>
+            <button className="btn btn-primary">Shop now</button>
           </Link>
-
         </div>
       ) : (
-        <div className="whole_cart">
-          <div className="containter_cart">
-          {cartItems.map((item:CartItem) => (
-            <ul className="cart__list" key={item.id}>
-              <li className="cart__item">
-                <img src={item.product_pic} alt="" style={{width: '100px', height: '100px' ,marginRight: '10px'}}/>
-                <h1 className="cart__item__name">{item.name}</h1>
-                <span className="cart__item__price">Ksh {item.price}</span>
-
-                <div onClick={() => handleRemoveFromCart(item)} className="remove_one_cart">
-                  <span>
-                    <IoMdTrash />
-                  </span>
+        <div className="row mt-5">
+          <div className="col-md-8">
+            {cartItems.map((item: CartItem) => (
+              <div className="card mb-3 w-50 mt-5 p-3" key={item.id}>
+                <div className="d-flex align-items-center">
+                  <div className="col-md-4">
+                    <img src={item.product_pic} alt={item.name} className="img-fluid" />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <p className="card-title">{item.name}</p>
+                      <p className="card-text">Ksh {item.price}</p>
+                      <div onClick={() => handleRemoveFromCart(item)} className="remove_one_cart">
+                        <span>
+                          <IoMdTrash />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </li>
-            </ul>
-          ))}
+              </div>
+            ))}
           </div>
-          <div className="cart_summary">
-            <p className="cart__total">Your Total Ksh:{totalAmount}</p>
-            <button className="cart__checkout-button" onClick={handleCheckout}>
-              proced to checkout
-            </button>
-            <button onClick={() => handleDelete()} className="cart__delete-button">Delete Cart</button>
+          <div className="col-md-4 position-right">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Order Summary</h5>
+                <p className="card-text">Your Total: Ksh {totalAmount}</p>
+                <button className="btn btn-primary" onClick={handleCheckout}>
+                  Proceed to Checkout
+                </button>
+                <button onClick={() => handleDelete()} className="btn btn-danger d-flex align-items-center mt-3">Delete Cart</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
