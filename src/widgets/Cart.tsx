@@ -8,6 +8,7 @@ import { Rootstate, deleteCart,deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
 import { myFetch } from "../../utils/Myfetch";
 import { useNavigate } from "react-router-dom";
+import '../css/cart.css'
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
