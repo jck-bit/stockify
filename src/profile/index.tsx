@@ -73,10 +73,6 @@ const Profile = () => {
                 <p>{user?.email}</p>             
               </div>
               <div className='personal_info'>
-                <h5>Your id:</h5>
-                <p>{user?.id}</p>             
-              </div>
-              <div className='personal_info'>
                 <h5>Total sales:</h5>
                 <p>55000</p>             
               </div>

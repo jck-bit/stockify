@@ -134,7 +134,7 @@ const Cart: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4 position-right">
+          <div className="col-md-4">
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Order Summary</h5>
