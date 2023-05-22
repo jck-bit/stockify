@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, CartItem } from '../types';
 import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout } from '../state';
-import image from '../assets/images/store.png';
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';

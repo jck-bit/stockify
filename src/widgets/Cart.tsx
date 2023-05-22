@@ -125,7 +125,7 @@ const Cart: React.FC = () => {
                       <p className="card-text">Ksh {item.price}</p>
                       <div onClick={() => handleRemoveFromCart(item)} className="remove_one_cart">
                         <span>
-                          <IoMdTrash />
+                          <button className="btn btn-danger">Delete </button>
                         </span>
                       </div>
                     </div>
