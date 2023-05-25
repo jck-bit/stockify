@@ -16,7 +16,7 @@ const SalesTable  = () => {
   const access_token = localStorage.getItem('token')
 
   const [chartData, setChartData] = useState({
-    labels: salesData.map((sale: Sale) => sale.date),
+    labels:salesData.map((sale: Sale) => sale.date),
     datasets: [{
       label: "Sales",
       data: salesData.map((sale: Sale) => sale.total_sale),

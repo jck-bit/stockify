@@ -23,6 +23,7 @@ const Products = () => {
 
     if (response.ok) {
       const data = await response.json();
+      console.log(data)
       dispatch(setProducts({ products: data.products }));
     } else {
       const errorData = await response.json();
@@ -51,7 +52,8 @@ const Products = () => {
       <div className="row product-list">
         {products && products.map((product: Product) => {
           return (
-            <div key={product.id} className="col-md-4 col-sm-6">
+            //if product.quantity is null the display is none
+            <div key={product.id} className="col-md-4 col-sm-6" style={{ display: product.quantity === null ? "none" : "" }} >
               <div className="card product mb-3">
                 <div className="row g-0">
                   <div className="col-4">
@@ -70,7 +72,7 @@ const Products = () => {
                           Remove from cart
                         </button>
                       ) : (
-                        <button className="add-to-cart btn btn-primary" onClick={() => handleAddToCart(product)}>
+                        <button className="btn btn-success rounded-0" onClick={() => handleAddToCart(product)}>
                           Add to Cart
                         </button>
                       )}
@@ -85,5 +87,5 @@ const Products = () => {
     </div>
   );
 };
-
+     
 export default Products;

@@ -8,7 +8,7 @@ const initialState: AuthState = {
   user: storedUser,
   token: storedToken,
   products: [],
-  sales: [],
+  sales: [], 
   cart: [],
 };
 
