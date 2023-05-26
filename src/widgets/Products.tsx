@@ -20,7 +20,6 @@ const Products = () => {
         'Authorization': `Bearer ${access_token}`
       }
     });
-
     if (response.ok) {
       const data = await response.json();
       console.log(data)
@@ -55,16 +54,16 @@ const Products = () => {
             //if product.quantity is null the display is none
             <div key={product.id} className="col-md-4 col-sm-6" style={{ display: product.quantity === null ? "none" : "" }} >
               <div className="card product mb-3">
-                <div className="row g-0">
-                  <div className="col-4">
+                <div className="row g-0 ">
+                  {/* <div className="col-4">
                     <div className="product_image">
                       <img src={product.product_pic} alt="" className="card-img-top product-image" />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-8">
                     <div className="card-body product-details">
                       <div className="descrptions">
-                        <h2 className="card-title product-name">{product.name}</h2>
+                        <p className="card-title product-name">{product.name}</p>
                         <span className="product-price">{product.price} Ksh</span>
                       </div>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
