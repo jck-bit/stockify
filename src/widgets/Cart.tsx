@@ -114,18 +114,18 @@ const Cart: React.FC = () => {
         <div className="row mt-5">
           <div className="col-md-8">
             {cartItems.map((item: CartItem) => (
-              <div className="card mb-3 w-50 mt-5 p-3" key={item.id}>
+              <div className="card mb-3 w-50 p-.5 mt-20" key={item.id}>
                 <div className="d-flex align-items-center">
-                  <div className="col-md-4">
+                  {/* <div className="col-md-4">
                     <img src={item.product_pic} alt={item.name} className="img-fluid" />
-                  </div>
+                  </div> */}
                   <div className="col-md-8">
                     <div className="card-body">
                       <p className="card-title">{item.name}</p>
                       <p className="card-text">Ksh {item.price}</p>
                       <div onClick={() => handleRemoveFromCart(item)} className="remove_one_cart">
                         <span>
-                          <button className="btn btn-danger">Delete </button>
+                          <button className="btn btn-danger rounded-0">Delete </button>
                         </span>
                       </div>
                     </div>
@@ -135,14 +135,14 @@ const Cart: React.FC = () => {
             ))}
           </div>
           <div className="col-md-4">
-            <div className="card">
+            <div className="card w-75">
               <div className="card-body">
                 <h5 className="card-title">Order Summary</h5>
                 <p className="card-text">Your Total: Ksh {totalAmount}</p>
-                <button className="btn btn-primary" onClick={handleCheckout}>
+                <button className="btn btn-success rounded-0" onClick={handleCheckout}>
                   Proceed to Checkout
                 </button>
-                <button onClick={() => handleDelete()} className="btn btn-danger d-flex align-items-center mt-3">Delete Cart</button>
+                <button onClick={() => handleDelete()} className="btn btn-danger d-flex align-items-center mt-3 rounded-0">Delete Cart</button>
               </div>
             </div>
           </div>

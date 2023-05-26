@@ -54,7 +54,7 @@ const Products = () => {
             //if product.quantity is null the display is none
             <div key={product.id} className="col-md-4 col-sm-6" style={{ display: product.quantity === null ? "none" : "" }} >
               <div className="card product mb-3">
-                <div className="row g-0 ">
+                <div className="row g-0 flex-direction: column">
                   {/* <div className="col-4">
                     <div className="product_image">
                       <img src={product.product_pic} alt="" className="card-img-top product-image" />
@@ -67,11 +67,11 @@ const Products = () => {
                         <span className="product-price">{product.price} Ksh</span>
                       </div>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
-                        <button className="remove-from-cart btn btn-danger" onClick={() => handleRemoveFromCart(product)}>
+                        <button className="remove-from-cart btn btn-danger rounded-0" onClick={() => handleRemoveFromCart(product)} style={{color:"black", marginTop:"10px"}}>
                           Remove from cart
                         </button>
                       ) : (
-                        <button className="btn btn-success rounded-0" onClick={() => handleAddToCart(product)}>
+                        <button className="btn btn-success rounded-0" onClick={() => handleAddToCart(product)} style={{marginTop:"10px"}}>
                           Add to Cart
                         </button>
                       )}
