@@ -23,7 +23,7 @@ const Cart: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTotalAmount(
+    setTotalAmount(                    
       cartItems.reduce((acc, item: CartItem) => acc + item.price * item.quantity, 0)
     );
   }, [cartItems]);
@@ -49,20 +49,20 @@ const Cart: React.FC = () => {
     enqueueSnackbar(`Item removed from your Cart`, {
       variant: "warning",
       autoHideDuration: 1500,
-    });
+    });0
   };
 
   const handleCheckout = async () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response:any = await myFetch("https://stockify-store-management.vercel.app/users/sales", {
+      const response:any = await myFetch("http://localhost:5000/users/sales", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + token,
         },
-        body: JSON.stringify({ quantities, user_id, product_ids }),
+        body: JSON.stringify({ quantities, user_id, product_ids }), 
       });
       const data = await response.json();3
       if (response.ok) {
