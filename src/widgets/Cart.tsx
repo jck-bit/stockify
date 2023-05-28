@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { IoMdTrash } from "react-icons/io";
 import { useSnackbar } from "notistack";
 import { Rootstate, deleteCart, deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
@@ -146,7 +145,7 @@ const Cart: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>    
       )}
     </div>
   );
