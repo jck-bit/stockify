@@ -38,9 +38,9 @@ const Navbar = () => {
     <nav className="navbar_homepage" ref={ref}>
       {isAuth && (
       <ul className="unordered_list_nav">
-        <li>
+        <li> 
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
-            shop
+            products
           </Link>
         </li>
         <li>

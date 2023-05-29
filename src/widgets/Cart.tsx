@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { IoMdTrash } from "react-icons/io";
 import { useSnackbar } from "notistack";
 import { Rootstate, deleteCart, deleteOneProduct } from '../state';
 import Loader from "../components/Loader";
@@ -56,7 +55,7 @@ const Cart: React.FC = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('token');
-      const response:any = await myFetch("http://localhost:5000/users/sales", {
+      const response:any = await myFetch("https://stockify-store-management.vercel.app/users/sales", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +145,7 @@ const Cart: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>    
       )}
     </div>
   );
