@@ -1,5 +1,5 @@
 import HomePage from './homepage'
-import { BrowserRouter, Routes, Route, Navigate, Router,useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
 import Cart from './widgets/Cart';
@@ -24,7 +24,9 @@ function App() {
          horizontal: "left",
        }}
       >
+    <BrowserRouter>
       <Navbar/>
+      
         <Routes>
           {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
           <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
@@ -37,7 +39,9 @@ function App() {
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
           
         </Routes>
-        </SnackbarProvider>
+      </BrowserRouter>
+    
+      </SnackbarProvider>
     </div>
   )
 }
