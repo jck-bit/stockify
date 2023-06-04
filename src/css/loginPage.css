@@ -64,6 +64,7 @@
   
   input:focus{
     outline: none;
+    background-color: rgb(223, 223, 223);
   }
   
   .login-container button{
@@ -74,8 +75,5 @@
     border: none;
     color: #333;
     transition: background-color(0.2s ease-in-out);
-    background-color: #c7c6c6;
-    
+    background-color: #c7c6c6; 
   }
-
-
