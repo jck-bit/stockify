@@ -12,6 +12,7 @@ import PrivacyPolicy from './components/private_policy';
 import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
 import Stocks from './widgets/stocks';
+import OnlineStore from './widgets/store';
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
           <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
+          <Route path='/store' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
           <Route path='/stocks' element={isAuth ? <Stocks/> : <Navigate to="/login" />}/>
           <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>

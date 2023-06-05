@@ -22,7 +22,7 @@ const Navbar = () => {
 
   const logout = () => {
     dispatch(setLogout());
-    navigate('/login');
+    navigate('/login');2
   };
 
   const handleImageClicked = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li> 
-          <Link to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
+          <Link to="/store" className={location.pathname === '/stocks' ? 'active' : ''}>
             stock
           </Link>
         </li>
