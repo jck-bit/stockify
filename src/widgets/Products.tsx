@@ -12,6 +12,7 @@ const Products = () => {
   const products = useSelector((state: any) => state.products);
   const access_token = localStorage.getItem("token");
   const navigate = useNavigate();
+  
 
   const getProducts = async () => {
     const response: any = await myFetch("https://stockify-store-management.vercel.app/products", {

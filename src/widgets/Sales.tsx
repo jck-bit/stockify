@@ -7,6 +7,7 @@ import { Sale } from "../types";
 import BarChart from "../components/BarChart";
 import LineChart from "../components/LineChart";
 import { myFetch } from "../../utils/Myfetch";
+// 
 
 const SalesTable  = () => { 
   const dispatch = useDispatch();

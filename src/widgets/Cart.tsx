@@ -105,8 +105,9 @@ const Cart: React.FC = () => {
       {cartItems.length === 0 ? (
         <div  className=" vh-100 d-flex  justify-content-center align-items-center flex-column">
           <p>Your Cart is empty</p>
-          <Link to={"/"}>
-            <button className="btn btn-primary">Shop now</button>
+          {/* whenever i hover on the link, there isnt any effect on its background */}
+          <Link to={"/"} className="transition-none">
+            <button className="btn btn-primary rounded-0">Shop now</button>
           </Link>
         </div>
       ) : (

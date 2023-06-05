@@ -5,6 +5,7 @@ export interface Product {
     quantity: number;
     date_added:Date
     product_pic: string;
+    description: string;
   }
 
 export interface Sale {
