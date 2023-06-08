@@ -44,7 +44,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li> 
-          <Link to="/store" className={location.pathname === '/stocks' ? 'active' : ''}>
+          <Link to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
             stock
           </Link>
         </li>
