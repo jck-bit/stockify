@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { myFetch } from '../../utils/Myfetch';
 import Loader from './Loader';
-//`https://stockify-store-management.vercel.app/products/${selectedProduct.id}
+import { useSnackbar } from 'notistack';
+import EditLoader from './EditLoader';
+
 
 interface EditModalProps {
   selectedProduct: Product;
@@ -15,14 +17,14 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   const [description, setDescription] = useState(selectedProduct.description);
   const [price, setPrice] = useState(selectedProduct.price);
   const [image, setImage] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const{enqueueSnackbar} = useSnackbar()
+
 
   const access_token = localStorage.getItem('token');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-
     const productData = {
       name,
       quantity,
@@ -33,7 +35,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
 
     try {
       setLoading(true);
-      const response = await myFetch(`http://localhost:5000/products/${selectedProduct.id}`, {
+      const response = await myFetch(`https://stockify-store-management.vercel.app/products/${selectedProduct.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -43,25 +45,28 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message);
+      if (response.ok){
+        if(data){
+            console.log(data.message)
+            enqueueSnackbar(`${data.message}`, {variant:'success', autoHideDuration:1500})
+            setIsModalOpen(false);
+        }else{
+            console.log('error')
+            enqueueSnackbar(`Something went wrong`, {variant:'error', autoHideDuration:1500})
+        }
+        setLoading(false);
       }
 
-      console.log('Product updated successfully');
-      setIsModalOpen(false);
-      setLoading(false);
     } catch (error) {
       console.error('Error updating product:', error);
       setLoading(false);
     }
   };
 
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <div className="modal" style={{ display: selectedProduct ? 'block' : '' }}>
+      {loading && <EditLoader />}
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
