@@ -2,20 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Product } from '../types';
 import { myFetch } from '../../utils/Myfetch';
 import EditModal from '../components/EditModal';
+import { useDispatch, useSelector } from 'react-redux';
 
 const OnlineStore = () => {
   const [products, setProducts] = useState([]);
   const access_token = localStorage.getItem('token');
   const [selectedProduct, setSelectedProduct] = useState<any>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const productsState = useSelector((state: any) => state.products);
+  console.log(productsState);
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    setProducts(productsState);
+  }, [productsState])
+
+
   const fetchProducts = async () => {
     try {
-      const response = await myFetch('https://stockify-store-management.vercel.app/products', {
+      const response = await myFetch('http://localhost:5000/products', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
