@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import { myFetch } from '../../utils/Myfetch';
-import Loader from './Loader';
 import { useSnackbar } from 'notistack';
+import { useDispatch, useSelector } from 'react-redux';
 import EditLoader from './EditLoader';
-
+import { EditProduct, DeleteProduct } from '../state';
 
 interface EditModalProps {
   selectedProduct: Product;
@@ -18,14 +18,17 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   const [price, setPrice] = useState(selectedProduct.price);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const{enqueueSnackbar} = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar();
 
+  const authState = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch();
 
   const access_token = localStorage.getItem('token');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const productData = {
+      id: selectedProduct.id,
       name,
       quantity,
       description,
@@ -35,34 +38,80 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
 
     try {
       setLoading(true);
-      const response = await myFetch(`https://stockify-store-management.vercel.app/products/${selectedProduct.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${access_token}`,
-        },
-        body: JSON.stringify(productData),
-      });
+      const response = await myFetch(
+        `http://localhost:5000/products/${selectedProduct.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${access_token}`,
+          },
+          body: JSON.stringify(productData),
+        }
+      );
 
       const data = await response.json();
-      if (response.ok){
-        if(data){
-            console.log(data.message)
-            enqueueSnackbar(`${data.message}`, {variant:'success', autoHideDuration:1500})
-            setIsModalOpen(false);
-        }else{
-            console.log('error')
-            enqueueSnackbar(`Something went wrong`, {variant:'error', autoHideDuration:1500})
+      if (response.ok) {
+        if (data) {
+          enqueueSnackbar(`${data.message}`, {
+            variant: 'success',
+            autoHideDuration: 1500,
+          });
+          setIsModalOpen(false);
+          dispatch(EditProduct({ product: productData }));
+        } else {
+          console.log('error');
+          enqueueSnackbar(`Something went wrong`, {
+            variant: 'error',
+            autoHideDuration: 1500,
+          });
         }
-        setLoading(false);
       }
-
+      setLoading(false);
     } catch (error) {
       console.error('Error updating product:', error);
       setLoading(false);
     }
   };
 
+  const handleDelete = async () => {
+    dispatch(DeleteProduct({ id: selectedProduct.id }));
+    try {
+      setLoading(true);
+      const response = await myFetch(
+        `http://localhost:5000/products/${selectedProduct.id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data.message);
+      if (response.ok) {
+        if (data) {
+          dispatch(DeleteProduct({ id: selectedProduct.id }));
+          console.log(data.message);
+          enqueueSnackbar(`${data.message}`, {
+            variant: 'success',
+            autoHideDuration: 1500,
+          });
+          setIsModalOpen(false);
+        } else {
+          console.log(data.message);
+          enqueueSnackbar(`${data.message}`, {
+            variant: 'error',
+            autoHideDuration: 1500,
+          });
+        }
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="modal" style={{ display: selectedProduct ? 'block' : '' }}>
@@ -121,13 +170,22 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
               </div>
               <div className="form-group">
                 <label htmlFor="image">Product Image</label>
-                <input type="file" className="form-control-file" id="image" onChange={(e) => setImage(e.target.files?.[0] || null)} />
+                <input
+                  type="file"
+                  className="form-control-file"
+                  id="image"
+                  onChange={(e) => setImage(e.target.files?.[0] || null)}
+                />
               </div>
               <div className="modal-footer d-flex justify-content-between">
                 <button type="submit" className="btn btn-primary rounded-0">
                   Save Changes
                 </button>
-                <button type="button" className="btn btn-danger rounded-0 float-right" onClick={() => setIsModalOpen(false)}>
+                <button
+                  type="button"
+                  className="btn btn-danger rounded-0 float-right"
+                  onClick={handleDelete}
+                >
                   Delete Product
                 </button>
               </div>
@@ -140,4 +198,3 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
 };
 
 export default EditModal;
-

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthState, CartItem,Product, Sale } from "../types";
+import { AuthState, CartItem,Product } from "../types";
 
 const  storedUser = localStorage.getItem("user");
 const  storedToken = localStorage.getItem("token");
@@ -13,7 +13,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-  name: "cart",
+  name: "auth",
   initialState,
   reducers: {
     setLogin: (state:any, action: PayloadAction<{ user:string, token: string }>) => {
@@ -33,10 +33,31 @@ export const authSlice = createSlice({
     },
     setProducts: (
       state,
-      action: PayloadAction<{ products: Product[] }>
+      action: PayloadAction<{ products: Product | any }>
     ) => {
       state.products = action.payload.products; 
     },
+
+    DeleteProduct: (state, action: PayloadAction<{ id: number }>) => {
+      const removeItem =  state.products.filter((item:any) => item.id !== action.payload)
+      state.products = removeItem
+
+    },
+
+    EditProduct: (state, action: PayloadAction<{ product: any }>) => {
+      const { product } = action.payload;
+      const index = state.products.findIndex((item: Product) => item.id === product.id);
+    
+      if (index !== -1) {
+        state.products[index] = product;
+        console.log("Item updated:", product);
+      } else {
+        console.log("Item not found in state.products");
+      }
+
+      return state;
+    },
+    
 
     setSales: (state, action: PayloadAction<{ sales: any[] }>) => {
       state.sales = action.payload.sales;
@@ -58,12 +79,12 @@ export const authSlice = createSlice({
       }
     }, 
       deleteCart:(state, action:PayloadAction)=>{
-        state.cart =[]
+        state.cart =[];
       },
 
       deleteOneProduct:(state:any, action:any) =>{
         const removeItem =  state.cart.filter((item:any) => item.id !== action.payload)
-        state.cart = removeItem
+        state.cart = removeItem;
 
       },
   },
@@ -73,6 +94,8 @@ export const {
   setLogin,
   addToCart,
   setProducts,
+  DeleteProduct,
+  EditProduct,
   setCart,
   deleteOneProduct,
   setSales,
