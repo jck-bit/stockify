@@ -39,7 +39,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
     try {
       setLoading(true);
       const response = await myFetch(
-        `http://localhost:5000/products/${selectedProduct.id}`,
+        `https://stockify-store-management.vercel.app/products/${selectedProduct.id}`,
         {
           method: 'PUT',
           headers: {
