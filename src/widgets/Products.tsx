@@ -65,6 +65,7 @@ const Products = () => {
                     <div className="card-body product-details">
                       <div className="descrptions">
                         <p className="card-title product-name">{product.name}</p>
+                        <p className="card-text">{product.description}</p>
                         <span className="product-price">{product.price} Ksh</span>
                       </div>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
