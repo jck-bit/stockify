@@ -23,7 +23,7 @@ export const authSlice = createSlice({
       //store the user data in the local storage
 
       localStorage.setItem("user", JSON.stringify(state.user));
-      localStorage.setItem("token", state.token);
+      localStorage.setItem("token", state.token );
     },
     setLogout: (state:any) => {
       state.user = null;
@@ -101,6 +101,7 @@ export const {
   addToCart,
   setProducts,
   DeleteProduct,
+  addProduct,
   EditProduct,
   setCart,
   deleteOneProduct,
