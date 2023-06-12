@@ -48,7 +48,7 @@ const AddModal = ({setIsModalOpen}: AddProductModalProps)  => {
         if (response.ok){
             console.log(data);
             setIsModalOpen(false);
-            dispatch(addProduct({product: data}));
+            dispatch(addProduct({product: data.product}));
             enqueueSnackbar(`${data.message}`, {variant: 'success'});
         }else{
             enqueueSnackbar(`${data.message}`, {variant: 'error'});
