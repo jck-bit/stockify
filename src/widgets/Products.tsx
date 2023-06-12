@@ -1,21 +1,30 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, CartItem } from '../types';
 import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout } from '../state';
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';
+import AddModal from '../components/AddModal';
+//https://stockify-store-management.vercel.app/products
 
 const Products = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state: any) => state.products);
   const access_token = localStorage.getItem("token");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
+  const handleModal = () => {
+    setIsModalOpen(true);
+    console.log(isModalOpen)
+  };
   
 
   const getProducts = async () => {
-    const response: any = await myFetch("https://stockify-store-management.vercel.app/products", {
+    const response: any = await myFetch("http://localhost:5000/products", {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${access_token}`
@@ -49,6 +58,17 @@ const Products = () => {
 
   return (
     <div className="container">
+      {/* a plus sign to add a new product on the top right corner */}
+      <div className="row">
+        <div className="row">
+        <div className="col-12">
+          <button className="btn btn-success rounded-0" onClick={() => handleModal()}
+            style={{ marginTop: "10px", marginBottom: "10px"}}>
+              + Add a new product
+          </button>
+        </div>
+      </div>
+      </div>
       <div className="row product-list">
         {products && products.map((product: Product) => {
           return (
@@ -85,6 +105,7 @@ const Products = () => {
           );
         })}
       </div>
+    {isModalOpen && <AddModal setIsModalOpen={setIsModalOpen}/>}
     </div>
   );
 };

@@ -19,8 +19,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
-
-  const authState = useSelector((state: any) => state.auth);
+  
   const dispatch = useDispatch();
 
   const access_token = localStorage.getItem('token');
@@ -75,7 +74,6 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   };
 
   const handleDelete = async () => {
-    dispatch(DeleteProduct({ id: selectedProduct.id }));
     try {
       setLoading(true);
       const response = await myFetch(
