@@ -37,7 +37,7 @@ export const authSlice = createSlice({
     ) => {
       state.products = action.payload.products; 
     },
-
+     
     DeleteProduct: (state, action: PayloadAction<{ id: number }>) => {
       const removeItem =  state.products.filter((item:any) => item.id !== action.payload)
       state.products = removeItem

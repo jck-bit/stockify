@@ -104,10 +104,10 @@ const Cart: React.FC = () => {
       <h2 className="cart__title">Cart Items</h2>
       {cartItems.length === 0 ? (
         <div  className=" vh-100 d-flex  justify-content-center align-items-center flex-column">
-          <p>Your Cart is empty</p>
+          <p>The Cart is empty</p>
           {/* whenever i hover on the link, there isnt any effect on its background */}
           <Link to={"/"} className="transition-none">
-            <button className="btn btn-primary rounded-0">Shop now</button>
+            <button className="btn btn-primary rounded-0">Add items to cart</button>
           </Link>
         </div>
       ) : (
