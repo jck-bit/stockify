@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';
 import AddModal from '../components/AddModal';
+
 //https://stockify-store-management.vercel.app/products
 
 const Products = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state: any) => state.products);
+  const productsState = useSelector((state: any) => state.products);
   const access_token = localStorage.getItem("token");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,6 +24,9 @@ const Products = () => {
     console.log(isModalOpen)
   };
   
+    useEffect(() => {
+    setProducts(productsState);
+  }, [productsState])
 
   const getProducts = async () => {
     const response: any = await myFetch("http://localhost:5000/products", {
