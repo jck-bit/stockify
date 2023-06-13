@@ -1,4 +1,3 @@
-import HomePage from './homepage'
 import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
