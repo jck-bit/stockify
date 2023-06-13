@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { myFetch } from '../../utils/Myfetch';
 import { useSnackbar } from 'notistack';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import EditLoader from './EditLoader';
 import { addProduct} from '../state';
 
@@ -37,7 +37,7 @@ const AddModal = ({setIsModalOpen}: AddProductModalProps)  => {
 
     try {
         setIsLoading(true);
-        const response = await myFetch('http://localhost:5000/products', {
+        const response = await myFetch('https://stockify-store-management.vercel.app/products', {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${access_token}`

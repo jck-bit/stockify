@@ -11,7 +11,7 @@ const OnlineStore = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const productsState = useSelector((state: any) => state.products);
 
-  //https://stockify-store-management.vercel.app/products
+  //
   useEffect(() => {
     fetchProducts();    
   }, []);
@@ -23,7 +23,7 @@ const OnlineStore = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await myFetch('http://127.0.0.1:5000/products', {
+      const response = await myFetch('https://stockify-store-management.vercel.app/products', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
