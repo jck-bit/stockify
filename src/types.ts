@@ -5,7 +5,7 @@ export interface Product {
     quantity: number;
     date_added:Date;
     description: string;
-    image:string
+    product_pic:string
   }
 
 export interface Sale {

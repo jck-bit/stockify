@@ -48,9 +48,10 @@ const OnlineStore = () => {
       <h4>Stocks Keeping</h4>
       <div className="row">
         {products.map((product: Product) => (
-          <div className="col-md-4" key={product.id}>
+          <div className="col-md-3" key={product.id}>
             <div className="card mb-4">
               <div className="card-body">
+                <img src={product.product_pic} alt={product.name} className="img-fluid rounded-0 mb-3 justify-content-center d-flex align-items-center" style={{height: "200px", objectFit: "cover", width: "300px"}}/>
                 <h5 className="card-title">{product.name}</h5>
                 {/* if the quantity is null, the product.quantity will be 0 */}
                 <p className='card-text'>{product.quantity === null ? "Out of stock" : product.quantity + " in stock"}</p>
