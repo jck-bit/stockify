@@ -15,6 +15,12 @@ const Navbar = () => {
   const user = useSelector((state: any) => state.user);
   const [showModal, setShowModal] = useState(false);
   const ref = useRef(null);
+  const[opencartModal, setOpenCartModal] = useState(false);
+
+
+  const opencart = () =>{
+    setOpenCartModal(!opencartModal);
+  }
 
   const location = useLocation();
   const dispatch = useDispatch();
