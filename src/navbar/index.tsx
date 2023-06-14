@@ -8,6 +8,8 @@ import { CartItem } from '../types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import useOnClickOutside from '../../utils/outsideClick';
+import CartModal from '../components/CartModal';
+
 
 const Navbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -19,7 +21,8 @@ const Navbar = () => {
 
 
   const opencart = () =>{
-    setOpenCartModal(!opencartModal);
+    setOpenCartModal(true);
+    console.log(opencartModal)
   }
 
   const location = useLocation();
@@ -71,6 +74,9 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
+        <li className='cart' onClick={() => opencart()}>
+          <span className="" style={{color:'#fff', fontSize:'20px',  cursor:'pointer'}}>cart</span>
+        </li>
         {isAuth && (
           <li>
             <div
@@ -110,6 +116,7 @@ const Navbar = () => {
         )}
       </ul>
       )}
+      {opencartModal && <CartModal setOpenCartModal={setOpenCartModal}/>}
     </nav>
   );
 };
