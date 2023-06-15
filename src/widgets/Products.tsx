@@ -75,7 +75,7 @@ const Products = () => {
         {products && products.map((product: Product) => {
           return (
             //if product.quantity is null the display is none
-            <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? "none" : "" }}>
+            <div key={product.id} className="col-lg-3  col-sm-6 col-10" style={{ display: product.quantity === null ? "none" : "" }}>
               <div className="card">
                 <div className="card-body">
                   <div className="product_image">

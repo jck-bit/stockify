@@ -50,7 +50,7 @@ const CartModal = ({ setOpenCartModal }: Props) => {
     enqueueSnackbar(`Item removed from your Cart`, {
       variant: "warning",
       autoHideDuration: 1500,
-    });0
+    });
   };
 
   const handleCheckout = async () => {
@@ -109,7 +109,9 @@ const CartModal = ({ setOpenCartModal }: Props) => {
           </div>
           <div className="modal-body">
             {cartItems.length === 0 ? (
-              <p>There are no items in your cart</p>
+             <div className="text-center border-bottom pb-2 w-100">
+               <h6 className="">There are no more items in your cart</h6>
+             </div>
             ):(
               <div className="cart-items">
                 {/* map through the items of the cart and create a card for each item  */}
