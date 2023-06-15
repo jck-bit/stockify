@@ -62,20 +62,12 @@ const Navbar = () => {
             Sales
           </Link>
         </li>
-        <li>
-          <Link to="/cart" className={location.pathname === '/cart' ? 'active' : ''}>
-             <span className="cart_icon">
-              <BsCart4 />
-            </span>
-
-            <span className="cart_text">
-              Cart
-              {isAuth && cartItems.length > 0 && ` (${cartItems.length})`}
-            </span>
-          </Link>
-        </li>
         <li className='cart' onClick={() => opencart()}>
-          <span className="" style={{color:'#fff', fontSize:'20px',  cursor:'pointer'}}>cart</span>
+          <span className="" style={{color:'#fff',  cursor:'pointer'}}>
+          Cart
+              {isAuth && cartItems.length > 0 && ` (${cartItems.length})`}
+          </span>
+                              
         </li>
         {isAuth && (
           <li>
