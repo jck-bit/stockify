@@ -111,6 +111,13 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
     }
   };
 
+  const hasChangedFields =
+  name !== selectedProduct.name ||
+  quantity !== selectedProduct.quantity ||
+  description !== selectedProduct.description ||
+  price !== selectedProduct.price ||
+  image !== null;
+
   return (
     <div className="modal" style={{ display: selectedProduct ? 'block' : '' }}>
       {loading && <EditLoader />}
@@ -176,7 +183,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
                 />
               </div>
               <div className="modal-footer d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary rounded-0">
+                <button type="submit" className="btn btn-primary rounded-0" disabled={!hasChangedFields}>
                   Save Changes
                 </button>
                 <button

@@ -92,13 +92,11 @@ const Products = () => {
                         Remove from cart
                       </button>
                     ) : (
-                      <button className="btn btn-success rounded-0" onClick={() => handleAddToCart(product)} style={{  width:"80%", marginLeft:"10%", marginTop:"" }}>
+                      <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{  width:"80%", marginLeft:"10%", marginTop:"" }}>
                         Add to Cart
                       </button>
                     )}
                   </div>
-
-
                 </div>
               </div>
             </div>

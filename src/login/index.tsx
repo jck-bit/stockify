@@ -64,7 +64,6 @@ const LoginPage = () => {
         <h1>Stockify</h1>
         <p>manage user sales</p>
         <form onSubmit={handleSubmit}>
-          {}
           <label>
             email
             <input 
