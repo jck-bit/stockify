@@ -6,6 +6,8 @@ import { CartItem, Product } from "../types";
 import { useSnackbar } from "notistack";
 import { myFetch } from "../../utils/Myfetch";
 import '../css/modal.css'
+import {BsFillTrash3Fill} from 'react-icons/bs'
+
 
 interface Props {
   setOpenCartModal: (openCartModal: boolean) => void;
@@ -118,20 +120,23 @@ const CartModal = ({ setOpenCartModal }: Props) => {
 
                 {cartItems.map((item: CartItem) => (
                   <div className="card mb-2">
-                  <div className="card-body d-flex  align-items-center">
+                  <div className="card-body d-flex  justify-content-between align-items-center">
                     <div className="mr-5">
-                    <img src={item.product_pic} alt={item.name} className="card-img" style={{width: '100px', height: '100px', marginRight:"10px"}}/>
+                      <img src={item.product_pic} alt={item.name} className="card-img" style={{width: '100px', height: '100px', marginRight:"10px"}}/>
                     </div>
                     <div className="card-details" style={{flexGrow:1, marginBottom:"10px"}}>
                       <h5 className="card-title">{item.name}</h5>
                       <h6 className="card-subtitle mb-2">{item.description}</h6>
                       <div className="card-text"> KES {item.price}</div>
                     </div>
+                    {/* when i hover over the icon it changes color */}
+                    <div className="trash-icon" style={{cursor:"pointer"}}>
+                    <BsFillTrash3Fill
+                      onClick={() => handleRemoveFromCart(item)}
+                      style={{ transition: "color 0.3s" ,width:"20px", height:"20px", marginRight:"0", marginLeft:"20px"}}
+                      size={20}
+                   />
                   </div>
-                  <div className="text-center">
-                    <button className="btn btn-danger btn-sm btn-remove mb-1 rounded-0" onClick={() => handleRemoveFromCart(item)} style={{width:"60%", margin: "0 auto"}}>
-                      Remove
-                    </button>
                   </div>
                 </div> 
                 ))}
@@ -159,18 +164,26 @@ const CartModal = ({ setOpenCartModal }: Props) => {
                     Empty Cart
                  </button>
               </div>
+              <div className="card-checkoout d-flex justify-content-between align-items-center mt-2" >
+              <button
+              type="button"
+              className="btn btn-warning"
+              onClick={() => setOpenCartModal(false)}
+              style={{margin: "0 auto",color:"#fff", border:"none", textTransform:"uppercase",  padding:"10px 20px"}}
+            >
+              back
+            </button> 
+            <button
+             type="button"
+             className="btn btn-warning"
+             style={{margin: "0 auto",color:"#fff", border:"none", textTransform:"uppercase", padding:"10px 20px"}}
+             onClick={() => handleCheckout()}
+            >
+              checkout
+            </button>
+              </div>
               </>
             )}
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-default rounded-0"
-              onClick={() => setOpenCartModal(false)}
-              style={{width:"60%", margin: "0 auto", border:"none"}}
-            >
-              Close
-            </button> 
           </div>
         </div>
       </div>

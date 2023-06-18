@@ -165,3 +165,7 @@ a:hover {
   margin-right: 5px;
   margin-top: 10px;
 }
+
+.trash-icon:hover {
+  color: rgb(255, 166, 0); /* Change the color to your desired hover color */
+}
