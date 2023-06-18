@@ -56,7 +56,7 @@ const OnlineStore = () => {
                 {/* if the quantity is null, the product.quantity will be 0 */}
                 <p className='card-text'>{product.quantity === null ? "Out of stock" : product.quantity + " in stock"}</p>
                 <p className="card-text">{product.description}</p>
-                <p className="card-text">Price: ${product.price}</p>
+                <p className="card-text">Price: KES {product.price}</p>
                 <div className='card-buttons d-flex justify-content-center align-items-center'>
                  <button className="btn btn-primary rounded-0" onClick={() => handleEdit(product)} style={{width: "9rem"}}>Edit</button>
                 </div>

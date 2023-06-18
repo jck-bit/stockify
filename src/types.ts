@@ -3,7 +3,7 @@ export interface Product {
     name: string;
     price: number;
     quantity: number;
-    date_added:Date;
+    date_added:any;
     description: string;
     product_pic:string
   }
@@ -24,6 +24,7 @@ export interface CartItem {
     image:string
     description:string
     product_pic:string
+    date_added?:any;
   }
    
 export interface AuthState {

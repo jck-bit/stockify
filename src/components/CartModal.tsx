@@ -113,8 +113,9 @@ const CartModal = ({ setOpenCartModal }: Props) => {
                <h6 className="">There are no more items in your cart</h6>
              </div>
             ):(
+              <>
               <div className="cart-items">
-                {/* map through the items of the cart and create a card for each item  */}
+
                 {cartItems.map((item: CartItem) => (
                   <div className="card mb-2">
                   <div className="card-body d-flex  align-items-center">
@@ -132,23 +133,44 @@ const CartModal = ({ setOpenCartModal }: Props) => {
                       Remove
                     </button>
                   </div>
-                </div>
-                
+                </div> 
                 ))}
+              </div>  
+              <div className="card">
+                <p className="text-center card-title p-1" style={{backgroundColor: "#d1ecf1" ,width:"80%", margin: "0 auto", marginTop:"10px", color: "#0c5460"}}>There are {cartItems.length} items in your cart</p>
+                <div className="card-body">
+                 <div className="card-total d-flex justify-content-between align-items-center">
+                  <p className="card-title">subtotal</p>
+                  <p className="card-text">KES {totalAmount}</p>
+                 </div>
+                 <div className="card-delivery d-flex justify-content-between align-items-center mt-2">
+                  <p>Delivery</p>
+                  <p>Free</p>
+                 </div>
+                 <div className="card-delivery d-flex justify-content-between align-items-center mt-2">
+                  <p className="card-title" style={{fontWeight: "bold"}}>Total (tax incl.)</p>
+                  <p style={{fontWeight: "bold"}}>KES {totalAmount}</p>
+                 </div>
+                </div>
+                <button 
+                  className="btn btn-warning btn-block"  
+                  onClick={() => handleDelete()}
+                  style={{width:"60%", margin: "0 auto", marginTop:"10px",textTransform: "uppercase", marginBottom:"10px", color:"#fff"}}>
+                    Empty Cart
+                 </button>
               </div>
+              </>
             )}
           </div>
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-default"
+              className="btn btn-default rounded-0"
               onClick={() => setOpenCartModal(false)}
+              style={{width:"60%", margin: "0 auto", border:"none"}}
             >
               Close
             </button> 
-            <button type="button" className="btn btn-primary">
-              Save changes
-            </button>
           </div>
         </div>
       </div>

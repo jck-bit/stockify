@@ -79,12 +79,12 @@ const Products = () => {
               <div className="card">
                 <div className="card-body">
                   <div className="product_image">
-                    <img src={product.product_pic} alt="" className=" img-fluid img-thumbnail rounded w-100 h-25" />
+                    <img src={product.product_pic} alt="" className=" img-fluid img-thumbnail rounded w-100" style={{ height: "200px" }} />
                   </div>
                   <div className="descrptions d-flex-column justify-content-between align-items-center">
                     <p className="title">{product.name}</p>
                     <p className="card-text">{product.description}</p>
-                    <span className="product-price mb-2">{product.price} Ksh</span>
+                    <span className="product-price mb-2">KES {product.price}</span>
                   </div>
                   <div className="buttons-container">
                     {cartItems.some((p: CartItem) => p.id === product.id) ? (
