@@ -48,7 +48,7 @@ const Cart: React.FC = () => {
     enqueueSnackbar(`Item removed from your Cart`, {
       variant: "warning",
       autoHideDuration: 1500,
-    });0
+    });
   };
 
   const handleCheckout = async () => {

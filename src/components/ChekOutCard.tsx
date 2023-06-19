@@ -22,19 +22,22 @@ const ChekOutCard = () => {
 
 
   return (
-    <div className="card">
-    <p className="text-center card-title p-1" style={{backgroundColor: "#d1ecf1" ,width:"80%", margin: "0 auto", marginTop:"10px", color: "#0c5460"}}>There are {cartItems.length} items in your cart</p>
-    <div className="card-body">
-     <div className="card-total d-flex justify-content-between align-items-center">
-      <p className="card-title">subtotal</p>
-      <p className="card-text">KES {totalAmount}</p>
+    <div className="" style={{marginTop:"15px",  borderTop:" 1px solid #D3D3D3", backgroundColor:"#f7f7f7", padding:"10px",}}>
+      <p className="text-center title p-1" 
+       style={{backgroundColor: "#d1ecf1" ,width:"80%", margin: "0 auto", marginTop:"10px", color: "#0c5460", marginBottom:"10px"}}>
+        There are {cartItems.length} items in your cart
+       </p>
+    <div className="body">
+     <div className="total d-flex justify-content-between align-items-center" style={{ borderTop:" 1px solid #D3D3D3"}}>
+      <p className="title">subtotal</p>
+      <p className="text">KES {totalAmount}</p>
      </div>
-     <div className="card-delivery d-flex justify-content-between align-items-center mt-2">
+     <div className="delivery d-flex justify-content-between align-items-center mt-2">
       <p>Delivery</p>
       <p>Free</p>
      </div>
-     <div className="card-delivery d-flex justify-content-between align-items-center mt-2">
-      <p className="card-title" style={{fontWeight: "bold"}}>Total (tax incl.)</p>
+     <div className="delivery d-flex justify-content-between align-items-center mt-2">
+      <p className="title" style={{fontWeight: "bold"}}>Total (tax incl.)</p>
       <p style={{fontWeight: "bold"}}>KES {totalAmount}</p>
      </div>
     </div>
