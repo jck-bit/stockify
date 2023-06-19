@@ -12,6 +12,7 @@ import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
 import OnlineStore from './widgets/store';
 import ModalComponent from "./components/CartModal";
+import CartComponent from "./components/CartComponent";
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
