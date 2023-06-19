@@ -13,6 +13,7 @@ import UserProfileUpdate from './profile/UserProfileUpdate';
 import OnlineStore from './widgets/store';
 import ModalComponent from "./components/CartModal";
 import CartComponent from "./components/CartComponent";
+import CheckoutCart from "./checkout";
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
@@ -40,7 +41,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-          
+          <Route path='/cart_modal' element={<CheckoutCart/>}/>
         </Routes>
       </BrowserRouter>
     

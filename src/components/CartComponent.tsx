@@ -5,7 +5,6 @@ import { BsFillTrash3Fill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { useSnackbar } from "notistack";
 
-
 const CartComponent = () => {
     const dispatch  = useDispatch()
     const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -23,7 +22,7 @@ const CartComponent = () => {
     <div className="cart-items">
 
     {cartItems.map((item: CartItem) => (
-      <div className="card mb-2">
+      <div style={{borderTop:"0.5px solid #D3D3D3",  width:"100%" ,paddingBottom:"5px", paddingTop:"5px"}}>
       <div className="card-body d-flex  justify-content-between align-items-center">
         <div className="mr-5">
           <img src={item.product_pic} alt={item.name} className="card-img" style={{width: '100px', height: '100px', marginRight:"10px"}}/>
