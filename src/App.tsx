@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
-import Cart from './widgets/Cart';
 import Navbar from './navbar';
 import { SnackbarProvider } from "notistack";
 import LoginPage from './login';
@@ -32,7 +31,6 @@ function App() {
           {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
           <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
           <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
-          <Route path='/cart' element={ isAuth ? <Cart/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
           <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
