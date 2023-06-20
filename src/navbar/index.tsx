@@ -24,7 +24,7 @@ const Navbar = () => {
 
 
   useEffect(() =>{
-    const {pathname} = location;if
+    const {pathname} = location;
 
     if(pathname === '/cart_modal'){
       setOpenCartModal(false);
