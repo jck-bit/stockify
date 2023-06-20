@@ -13,6 +13,7 @@ const CartModal = ({ setOpenCartModal }: Props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
+
            
   const handleDelete = () => {
     dispatch(deleteCart());

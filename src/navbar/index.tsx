@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import useOnClickOutside from '../../utils/outsideClick';
 import CartModal from '../components/CartModal';
-
+import { useEffect } from 'react';
 
 const Navbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -18,17 +18,27 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const ref = useRef(null);
   const[opencartModal, setOpenCartModal] = useState(false);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  useEffect(() =>{
+    const {pathname} = location;if
+
+    if(pathname === '/cart_modal'){
+      setOpenCartModal(false);
+    }else{
+      setOpenCartModal(false);
+    }
+  },[location])
 
 
   const opencart = () =>{
     setOpenCartModal(true);
     console.log(opencartModal)
+    
   }
-
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const logout = () => {
     dispatch(setLogout());
     navigate('/login');2
