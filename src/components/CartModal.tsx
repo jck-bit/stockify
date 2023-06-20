@@ -1,79 +1,28 @@
-import  { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Rootstate, deleteCart, deleteOneProduct } from '../state';
-import Loader from "./EditLoader";
-import { CartItem, Product } from "../types";
-import { useSnackbar } from "notistack";
-import { myFetch } from "../../utils/Myfetch";
+import { Rootstate, deleteCart } from '../state';
+import { CartItem } from "../types";
 import '../css/modal.css'
 import CartComponent from "./CartComponent";
 import ChekOutCard from "./ChekOutCard";
-
-
+import { useNavigate } from "react-router-dom";
 interface Props {
   setOpenCartModal: (openCartModal: boolean) => void;
 }
 
 const CartModal = ({ setOpenCartModal }: Props) => {
   const dispatch = useDispatch()
-  const [isloading, setIsLoading] = useState<boolean>(false);
-  const [quantities, setQuantity] = useState<any>()
-  const [product_ids, setProduct_id] = useState<any>()
-  const [user_id, setUser_id] = useState<any>()
-  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate()
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
-  const user = useSelector((state: any) => state.user);
-
-
-  useEffect(() => {
-    setQuantity(
-      cartItems.map(item => item.quantity)
-    );
-    setProduct_id(
-      cartItems.map(item => item.id)
-    )
-    setUser_id(user.id);
-  }, [cartItems, user]);               
-  
-  console.log(quantities)  
-
-
-  const handleCheckout = async () => {
-    try {
-      setIsLoading(true);
-      const token = localStorage.getItem('token');
-      const response:any = await myFetch("https://stockify-store-management.vercel.app/users/sales", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token,
-        },
-        body: JSON.stringify({ quantities, user_id, product_ids }), 
-      });
-      const data = await response.json();
-      if (response.ok) {
-        if (data) {
-          dispatch(deleteCart());
-          enqueueSnackbar(`${data.message}`, {
-            variant: "success",
-            autoHideDuration: 1500,
-          });
-        } else {
-          const error = data?.msg || "Something went wrong, please try again later";
-          enqueueSnackbar(`${error}`)
-        }
-      }
-      setIsLoading(false);
-    } catch (error: Error | any) {
-      enqueueSnackbar(`${error?.response?.data?.error || "Failed to place order. Please try again later"}`, {
-        variant: "error",
-        autoHideDuration: 1500,
-      });
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
-    }
+           
+  const handleDelete = () => {
+    dispatch(deleteCart());
   };
+
+  const HandleNavigate = () =>{
+     if (cartItems.length > 0){
+       navigate('/cart_modal')
+     }
+  }
 
   return (
     <div className="modal come-from-modal right fade"  role="dialog" style={{display: 'block', opacity: 1}}>
@@ -100,8 +49,19 @@ const CartModal = ({ setOpenCartModal }: Props) => {
             ):(
               <>
               <CartComponent/>
-
-              <ChekOutCard/>
+               
+              <div style={{ backgroundColor: '#f7f7f7' }}>
+                <ChekOutCard />
+                <div className='text-center pb-2'>
+                  <button
+                    className='btn btn-warning btn-block'
+                    onClick={handleDelete}
+                    style={{ textTransform: 'uppercase', color: '#fff', width: '50%' }}
+                  >
+                    Empty Cart
+                  </button>
+                </div>
+              </div>
 
               <div className="card-checkoout d-flex justify-content-between align-items-center mt-2" >
               <button
@@ -116,9 +76,9 @@ const CartModal = ({ setOpenCartModal }: Props) => {
              type="button"
              className="btn btn-warning"
              style={{margin: "0 auto",color:"#fff", border:"none", textTransform:"uppercase", padding:"10px 20px"}}
-             onClick={() => handleCheckout()}
+             onClick={() => HandleNavigate()}
             >
-              checkout
+              Proceed to checkout
             </button>
               </div>
               </>
