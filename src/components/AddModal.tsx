@@ -17,7 +17,7 @@ const AddModal = ({setIsModalOpen}: AddProductModalProps)  => {
     const [quantity, setQuantity] = useState<any>();
     const [description, setDescription] = useState<string>('');
     const [price, setPrice] = useState<any>('');
-    const [image, setImage] = useState<File>();
+    const [product_pic, setImage] = useState<File>();
 
     const access_token = localStorage.getItem('token');
 
@@ -30,8 +30,8 @@ const AddModal = ({setIsModalOpen}: AddProductModalProps)  => {
         formData.append('description', description);
         formData.append('price', price);
     
-        if(image) {
-            formData.append('image', image);
+        if(product_pic) {
+            formData.append('product_pic', product_pic);
         }
     
 
@@ -122,7 +122,7 @@ const AddModal = ({setIsModalOpen}: AddProductModalProps)  => {
                     <input
                       type="file"
                       className="form-control-file"
-                      id="image"
+                      id="product_pic"
                       onChange={(e) =>setImage(e.target.files![0])}
                       
                     />

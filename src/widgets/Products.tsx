@@ -79,7 +79,7 @@ const Products = () => {
                 <div className="card mb-3" style={{ flex: "1 1 auto" }}>
                   <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <div className="product_image">
-                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ height: "200px" }} />
+                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ height: "200px", objectFit: "cover"}} />
                     </div>
                     <div className="descrptions">
                       <p className="title">{product.name}</p>
