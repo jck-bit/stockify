@@ -75,31 +75,32 @@ const Products = () => {
         {products && products.map((product: Product) => {
           return (
             //if product.quantity is null the display is none
-            <div key={product.id} className="col-lg-3  col-sm-6 col-10" style={{ display: product.quantity === null ? "none" : "" }}>
-              <div className="card">
-                <div className="card-body">
-                  <div className="product_image">
-                    <img src={product.product_pic} alt="" className=" img-fluid img-thumbnail rounded w-100" style={{ height: "200px" }} />
-                  </div>
-                  <div className="descrptions d-flex-column justify-content-between align-items-center">
-                    <p className="title">{product.name}</p>
-                    <p className="card-text">{product.description}</p>
-                    <span className="product-price mb-2">KES {product.price}</span>
-                  </div>
-                  <div className="buttons-container">
-                    {cartItems.some((p: CartItem) => p.id === product.id) ? (
-                      <button className="remove-from-cart btn btn-danger rounded-0" onClick={() => handleRemoveFromCart(product)} style={{  width:"80%", marginLeft:"10%", marginTop:"" }}>
-                        Remove from cart
-                      </button>
-                    ) : (
-                      <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{  width:"80%", marginLeft:"10%", marginTop:"" }}>
-                        Add to Cart
-                      </button>
-                    )}
+            <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? "none" : "flex", flexDirection: "column" }}>
+                <div className="card mb-3" style={{ flex: "1 1 auto" }}>
+                  <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <div className="product_image">
+                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ height: "200px" }} />
+                    </div>
+                    <div className="descrptions">
+                      <p className="title">{product.name}</p>
+                      <p className="card-text">{product.description}</p>
+                      <span className="product-price mb-2">KES {product.price}</span>
+                    </div>
+                    <div className="buttons-container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      {cartItems.some((p: CartItem) => p.id === product.id) ? (
+                        <button className="remove-from-cart btn btn-danger rounded-0" onClick={() => handleRemoveFromCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
+                          Remove from cart
+                        </button>
+                      ) : (
+                        <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
+                          Add to Cart
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
             </div>
+
           );
         })}
       </div>
