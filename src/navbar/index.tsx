@@ -49,6 +49,7 @@ const Navbar = () => {
   };
 
   useOnClickOutside(ref, () => setShowModal(false));
+  
 
   return (
     // user cannot see the navbar without being authenticated
