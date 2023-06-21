@@ -18,9 +18,9 @@ const ChekOutCard = () => {
     
   return (
     <div className="" style={{marginTop:"15px",  borderTop:" 1px solid #D3D3D3", padding:"10px",}}>
-      <p className="text-center title p-1" 
+      <p className="text-center title p-1 " 
        style={{backgroundColor: "#d1ecf1" ,width:"80%", margin: "0 auto", marginTop:"10px", color: "#0c5460", marginBottom:"10px"}}>
-        There are {cartItems.length} items in your cart
+         {cartItems.length === 1 ? `There is 1 item in your cart` : `There are ${cartItems.length} items in your cart`}
        </p>
     <div className="body">
      <div className="total d-flex justify-content-between align-items-center" style={{ borderTop:" 1px solid #D3D3D3"}}>
