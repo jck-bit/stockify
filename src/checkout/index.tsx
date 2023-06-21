@@ -74,7 +74,7 @@ const CheckoutCart = () => {
       <h1>Shopping Cart</h1>
       <div className='row'>
         <div className='col-lg-7 col-md-12 mb-4'>
-          <div className='card p-3'>
+          <div className={cartItems.length === 0 ? "d-none" : " card p-3"}>
             <CartComponent />
           </div>
           <div 
