@@ -29,7 +29,7 @@ const CheckoutCart = () => {
           cartItems.map(item => item.id)
         )
         setUser_id(user.id);
-      }, [cartItems, user]);    
+      }, [cartItems, user]); 
 
 
     const handleCheckout = async () => {

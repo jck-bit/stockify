@@ -5,6 +5,9 @@ import '../css/modal.css'
 import CartComponent from "./CartComponent";
 import ChekOutCard from "./ChekOutCard";
 import { useNavigate } from "react-router-dom";
+import {GrFormClose} from 'react-icons/gr'
+
+
 interface Props {
   setOpenCartModal: (openCartModal: boolean) => void;
 }
@@ -26,20 +29,28 @@ const CartModal = ({ setOpenCartModal }: Props) => {
   }
 
   return (
-    <div className="modal come-from-modal right fade"  role="dialog" style={{display: 'block', opacity: 1}}>
+    <div className="modal come-from-modal right fade"  role="dialog" style={{display: 'block', opacity: 1, zIndex: 9999}}>
       <div className="modal-dialog" role="document">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header d-flex justify-content-between align-items-center pt-4">
             <button
+              style={{
+                 backgroundColor:"transparent", 
+                 border:"none", 
+                 outline:"none", 
+                                 
+              }}
               type="button"
-              className="close"
+              className="close close_modal_button"
               onClick={() => setOpenCartModal(false)}
               aria-label="Close"
             >
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">
+              <GrFormClose size={20} color="#333" style={{marginTop: "0.5rem"}}/>
+              </span>
             </button>
-            <h4 className="modal-title" id="myModalLabel">
-              Cart
+            <h4 className="modal-title" id="myModalLabel" style={{color: "#333", textTransform:"uppercase",}}>
+              Shopping Cart
             </h4>
           </div>
           <div className="modal-body">

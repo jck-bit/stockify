@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, CartItem } from '../types';
-import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout } from '../state';
+import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout, DecrementQuantity, IncrementQuantity } from '../state';
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';
@@ -51,6 +51,14 @@ const Products = () => {
     getProducts();
   }, []);
 
+  const handleIncrement = (product: Product) => {
+    dispatch(IncrementQuantity({ product }));
+  }
+  
+  const handeDecrement = (product: Product) => {
+    dispatch(DecrementQuantity({product}))
+  }
+
   const handleAddToCart = (product: any) => {
     dispatch(addToCart({ product }));
   };
@@ -79,18 +87,36 @@ const Products = () => {
                 <div className="card mb-3" style={{ flex: "1 1 auto" }}>
                   <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <div className="product_image">
-                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ height: "200px", objectFit: "cover"}} />
+                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{  objectFit: "cover"}} />
                     </div>
                     <div className="descrptions">
-                      <p className="title">{product.name}</p>
+                      <h6 className="title" style={{textTransform: "uppercase"}}>{product.name}</h6>
                       <p className="card-text">{product.description}</p>
                       <span className="product-price mb-2">KES {product.price}</span>
                     </div>
                     <div className="buttons-container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
-                        <button className="remove-from-cart btn btn-danger rounded-0" onClick={() => handleRemoveFromCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
-                          Remove from cart
-                        </button>
+                        <div className='input-group bootstrap-touchspin'>
+                          <div className="d-flex justify-content-center align-items-center" style={{border:"1px solid #bababa", borderRadius:"2px"}}>
+                            {/* user will click + to increase the quantity  and - to decrease the quantity  */}
+                            <button 
+                              className="btn btn-outline-secondary bootstrap-touchspin-down rounded-0" 
+                              style={{border:"none",backgroundColor:"#e0e0e0" ,color:"black"}} onClick={() => handeDecrement(product)}>
+                              -
+                            </button>
+                               <input 
+                                type="text" 
+                                className="form-control text-center outline-none border-0" 
+                                style={{width:"4rem", outline:"none", border:"none", textAlign:"center", color:"black", backgroundColor:"transparent"}} 
+                                value={cartItems.find((p: CartItem) => p.id === product.id)?.quantity}
+                                />
+                            <button 
+                              className="btn btn-outline-secondary bootstrap-touchspin-up rounded-0" 
+                              style={{border:"none", backgroundColor:"#e0e0e0", color:"black"}} onClick={() => handleIncrement(product)}>
+                                +
+                            </button>
+                          </div>
+                        </div>
                       ) : (
                         <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
                           Add to Cart

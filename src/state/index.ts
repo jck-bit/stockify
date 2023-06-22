@@ -43,7 +43,6 @@ export const authSlice = createSlice({
       console.log(state.products)
       return state;
     },
-
     DeleteProduct: (state, action: PayloadAction<{ id: number }>) => {
       const removeItem =  state.products.filter((item:any) => item.id !== action.payload)
       state.products = removeItem
@@ -84,11 +83,27 @@ export const authSlice = createSlice({
         state.cart.push({ ...product, quantity: 1 });
       }
     }, 
-      deleteCart:(state, action:PayloadAction)=>{
-        state.cart =[];
-      },
+    IncrementQuantity:(state, action:PayloadAction<{ product: Product }>) =>{
+  
+      const item: any  = state.cart.find((item) =>item && item.id === action.payload.product.id)
+        item.quantity ++;
+    },
+    DecrementQuantity:(state, action:PayloadAction<{ product: Product }>) =>{
+       const item:any = state.cart.find((item) => item.id === action.payload.product.id);
 
-      deleteOneProduct:(state:any, action:any) =>{
+       if(item.quantity === 1){
+        item.quantity = 1;
+       }else{
+        item.quantity --;
+       }
+       state.cart = state.cart;
+    },
+
+    deleteCart:(state, action:PayloadAction)=>{
+        state.cart =[];
+    },
+
+    deleteOneProduct:(state:any, action:any) =>{
         const removeItem =  state.cart.filter((item:any) => item.id !== action.payload)
         state.cart = removeItem;
 
@@ -103,6 +118,8 @@ export const {
   DeleteProduct,
   addProduct,
   EditProduct,
+  DecrementQuantity,
+  IncrementQuantity,
   setCart,
   deleteOneProduct,
   setSales,
