@@ -20,7 +20,6 @@ export interface CartItem {
     quantity: any;
     price:any
     name:any
-    image:string
     description:string
     product_pic:string
   }

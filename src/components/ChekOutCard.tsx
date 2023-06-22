@@ -1,6 +1,6 @@
 import  { useState, useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { Rootstate,deleteCart  } from "../state"
+import { useSelector } from "react-redux";
+import { Rootstate  } from "../state"
 import { CartItem } from '../types'
 
 
