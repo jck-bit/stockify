@@ -41,12 +41,12 @@ const CartModal = ({ setOpenCartModal }: Props) => {
                                  
               }}
               type="button"
-              className="close close_modal_button"
+              className="close close_modal_button mt-3"
               onClick={() => setOpenCartModal(false)}
               aria-label="Close"
             >
-              <span aria-hidden="true">
-              <GrFormClose size={20} color="#333" style={{marginTop: "0.5rem"}}/>
+              <span aria-hidden="true" style={{ border:"1px solid #bababa", borderRadius:"5px", padding:"0.5rem", color:"#333"}}>
+              <GrFormClose size={20} color="#333"/>
               </span>
             </button>
             <h4 className="modal-title" id="myModalLabel" style={{color: "#333", textTransform:"uppercase",}}>

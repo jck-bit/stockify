@@ -4,6 +4,7 @@ import { Rootstate,deleteOneProduct } from '../state'
 import { BsFillTrash3Fill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { useSnackbar } from "notistack";
+import CountCart from './CountCart'
 
 const CartComponent = () => {
     const dispatch  = useDispatch()
@@ -30,7 +31,11 @@ const CartComponent = () => {
         <div className="card-details" style={{flexGrow:1, marginBottom:"10px"}}>
           <h5 className="card-title">{item.name}</h5>
           <h6 className="card-subtitle mb-2">{item.description}</h6>
-          <div className="card-text"> KES {item.price}</div>
+          <div>
+           <div className="card-text mb-3"> KES {item.price}</div>
+           <CountCart product={item}/>
+          </div>
+          
         </div>
         <div className="trash-icon" style={{cursor:"pointer"}}>
         <BsFillTrash3Fill
