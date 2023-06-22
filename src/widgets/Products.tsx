@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, CartItem } from '../types';
-import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout, DecrementQuantity, IncrementQuantity } from '../state';
+import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout } from '../state';
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';
 import AddModal from '../components/AddModal';
+import CountCart from '../components/CountCart';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -51,13 +52,6 @@ const Products = () => {
     getProducts();
   }, []);
 
-  const handleIncrement = (product: Product) => {
-    dispatch(IncrementQuantity({ product }));
-  }
-  
-  const handeDecrement = (product: Product) => {
-    dispatch(DecrementQuantity({product}))
-  }
 
   const handleAddToCart = (product: any) => {
     dispatch(addToCart({ product }));
@@ -96,27 +90,7 @@ const Products = () => {
                     </div>
                     <div className="buttons-container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
-                        <div className='input-group bootstrap-touchspin'>
-                          <div className="d-flex justify-content-center align-items-center" style={{border:"1px solid #bababa", borderRadius:"2px"}}>
-                            {/* user will click + to increase the quantity  and - to decrease the quantity  */}
-                            <button 
-                              className="btn btn-outline-secondary bootstrap-touchspin-down rounded-0" 
-                              style={{border:"none",backgroundColor:"#e0e0e0" ,color:"black"}} onClick={() => handeDecrement(product)}>
-                              -
-                            </button>
-                               <input 
-                                type="text" 
-                                className="form-control text-center outline-none border-0" 
-                                style={{width:"4rem", outline:"none", border:"none", textAlign:"center", color:"black", backgroundColor:"transparent"}} 
-                                value={cartItems.find((p: CartItem) => p.id === product.id)?.quantity}
-                                />
-                            <button 
-                              className="btn btn-outline-secondary bootstrap-touchspin-up rounded-0" 
-                              style={{border:"none", backgroundColor:"#e0e0e0", color:"black"}} onClick={() => handleIncrement(product)}>
-                                +
-                            </button>
-                          </div>
-                        </div>
+                        <CountCart product ={product}/>
                       ) : (
                         <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
                           Add to Cart
