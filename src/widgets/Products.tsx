@@ -88,8 +88,10 @@ const Products = () => {
                       <p className="card-text">{product.description}</p>
                       <span className="product-price mb-2">KES {product.price}</span>
                     </div>
-                    <div className="buttons-container" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <div className="buttons-container d-flex justify-content-center align-items-center" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
+
+                       //if product is remaining one in the cart, 
                         <CountCart product ={product}/>
                       ) : (
                         <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>

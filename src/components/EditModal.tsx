@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditLoader from './EditLoader';
 import { EditProduct, DeleteProduct } from '../state';
 
-//https://stockify-store-management.vercel.app/products/${selectedProduct.id}
 interface EditModalProps {
   selectedProduct: Product;
   setIsModalOpen: (isModalOpen: boolean) => void;
@@ -39,7 +38,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
     try {
       setLoading(true);
       const response = await myFetch(
-        `http://localhost:5000/products/${selectedProduct.id}`,
+        `https://stockify-store-management.vercel.app/products/${selectedProduct.id}`,
         {
           method: 'PUT',
           headers: {
