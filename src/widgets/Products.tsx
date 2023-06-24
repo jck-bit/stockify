@@ -7,6 +7,7 @@ import { myFetch } from '../../utils/Myfetch';
 import '../css/products.css';
 import AddModal from '../components/AddModal';
 import CountCart from '../components/CountCart';
+import {BsFillTrash3Fill} from 'react-icons/bs';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -88,11 +89,20 @@ const Products = () => {
                       <p className="card-text">{product.description}</p>
                       <span className="product-price mb-2">KES {product.price}</span>
                     </div>
-                    <div className="buttons-container d-flex justify-content-center align-items-center" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <div className="buttons-container" style={{  }}>
                       {cartItems.some((p: CartItem) => p.id === product.id) ? (
 
                        //if product is remaining one in the cart, 
-                        <CountCart product ={product}/>
+                       <div className=" card-buttons-container d-flex  align-items-center" style={{  }}>
+                       <CountCart product={product} />
+                       <div>
+                         <BsFillTrash3Fill
+                           onClick={() => handleRemoveFromCart(product)}
+                           style={{ transition: "color 0.3s", width: "20px", height: "20px", marginLeft: "20px" ,cursor:"pointer"}}
+                           size={20}
+                         />
+                       </div>
+                     </div>
                       ) : (
                         <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
                           Add to Cart

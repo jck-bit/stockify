@@ -31,12 +31,12 @@ const CartComponent = () => {
               <h5 className="card-title">{item.name}</h5>
               <h6 className="card-subtitle mb-2">{item.description}</h6>
               <div className="card-text"> KES {item.price}</div>
-              <div className="buttons-container d-flex justify-content-center align-items-center">
+              <div className=" card-buttons-container d-flex justify-content-flex-start">
                 <CountCart product={item} />
                 <div>
                   <BsFillTrash3Fill
                     onClick={() => handleRemoveFromCart(item)}
-                    style={{ transition: "color 0.3s", width: "20px", height: "20px", marginLeft: "20px" }}
+                    style={{ transition: "color 0.3s", width: "20px", height: "20px", marginLeft: "20px" ,cursor:"pointer"}}
                     size={20}
                   />
                 </div>
