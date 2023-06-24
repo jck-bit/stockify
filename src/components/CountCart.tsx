@@ -19,8 +19,8 @@ const CountCart = ({product}:PassedProps) => {
         dispatch(DecrementQuantity({product}))
       }
   return (
-    <div className='input-group bootstrap-touchspin' style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
-    <div className="d-flex justify-content-center align-items-center" style={{border:"1px solid #bababa", borderRadius:"2px",}}>
+    <div className='input-group bootstrap-touchspin mt-2' style={{ width: "80%" }}>
+    <div className="d-flex" style={{border:"1px solid #bababa", borderRadius:"2px",}}>
 
       <button 
         className="btn btn-outline-secondary bootstrap-touchspin-down rounded-0" 
@@ -30,7 +30,7 @@ const CountCart = ({product}:PassedProps) => {
          <input 
           type="text" 
           className="form-control text-center outline-none border-0" 
-          style={{width:"100%", outline:"none", border:"none", textAlign:"center", color:"black", backgroundColor:"transparent"}} 
+          style={{width:"50px", outline:"none", border:"none",  color:"black", backgroundColor:"transparent"}} 
           value={cartItems.find((p: CartItem) => p.id === product.id)?.quantity}
           />
       <button 
