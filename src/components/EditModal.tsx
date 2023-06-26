@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { myFetch } from '../../utils/Myfetch';
 import { useSnackbar } from 'notistack';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import EditLoader from './EditLoader';
 import { EditProduct, DeleteProduct } from '../state';
 
@@ -121,7 +121,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   return (
     <div className="modal" style={{ display: selectedProduct ? 'block' : '' }}>
       {loading && <EditLoader />}
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Edit Product</h5>
