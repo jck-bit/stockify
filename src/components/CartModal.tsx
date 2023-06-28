@@ -60,7 +60,7 @@ const CartModal = ({ setOpenCartModal }: Props) => {
              </div>
             ):(
               <>
-              <CartComponent/>
+              <CartComponent />
                
               <div style={{ backgroundColor: '#f7f7f7' }}>
                 <ChekOutCard />

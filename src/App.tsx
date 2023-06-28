@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
 import Navbar from './navbar';
@@ -11,12 +11,13 @@ import Profile from './profile';
 import UserProfileUpdate from './profile/UserProfileUpdate';
 import OnlineStore from './widgets/store';
 import CheckoutCart from "./checkout";
+import AppNavbar from "./navbar";
 
 function App() {
   const isAuth = Boolean(useSelector((state:any) => state.token))
 
   return (
-    <div className="App">
+    <>
       
       <SnackbarProvider 
         anchorOrigin={{
@@ -25,24 +26,26 @@ function App() {
        }}
       >
     <BrowserRouter>
-      <Navbar/>
+      {/* <Navbar/> */}
+      <AppNavbar/>
       
         <Routes>
           {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
-          <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
-          <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
+           <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
+           <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
+          {/* <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
           <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
-          <Route path='/cart_modal' element={<CheckoutCart/>}/>
+          <Route path='/cart_modal' element={<CheckoutCart/>}/>  */}
         </Routes>
       </BrowserRouter>
     
       </SnackbarProvider>
-    </div>
+    </>
   )
 }
 
