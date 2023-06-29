@@ -1,99 +1,54 @@
 
-.modal_container {
+body  {
+  color: #060404 !important;
+  font-family: Poppins, sans-serif !important;
+}
+
+.navbar{
+  background-color: #f9faffea !important;
+}
+
+
+.navbar a {
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-right: 20px;
+  color: #060404;
+  font-weight: 700px;
+}
+
+
+
+
+.modal-right {
   position: fixed;
-  z-index: 1000;
-  padding: 20px;
-  
+  width: 400px;
+  height: 100%;
+  right: 0;
+  left: -100%;
+  overflow: auto;
+  transition: all 5s ease;
+  opacity: 1;
 }
 
-.modal_box {
-  position: absolute;
-  transform: translate(-50%);
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  background-color: #000000;
+.modal-right .modal-content {
+  position: fixed;
+  width: 400px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  transition: all 0.5s ease;
 }
 
-.modal_username{
-  color: #fff;
-  font-size: 13px;
-  padding: 5px;
+.modal-right .modal.show {
+  left: 0;
+  transition: all 5s;
+  opacity: 1;
 }
 
-.user_image{
-  width:30px;
-  height:30px;
-  border-radius:100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-
-a:hover {
-  background-color: #626262;
-  color:#fff
-}
-
-.cart_icon{
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-}
-
-.cart_text {
-  margin-left: 10px;
-}
-.cart_item{
-  position: absolute;
-  background-color: #fff;
-  font-size: 0.75rem; 
-  width: 1.25rem; 
-  height: 1.25rem; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: bounce 1s infinite;
-  top: -0.25rem;
-  right: 0.4rem; 
-  border-radius: 9999px; 
-  color: #ffffff;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-0.25rem);
-  }
-}
-
-.logout_container {
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 5px;
-  width: 100% auto;
-  cursor: pointer;
-  }
-
-.logout_container:hover{
-  background-color: #333;
-}
-
-.logout_icon {
-  font-size: 1rem;
-  align-items: center;
-  margin-right: 5px;
-  margin-top: 10px;
-}
-
-.trash-icon:hover {
-  color: rgb(219, 15, 15); /* Change the color to your desired hover color */
+.modal-right .modal-dialog {
+  margin-left: auto;
+  transition: all 5s ease;
 }

@@ -8,20 +8,24 @@ import { Rootstate, setLogout } from '../state';
 import { CartItem } from '../types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useRef } from 'react';
-import useOnClickOutside from '../../utils/outsideClick';
 import CartModal from '../components/CartModal';
 import { Nav, Navbar } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const AppNavbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const isAuth = Boolean(useSelector((state: any) => state.token));
   const user = useSelector((state: any) => state.user);
-  const [showModal, setShowModal] = useState(false);
   const ref = useRef(null);
   const [openCartModal, setOpenCartModal] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const { pathname } = location;
@@ -43,20 +47,14 @@ const AppNavbar = () => {
     navigate('/login');
   };
 
-  const handleImageClicked = () => {
-    setShowModal(!showModal);
-  };
-
-  useOnClickOutside(ref, () => setShowModal(false));
-
   return (
-    <Navbar collapseOnSelect expand="lg" bg="body" variant="tertiary" style={{borderBottom: '1px solid #ccc', paddingBottom: '10px'}}>
-      <Navbar.Brand as={Link} to="/" className="navbar-brand">
+    <Navbar collapseOnSelect expand="lg"  variant="tertiary" style={{top:0, position:"sticky", zIndex:1}}>
+      <Navbar.Brand as={Link} to="/" className="navbar-brand p-3">
         Products
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
+        <Nav className="ms-auto" style={{marginRight:"20px",  display:"flex" ,alignItems:"center"}}>
           {isAuth && (
             <>
               <Nav.Link as={Link} to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
@@ -65,39 +63,41 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
                 Sales
               </Nav.Link>
-            </>
-          )}
-        </Nav>
-        <Nav>
-          {isAuth && (
-            <>
               <Nav.Link onClick={openCart} className="cart">
                 <BsCart4 />
                 Cart
                 {cartItems.length > 0 && ` (${cartItems.length})`}
               </Nav.Link>
-              <Nav.Link onClick={handleImageClicked} className="user-image">
-                <BsPerson />
-                {user?.username}
-              </Nav.Link>
+              <Nav.Link onClick={handleShow} className="user">
+              <img src={ user.user_image} alt="user_image" style={{width: '40px', height: '40px',borderRadius: '50%' }}/>
+                </Nav.Link>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  dialogClassName="modal-right"
+                  animation={true}
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title>User Profile</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                   <h2>User's Name</h2>
+                   <p>Edit Profile</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                      Close
+                  </Button>
+                  <Button variant="primary" onClick={logout}>
+                      Logout
+                  </Button>
+                </Modal.Footer>
+             </Modal>
             </>
           )}
-          {showModal && (
-            <div className="modal_container" onClick={() => setShowModal(true)}>
-              <div className="modal_box" onClick={(e) => e.stopPropagation()}>
-                <div className="logout_container" onClick={logout}>
-                  <BiLogOut />
-                  Logout
-                </div>
-                <div className="logout_container">
-                  <Link to={'/profile'} className={location.pathname === '/profile' ? 'active' : ''}>
-                    <IoMdSettings />
-                    Profile
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
+        </Nav>
+        <Nav>
+          
         </Nav>
       </Navbar.Collapse>
       {openCartModal && <CartModal setOpenCartModal={setOpenCartModal} />}
