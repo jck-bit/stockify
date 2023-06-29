@@ -16,6 +16,14 @@ const LoginPage = () => {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+
+  const disabledButton = () =>{
+    //if all the fields are empty return true
+    if ( !email || !password ) {
+      return true;
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -96,7 +104,7 @@ const LoginPage = () => {
           </p>
         </div>
         <div className='button-container'>
-          <Button type="submit" className="login_btn" variant="primary">Login</Button>
+          <Button type="submit" className="login_btn" variant="primary" disabled={disabledButton()}>Login</Button>
         </div>
       </Form>
     </div>
