@@ -16,12 +16,24 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [passwordMismatch, setPasswordMismatch] = useState<boolean>(false);
 
+  const disabledButton = () =>{
+    //if all the fields are empty return true
+    if (!username || !email || !password || !confirmPassword) {
+      return true;
+    }
+    //if the password and confirm password do not match return true
+    if (password !== confirmPassword) {
+      return true;
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setPasswordMismatch(true);
       return;
     }
+
 
     setLoading(true);
     try {
@@ -71,7 +83,10 @@ const Register = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            //if the email is not valid
+            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)}
           />
+          <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput" label="Username" className='mb-3'>
           <Form.Control
@@ -81,6 +96,7 @@ const Register = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
+          <Form.Control.Feedback type="invalid">Username is required</Form.Control.Feedback>
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password" className='mb-3'>
           <Form.Control
@@ -89,7 +105,15 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            ///if the password does not contain a number, a special charcter and less than 6 characters
+            isInvalid={
+              password.length < 6 ||
+              !/[A-Z]/.test(password) ||
+              !/[a-z]/.test(password) ||
+              !/[0-9]/.test(password)
+            }
           />
+          <Form.Control.Feedback type="invalid"> Password must contain atleast 6 characters,<br/> one uppercase, one lowercase and one number</Form.Control.Feedback>
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Confirm Password">
           <Form.Control
@@ -101,7 +125,8 @@ const Register = () => {
               setPasswordMismatch(false);
             }}
             required
-            isInvalid={passwordMismatch}
+            //if its not equal to the password
+            isInvalid={password !== confirmPassword}
           />
           {passwordMismatch && (
             <Form.Control.Feedback type="invalid">Passwords do not match</Form.Control.Feedback>
@@ -115,8 +140,8 @@ const Register = () => {
             <Link to="/login">Already have an Account?</Link>
           </p>
         </div>
-        <div className="button-container">
-          <Button type="submit" className="register-button">
+        <div className="button-container"> <Form.Control.Feedback type="invalid">Passwords do not match</Form.Control.Feedback>
+          <Button type="submit" className="register-button" disabled={disabledButton()}> 
             Create Account
           </Button>
         </div>
