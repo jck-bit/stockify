@@ -25,7 +25,6 @@ body  {
 .modal-right {
   position: fixed;
   width: 400px;
-  height: 100%;
   right: 0;
   left: -100%;
   overflow: auto;
@@ -36,7 +35,6 @@ body  {
 .modal-right .modal-content {
   position: fixed;
   width: 400px;
-  height: 100%;
   right: 0;
   top: 0;
   transition: all 0.5s ease;
