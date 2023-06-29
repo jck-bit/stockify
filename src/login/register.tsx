@@ -84,7 +84,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             //if the email is not valid
-            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)}
+            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email)}
           />
           <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
         </FloatingLabel>
