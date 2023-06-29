@@ -29,7 +29,7 @@ const CartModal = ({ setOpenCartModal }: Props) => {
   }
 
   return (
-    <div className="modal come-from-modal right fade"  role="dialog" style={{display: 'block', opacity: 1, zIndex: 9999}}>
+    <div className="modal come-from-modal right fade"   role="dialog" style={{display: 'block', opacity: 1, zIndex: 9999}}>
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header d-flex justify-content-between align-items-center pt-4">

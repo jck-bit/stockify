@@ -33,6 +33,7 @@ function App() {
           {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
            <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
            <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
+           <Route path='/login' element={<LoginPage/>}/>
           {/* <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
