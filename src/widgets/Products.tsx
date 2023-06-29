@@ -4,10 +4,15 @@ import { Product, CartItem } from '../types';
 import { setProducts, addToCart, deleteOneProduct, Rootstate, setLogout } from '../state';
 import { useNavigate } from 'react-router-dom';
 import { myFetch } from '../../utils/Myfetch';
-import '../css/products.css';
 import AddModal from '../components/AddModal';
 import CountCart from '../components/CountCart';
 import {BsFillTrash3Fill} from 'react-icons/bs';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+
+
+
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -63,61 +68,62 @@ const Products = () => {
   };
 
   return (
-    <div className="container">
-      {/* a plus sign to add a new product on the top right corner */}
+    <Container>
+    {/* a plus sign to add a new product on the top right corner */}
+    <div className="row">
       <div className="row">
-        <div className="row">
-          <div className="col-12">
-            <button className="btn btn-success rounded-0" onClick={() => handleModal()} style={{ marginTop: "10px", marginBottom: "10px" }}>
-              + Add a new product
-            </button>
-          </div>
+        <div className="col-12">
+          <Button className="btn btn-success rounded-0" onClick={handleModal} style={{ marginTop: '10px', marginBottom: '10px' }}>
+            + Add a new product
+          </Button>
         </div>
       </div>
-      <div className="row product-list">
-        {products && products.map((product: Product) => {
+    </div>
+    <div className="row product-list">
+      {products &&
+        products.map((product: Product) => {
           return (
-            //if product.quantity is null the display is none
-            <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? "none" : "flex", flexDirection: "column" }}>
-                <div className="card mb-3" style={{ flex: "1 1 auto" }}>
-                  <div className="card-body" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    <div className="product_image">
-                      <img src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{  objectFit: "cover"}} />
-                    </div>
-                    <div className="descrptions">
-                      <h6 className="title" style={{textTransform: "uppercase"}}>{product.name}</h6>
-                      <p className="card-text">{product.description}</p>
-                      <span className="product-price mb-2">KES {product.price}</span>
-                    </div>
-                    <div className="buttons-container" style={{  }}>
-                      {cartItems.some((p: CartItem) => p.id === product.id) ? (
-
-                       //if product is remaining one in the cart, 
-                       <div className=" card-buttons-container d-flex  align-items-center" style={{  }}>
-                       <CountCart product={product} />
-                       <div>
-                         <BsFillTrash3Fill
-                           onClick={() => handleRemoveFromCart(product)}
-                           style={{ transition: "color 0.3s", width: "20px", height: "20px", marginLeft: "20px" ,cursor:"pointer"}}
-                           size={20}
-                         />
-                       </div>
-                     </div>
-                      ) : (
-                        <button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: "80%", marginLeft: "10%", marginTop: "" }}>
-                          Add to Cart
-                        </button>
-                      )}
-                    </div>
+            // if product.quantity is null, the display is none
+            <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}>
+              <Card className="mb-3" style={{ flex: '1 1 auto' }}>
+                <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div className="product_image">
+                    <Card.Img variant="top" src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ objectFit: 'cover' }} />
                   </div>
-                </div>
+                  <div className="descrptions">
+                    <Card.Title as="h6" style={{ textTransform: 'uppercase' }}>
+                      {product.name}
+                    </Card.Title>
+                    <Card.Text>{product.description}</Card.Text>
+                    <span className="product-price mb-2">KES {product.price}</span>
+                  </div>
+                  <div className="buttons-container">
+                    {cartItems.some((p: CartItem) => p.id === product.id) ? (
+                      // if product is remaining one in the cart
+                      <div className="card-buttons-container d-flex align-items-center">
+                        <CountCart product={product} />
+                        <div>
+                          <BsFillTrash3Fill
+                            onClick={() => handleRemoveFromCart(product)}
+                            style={{ transition: 'color 0.3s', width: '20px', height: '20px', marginLeft: '20px', cursor: 'pointer' }}
+                            size={20}
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <Button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: '80%', marginLeft: '10%', marginTop: '' }}>
+                        Add to Cart
+                      </Button>
+                    )}
+                  </div>
+                </Card.Body>
+              </Card>
             </div>
-
           );
         })}
-      </div>
-      {isModalOpen && <AddModal setIsModalOpen={setIsModalOpen} />}
     </div>
+    {isModalOpen && <AddModal setIsModalOpen={setIsModalOpen} />}
+  </Container>
   );
 };
 
