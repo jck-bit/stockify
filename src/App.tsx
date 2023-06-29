@@ -34,13 +34,13 @@ function App() {
            <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
            <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
            <Route path='/login' element={<LoginPage/>}/>
+           <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
           {/* <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
           <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
           <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/register' element={<Register/>}/>
-          <Route path='/privacy_policy' element={<PrivacyPolicy/>}/>
           <Route path='/cart_modal' element={<CheckoutCart/>}/>  */}
         </Routes>
       </BrowserRouter>
