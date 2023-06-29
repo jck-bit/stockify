@@ -12,6 +12,7 @@ import CartModal from '../components/CartModal';
 import { Nav, Navbar } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const AppNavbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -48,60 +49,66 @@ const AppNavbar = () => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg"  variant="tertiary" style={{top:0, position:"sticky", zIndex:1}}>
-      <Navbar.Brand as={Link} to="/" className="navbar-brand p-3">
-        Products
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto" style={{marginRight:"20px",  display:"flex" ,alignItems:"center"}}>
-          {isAuth && (
-            <>
-              <Nav.Link as={Link} to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
-                Stock
-              </Nav.Link>
-              <Nav.Link as={Link} to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
-                Sales
-              </Nav.Link>
-              <Nav.Link onClick={openCart} className="cart">
-                <BsCart4 />
-                Cart
-                {cartItems.length > 0 && ` (${cartItems.length})`}
-              </Nav.Link>
-              <Nav.Link onClick={handleShow} className="user">
-              <img src={ user.user_image} alt="user_image" style={{width: '40px', height: '40px',borderRadius: '50%' }}/>
-                </Nav.Link>
-                <Modal
-                  show={show}
-                  onHide={handleClose}
-                  dialogClassName="modal-right"
-                  animation={true}
-                >
-                <Modal.Header closeButton>
-                    <Modal.Title>User Profile</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                   <h2>User's Name</h2>
-                   <p>Edit Profile</p>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                      Close
-                  </Button>
-                  <Button variant="primary" onClick={logout}>
-                      Logout
-                  </Button>
-                </Modal.Footer>
-             </Modal>
-            </>
-          )}
-        </Nav>
-        <Nav>
-          
-        </Nav>
-      </Navbar.Collapse>
-      {openCartModal && <CartModal setOpenCartModal={setOpenCartModal} />}
-    </Navbar>
+    <>
+    {isAuth && (
+         <Navbar collapseOnSelect expand="lg"  variant="tertiary" style={{top:0, position:"sticky", zIndex:1}}>
+         <Navbar.Brand as={Link} to="/" className="navbar-brand p-3">
+           Products
+         </Navbar.Brand>
+         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+         <Navbar.Collapse id="responsive-navbar-nav">
+           <Nav className="ms-auto" style={{marginRight:"20px",  display:"flex" ,alignItems:"center"}}>
+               <>
+                 <Nav.Link as={Link} to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
+                   Stock
+                 </Nav.Link>
+                 <Nav.Link as={Link} to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
+                   Sales
+                 </Nav.Link>
+                 <Nav.Link onClick={openCart} className="cart">
+                   <BsCart4 />
+                   Cart
+                   {cartItems.length > 0 && ` (${cartItems.length})`}
+                 </Nav.Link>
+                 <Nav.Link onClick={handleShow} className="user">
+                 <img src={ user.user_image} alt="user_image" style={{width: '40px', height: '40px',borderRadius: '50%' }}/>
+                   </Nav.Link>
+                   <Modal
+                     show={show}
+                     onHide={handleClose}
+                     dialogClassName="modal-right"
+                     animation={true}
+                   >
+                   <Modal.Header closeButton>
+                       <Modal.Title>User Profile</Modal.Title>
+                   </Modal.Header>
+                   <Modal.Body>
+                      <p className='text-uppercase'></p>
+                      <Card>
+                       <Card.Body>
+                         <Card.Title> {user.username}</Card.Title>
+                         <Card.Text></Card.Text>
+                       </Card.Body>
+                      </Card>
+                   </Modal.Body>
+                   <Modal.Footer>
+                     <Button variant="secondary" onClick={handleClose}>
+                         Close
+                     </Button>
+                     <Button variant="primary" onClick={logout}>
+                         Logout
+                     </Button>
+                   </Modal.Footer>
+                </Modal>
+               </>
+           </Nav>
+           <Nav>
+           </Nav>
+         </Navbar.Collapse>
+         {openCartModal && <CartModal setOpenCartModal={setOpenCartModal} />}
+       </Navbar>
+    )}
+    </>
   );
 };
 
