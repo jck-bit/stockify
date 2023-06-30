@@ -55,7 +55,7 @@ useEffect(() =>{
 },[])
 
   return (
-     <div className="sales-table" style={{width: "1000px"}}>
+     <div className="sales-table">
       <BarChart  chartData={chartData} />
      </div>
   ) 

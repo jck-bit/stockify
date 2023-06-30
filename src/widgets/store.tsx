@@ -46,7 +46,7 @@ const OnlineStore = () => {
       <h4>Stocks Keeping</h4>
       <div className="row">
         {products.map((product: Product) => (
-          <div className="col-lg-3 p-2 col-sm-6 col-10" key={product.id}>
+          <div className="col-lg-3 p-2 col-sm-4 col-10" key={product.id}>
             <Card className="mb-4 h-100">
               <Card.Img variant="top" src={product.product_pic} alt={product.name} style={{ height: '200px', objectFit: 'cover' }} />
               <Card.Body>

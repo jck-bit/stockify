@@ -71,7 +71,7 @@ const CheckoutCart = () => {
   return (
     <div className='container'>
         {isloading && <EditLoader />}
-      <h1>Shopping Cart</h1>
+      <h1 className='text-center p-3 text-uppercase'>Shopping Cart</h1>
       <div className='row'>
         <div className='col-lg-7 col-md-12 mb-4'>
           <div className={cartItems.length === 0 ? "d-none" : " card p-3"}>
