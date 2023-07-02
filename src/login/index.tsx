@@ -15,6 +15,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const[showPassword, setShowPassword] = useState<boolean>(false);
 
 
   const disabledButton = () =>{
@@ -88,13 +89,22 @@ const LoginPage = () => {
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password">
           <Form.Control
-            type="password"
+            type= { showPassword ? 'text' : 'password'}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </FloatingLabel>
+        <div className="password-toggle mt-2">
+          <Form.Check
+            type="switch"
+            id="password-toggle-switch"
+            label="Show password"
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
+          />
+        </div>
         <div className="register_div">
           <p>
             <Link to="/privacy_policy">Privacy policy</Link>
