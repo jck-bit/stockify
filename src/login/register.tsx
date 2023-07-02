@@ -114,7 +114,7 @@ const Register = () => {
             }
           />
           <Form.Control.Feedback type="invalid">
-            Password must contain at least 6 characters, one uppercase, one lowercase, and one number
+            Password must contain at least 6 characters,<br/> one uppercase, one lowercase, and one number
           </Form.Control.Feedback>
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Confirm Password">
