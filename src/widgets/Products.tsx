@@ -85,10 +85,10 @@ const Products = () => {
           return (
             // if product.quantity is null, the display is none
             <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}>
-              <Card className="mb-3" style={{ flex: '1 1 auto' }}>
+              <Card className="mb-3 shadow-sm p-3 mb-5 bg-body  rounded hover-effect" style={{ flex: '1 1 auto', cursor:"pointer" }}>
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div className="product_image">
-                    <Card.Img variant="top" src={product.product_pic} alt="" className="img-fluid img-thumbnail rounded w-100" style={{ objectFit: 'cover' }} />
+                    <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} />
                   </div>
                   <div className="descrptions">
                     <Card.Title as="h6" style={{ textTransform: 'uppercase' }}>
