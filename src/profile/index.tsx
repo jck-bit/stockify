@@ -4,7 +4,7 @@ import '../css/profile_page.css'
 import { Sale } from '../types'
 import { Link } from 'react-router-dom'
 import { myFetch } from '../../utils/Myfetch'
-import { Container, Card, Button, Row, Col  } from 'react-bootstrap'
+import {  Card, Button, Row, Col  } from 'react-bootstrap'
 import SingleUserLine from '../components/SingleUserLine'
 
 interface ChartData {
@@ -58,27 +58,25 @@ const Profile = () => {
   
 
   return (
-    <div className="mt-5 d-flex justify-content-between al">
+    <div className="mt-5 d-flex flex-sm-column flex-lg-row justify-content-between align-items-center p-3">
         <Row>
           <Col>
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src={user?.avatar} />
               <Card.Body>
-                <Card.Title>{user?.name}</Card.Title>
+                <div className="d-flex align-items-center justify-content-between">
+                  <Card.Title>{user?.username}</Card.Title>
+                  <img  src={ user.user_image} alt="user_image" style={{width: '40px', height: '40px',borderRadius: '50%' }}/>      
+                </div>
                 <Card.Text>
                   {user?.email}
-                  <br/>
-                  {user?.phone}
                 </Card.Text>
-                <Link to="/profile/edit">
+                <Link to="/profile/profile-change">
                   <Button variant="primary">Edit Profile</Button>
                 </Link>
               </Card.Body>
               <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
-                <div className="chart">
-                  <canvas id="myChart"></canvas>
-                </div>
               </Card.Footer>
               </Card>
           </Col>
