@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import '../css/profile_page.css'
 import { Sale } from '../types'
-import SingleUserLine from '../components/SingleUserLine'
 import { Link } from 'react-router-dom'
 import { myFetch } from '../../utils/Myfetch'
+import { Container, Card, Button, Row, Col  } from 'react-bootstrap'
+import SingleUserLine from '../components/SingleUserLine'
 
 interface ChartData {
   labels: any;
@@ -57,35 +58,32 @@ const Profile = () => {
   
 
   return (
-    <div className="container_profile">
-        <div className="view_user_profile">
-           <section className='view_my_details'>
-              <div>
-                <img src={user?.user_image} alt="user-image" />
-              </div>
-              <div>
-                <h5>{user?.username}</h5>
-              </div>
-           </section>
-           <section className="view_personal_info">
-              <div className='personal_info'>
-                <h5>Email:</h5>
-                <p>{user?.email}</p>             
-              </div>
-              <div className='personal_info'>
-                <h5>Total sales:</h5>
-                <p>55000</p>             
-              </div>
-           </section>
-           <section className='edit_profile'>
-            <Link to={"profile-change"}>
-              <button>Edit profile</button>
-            </Link>
-           </section>
-        </div>
-        <div className="view_user_sales" style={{width:'700px'}}>
-            <SingleUserLine chartData={chartData}/>
-        </div>
+    <div className="mt-5 d-flex justify-content-between al">
+        <Row>
+          <Col>
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src={user?.avatar} />
+              <Card.Body>
+                <Card.Title>{user?.name}</Card.Title>
+                <Card.Text>
+                  {user?.email}
+                  <br/>
+                  {user?.phone}
+                </Card.Text>
+                <Link to="/profile/edit">
+                  <Button variant="primary">Edit Profile</Button>
+                </Link>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+                <div className="chart">
+                  <canvas id="myChart"></canvas>
+                </div>
+              </Card.Footer>
+              </Card>
+          </Col>
+        </Row>
+        <SingleUserLine chartData={chartData}/>
     </div>
   )
 }

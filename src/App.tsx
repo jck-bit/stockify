@@ -38,10 +38,11 @@ function App() {
            <Route path='/register' element={<Register/>}/>
            <Route path='/cart_modal' element={<CheckoutCart/>}/>
            <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
+           <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
+           <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
           {/* <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
 
-          <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
-          <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
+          
             */}
         </Routes>
       </BrowserRouter>
