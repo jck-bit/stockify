@@ -48,6 +48,11 @@ const AppNavbar = () => {
     navigate('/login');
   };
 
+  const HandleNavigate = () =>{
+    navigate('/profile');
+    handleClose();
+  }
+
   return (
     <>
     {isAuth && (
@@ -83,13 +88,20 @@ const AppNavbar = () => {
                        <Modal.Title>User Profile</Modal.Title>
                    </Modal.Header>
                    <Modal.Body>
-                      <p className='text-uppercase'></p>
-                      <Card>
-                       <Card.Body>
-                         <Card.Title> {user.username}</Card.Title>
-                         <Card.Text></Card.Text>
+                       <Card.Body className=''>
+                         <div className="d-flex align-items-center justify-content-between">
+                            <Card.Title> {user.username}</Card.Title>
+                            <img  src={ user.user_image} alt="user_image" style={{width: '40px', height: '40px',borderRadius: '50%' }}/>
+                         </div>
+                         <Card.Text className='mt-2'>
+                          {user.email}
+                        </Card.Text>
                        </Card.Body>
-                      </Card>
+                      
+                     {/* button to link to the profile page */}
+                     <Button variant="primary" onClick={HandleNavigate} className='mt-4'>
+                        View profile
+                     </Button>
                    </Modal.Body>
                    <Modal.Footer>
                      <Button variant="secondary" onClick={handleClose}>

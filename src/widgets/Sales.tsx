@@ -1,5 +1,4 @@
 import  { useEffect, useState } from "react";
-import "../css/SalesTable.css";
 import { setLogout, setSales } from "../state";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
