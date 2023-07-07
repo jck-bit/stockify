@@ -118,7 +118,7 @@ function UserProfileUpdate() {
           style={{ display: 'none' }}
         />
          <button type="button" className="btn btn-primary" onClick={handleButtonChooseFile}>
-          Select Image
+          Choose Image
         </button>
       </Form.Group>
     </div> 
