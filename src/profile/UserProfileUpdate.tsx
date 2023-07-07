@@ -77,11 +77,6 @@ function UserProfileUpdate() {
         enqueueSnackbar(`${data.message}`, { variant: 'success' })
       }
       
-      if(data.msg === "Token has expired"){
-        localStorage.removeItem('token')
-        navigate('/login')
-      }
-
       const {user , token} = data
       dispatch(setLogin({user, token}))
 
