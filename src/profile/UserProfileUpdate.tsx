@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack'
 import Loader from '../components/Loader';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../state';
+import { FloatingLabel, Form, Button } from 'react-bootstrap';
 import { myFetch } from '../../utils/Myfetch';
+import { useSelector } from 'react-redux';
 
 function UserProfileUpdate() {
   const dispatch = useDispatch();
@@ -13,9 +15,31 @@ function UserProfileUpdate() {
   const [email, setEmail] = useState('');
   const [imageFile, setImageFile] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
-  
+  const user = useSelector((state:any) => state.user)
+  const FileInputRef = useRef<any>()
+  const [selectedImage, setSelectedImage] = useState<any>();
+
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const disabledButton = () =>{
+    //if all the fields are empty return true
+    if ( !email || !username ) {
+      return true;
+    }
+  }
+
+  const handleButtonChooseFile = () =>{
+    FileInputRef.current.click();
+  }
+
+  const handleFileChange = (e:any) => {
+    const file = e.target.files?.[0];
+   if (file){
+    setImageFile(file);
+    setSelectedImage(URL.createObjectURL(file));
+   }
+  };
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,7 +77,6 @@ function UserProfileUpdate() {
         enqueueSnackbar(`${data.message}`, { variant: 'success' })
       }
       
-
       if(data.msg === "Token has expired"){
         localStorage.removeItem('token')
         navigate('/login')
@@ -67,7 +90,6 @@ function UserProfileUpdate() {
       const error = err?.message || 'Something went wrong';
       enqueueSnackbar(`${error}`, { variant: 'error' })
       setIsLoading(false)
-
     }
 
     setEmail('')
@@ -80,36 +102,49 @@ function UserProfileUpdate() {
   }
 
   return (
-    <div className='login-container'>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>Username</label>
-        <input 
-          type="text"
-          name="username" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
-          required
+    <div className='login-container'>    
+    <Form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="mb-3 d-flex justify-content-between align-items-center">
+    {selectedImage ? (
+        <img src={selectedImage} alt="selected_image" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+      ) : (
+        <img src={user.user_image} alt="default_image" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+      )}
+      <Form.Group controlId='formFile' className="mb-3">
+        <Form.Control
+          type='file'
+          ref={FileInputRef}
+          onChange={handleFileChange}
+          style={{ display: 'none' }}
+        />
+         <button type="button" className="btn btn-primary" onClick={handleButtonChooseFile}>
+          Select Image
+        </button>
+      </Form.Group>
+    </div> 
+    <FloatingLabel controlId="floatingInput" label="username" className="mb-3">
+          <Form.Control
+            type="username"
+            placeholder="nameexample.com"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
+        </FloatingLabel>
 
-        <label>Email</label>
-        <input 
-         type="email" 
-         name="email" 
-         value={email} 
-         onChange={(e) => setEmail(e.target.value)} 
-         required
-         />
-      
-    
-        <label>Image File</label>
-        <input
-         type="file" 
-         name="image-file" 
-         onChange={(e) => setImageFile(e.target.files?.[0])} 
-         />
-      
-      <button type="submit">Update Profile</button>
-    </form>
+        <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
+          <Form.Control
+            type="email"
+            placeholder="name@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email)}
+          />
+          <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
+        </FloatingLabel>
+            
+      <Button type="submit" className="_btn" variant="primary">Save</Button>
+    </Form>
     </div>
   );
 }
