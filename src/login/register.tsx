@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import Form from 'react-bootstrap/Form';
@@ -16,6 +16,27 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [passwordMismatch, setPasswordMismatch] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
+  
+  useEffect(() => {
+    if (password) {
+      setIsPasswordValid(
+        password.length >= 6 &&
+        /[A-Z]/.test(password) &&
+        /[a-z]/.test(password) &&
+        /[0-9]/.test(password)
+      );
+    }
+  }, [password]);
+
+
+  useEffect(() => {
+    if (email){
+      setIsEmailValid(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email));
+    }
+
+  }, [email]);
 
   const disabledButton = () => {
     //if all the fields are empty return true
@@ -80,18 +101,20 @@ const Register = () => {
           <Form.Control
             type="email"
             name="email"
+            placeholder='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             //if the email is not valid
-            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email)}
+            isInvalid={!isEmailValid}
           />
-          <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
+          {email && !isEmailValid && <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>}
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput" label="Username" className="mb-3">
           <Form.Control
             type="text"
             name="username"
+            placeholder='username'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -102,25 +125,24 @@ const Register = () => {
           <Form.Control
             type={showPassword ? 'text' : 'password'}
             name="password"
+            placeholder='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             ///if the password does not contain a number, a special character, and less than 6 characters
-            isInvalid={
-              password.length < 6 ||
-              !/[A-Z]/.test(password) ||
-              !/[a-z]/.test(password) ||
-              !/[0-9]/.test(password)
-            }
+            isInvalid={!isPasswordValid}
           />
-          <Form.Control.Feedback type="invalid">
-            Password must contain at least 6 characters,<br/> one uppercase letter, one lowercase letter, and one number
-          </Form.Control.Feedback>
+          {password && !isPasswordValid && (
+             <Form.Control.Feedback type="invalid">
+                Password must contain at least 6 characters,<br/> one uppercase letter, one lowercase letter, and one number
+            </Form.Control.Feedback>
+  )}
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Confirm Password">
           <Form.Control
             type={showPassword ? 'text' : 'password'}
             name="confirmPassword"
+            placeholder='confirm password'
             value={confirmPassword}
             onChange={(e) => {
               setConfirmPassword(e.target.value);

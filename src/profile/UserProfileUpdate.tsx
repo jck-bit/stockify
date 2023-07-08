@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack'
 import Loader from '../components/Loader';
@@ -22,6 +22,10 @@ function UserProfileUpdate() {
  
   //the email and the username will be autofilled with the current user's info
 
+  useEffect(() =>{
+    setEmail(user.email)
+    setUsername(user.username)
+  },[user])
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -144,7 +148,7 @@ function UserProfileUpdate() {
             value={email || user.email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email)}
+            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com)$/i.test(email)}
           />
           <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
         </FloatingLabel>
