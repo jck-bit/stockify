@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,14 @@ const LoginPage = () => {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const[showPassword, setShowPassword] = useState<boolean>(false);
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
+
+  useEffect(() => {
+    if (email){
+      setIsEmailValid(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email));
+    }
+  })
 
   const disabledButton = () =>{
     //if all the fields are empty return true
@@ -83,9 +90,9 @@ const LoginPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com|COM)$/i.test(email)}
+            isInvalid={!isEmailValid}
           />
-          <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
+          {email && !isEmailValid && <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>}
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password">
           <Form.Control
