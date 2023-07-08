@@ -29,6 +29,14 @@ function UserProfileUpdate() {
     }
   }
 
+  const CancelButton = () =>{
+    setImageFile("")
+    setSelectedImage("")
+    setEmail('')
+    setUsername('')
+
+  }
+
   const handleButtonChooseFile = () =>{
     FileInputRef.current.click();
   }
@@ -101,9 +109,9 @@ function UserProfileUpdate() {
     <Form onSubmit={handleSubmit} encType="multipart/form-data">
     <div className="mb-3 d-flex justify-content-between align-items-center">
     {selectedImage ? (
-        <img src={selectedImage} alt="selected_image" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+        <img src={selectedImage} alt="selected_image" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
       ) : (
-        <img src={user.user_image} alt="default_image" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+        <img src={user.user_image} alt="default_image" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
       )}
       <Form.Group controlId='formFile' className="mb-3">
         <Form.Control
@@ -138,7 +146,10 @@ function UserProfileUpdate() {
           <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>
         </FloatingLabel>
             
-      <Button type="submit" className="_btn" variant="primary">Save</Button>
+      <div className="d-flex justify-content-between align-items-center">
+        <Button type="submit" className="_btn" variant="primary">Save</Button>
+        <Button type="button" className="_btn" variant="secondary" onClick={CancelButton}>Cancel</Button>
+      </div>
     </Form>
     </div>
   );
