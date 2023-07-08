@@ -136,7 +136,7 @@ function UserProfileUpdate() {
           <Form.Control
             type="username"
             placeholder="username"
-            value={username || user.username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </FloatingLabel>
@@ -145,7 +145,7 @@ function UserProfileUpdate() {
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            value={email || user.email}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com)$/i.test(email)}

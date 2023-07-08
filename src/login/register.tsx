@@ -39,7 +39,6 @@ const Register = () => {
   }, [email]);
 
   const disabledButton = () => {
-    //if all the fields are empty return true
     if (!username || !email || !password || !confirmPassword) {
       return true;
     }
@@ -129,14 +128,13 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            ///if the password does not contain a number, a special character, and less than 6 characters
             isInvalid={!isPasswordValid}
           />
           {password && !isPasswordValid && (
              <Form.Control.Feedback type="invalid">
                 Password must contain at least 6 characters,<br/> one uppercase letter, one lowercase letter, and one number
             </Form.Control.Feedback>
-  )}
+          )}
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Confirm Password">
           <Form.Control
@@ -149,7 +147,6 @@ const Register = () => {
               setPasswordMismatch(false);
             }}
             required
-            //if it's not equal to the password
             isInvalid={password !== confirmPassword}
           />
           {passwordMismatch && (
