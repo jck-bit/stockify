@@ -92,10 +92,12 @@ const Products = (props:any) => {
           return (
             // if product.quantity is null, the display is none
             <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}>
+              
               <Card 
                className="mb-3 shadow-sm p-3 mb-5 bg-body  rounded hover-effect" 
                onClick={() => handleProductClick(product)}
                 style={{ flex: '1 1 auto', cursor:"pointer" }}>
+                  
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div className="product_image">
                     <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} />
@@ -107,21 +109,30 @@ const Products = (props:any) => {
                     <Card.Text>{product.description}</Card.Text>
                     <span className="product-price mb-2">KES {product.price}</span>
                   </div>
-                  <div className="buttons-container">
+                 
+                  <div className="buttons-container p-2 mb-2" onClick={(e) => e.stopPropagation()}>
                     {cartItems.some((p: CartItem) => p.id === product.id) ? (
                       // if product is remaining one in the cart
                       <div className="card-buttons-container d-flex align-items-center">
                         <CountCart product={product} />
                         <div>
                           <BsFillTrash3Fill
-                            onClick={() => handleRemoveFromCart(product)}
+                            onClick={(e) =>{
+                              e.stopPropagation(); // Prevent event bubbling
+                              handleRemoveFromCart(product)
+                            }}
                             style={{ transition: 'color 0.3s', width: '20px', height: '20px', marginLeft: '20px', cursor: 'pointer' }}
                             size={20}
                           />
                         </div>
                       </div>
                     ) : (
-                      <Button className="btn btn-warning rounded-0" onClick={() => handleAddToCart(product)} style={{ width: '80%', marginLeft: '10%', marginTop: '' }}>
+                      <Button className="btn btn-warning rounded-0" 
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent event bubbling
+                        handleAddToCart(product);
+                      }}
+                       style={{ width: '80%', marginLeft: '10%', marginTop: '' }}>
                         Add to Cart
                       </Button>
                     )}
