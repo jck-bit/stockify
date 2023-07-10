@@ -28,7 +28,6 @@ function UserProfileUpdate(): JSX.Element {
   },[user])
 
 
-
   const CancelButton = () => {
     setImageFile("")
     setSelectedImage("")
@@ -101,6 +100,7 @@ function UserProfileUpdate(): JSX.Element {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsFormDirty(true); 
+
     if (e.target.name === 'username') {
       setUsername(e.target.value);
     } else if (e.target.name === 'email') {

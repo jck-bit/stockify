@@ -10,17 +10,19 @@ import {BsFillTrash3Fill} from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import MyVerticallyCenteredModal from '../components/ShowProduct';
 
 
 
-
-const Products = () => {
+const Products = (props:any) => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
   const products = useSelector((state: any) => state.products);
   const productsState = useSelector((state: any) => state.products);
   const access_token = localStorage.getItem("token");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product>();
+  const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -67,6 +69,11 @@ const Products = () => {
     dispatch(deleteOneProduct(product.id));
   };
 
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setModalShow(true);
+  };
+
   return (
     <Container>
     {/* a plus sign to add a new product on the top right corner */}
@@ -85,7 +92,10 @@ const Products = () => {
           return (
             // if product.quantity is null, the display is none
             <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}>
-              <Card className="mb-3 shadow-sm p-3 mb-5 bg-body  rounded hover-effect" style={{ flex: '1 1 auto', cursor:"pointer" }}>
+              <Card 
+               className="mb-3 shadow-sm p-3 mb-5 bg-body  rounded hover-effect" 
+               onClick={() => handleProductClick(product)}
+                style={{ flex: '1 1 auto', cursor:"pointer" }}>
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div className="product_image">
                     <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} />
@@ -122,6 +132,21 @@ const Products = () => {
           );
         })}
     </div>
+
+    {selectedProduct && (
+      <MyVerticallyCenteredModal
+      show= {modalShow}
+      onHide={() => setModalShow(false)}
+      title={selectedProduct.name}
+      content={
+        <>
+          <h4>Product Details</h4>
+          <p>{selectedProduct.description}</p>
+          {/* Additional product details */}
+        </>
+      }
+    />
+  )}
     {isModalOpen && <AddModal setIsModalOpen={setIsModalOpen} />}
   </Container>
   );
