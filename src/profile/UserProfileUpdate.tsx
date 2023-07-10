@@ -8,7 +8,7 @@ import { FloatingLabel, Form, Button } from 'react-bootstrap';
 import { myFetch } from '../../utils/Myfetch';
 import { useSelector } from 'react-redux';
 
-function UserProfileUpdate() {
+function UserProfileUpdate(): JSX.Element {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,29 +19,21 @@ function UserProfileUpdate() {
   const user = useSelector((state: any) => state.user)
   const FileInputRef = useRef<any>()
   const [selectedImage, setSelectedImage] = useState<any>();
+  const { enqueueSnackbar } = useSnackbar();
+  const [isFormDirty, setIsFormDirty] = useState(false); 
  
-  //the email and the username will be autofilled with the current user's info
-
   useEffect(() =>{
     setEmail(user.email)
     setUsername(user.username)
   },[user])
 
-  const { enqueueSnackbar } = useSnackbar();
 
-  const disabledButton = () => {
-    //if all the fields are empty return true
-    if (!email || !username) {
-      return true;
-    }
-  }
 
   const CancelButton = () => {
     setImageFile("")
     setSelectedImage("")
     setEmail('')
     setUsername('')
-
   }
 
   const handleButtonChooseFile = () => {
@@ -107,6 +99,15 @@ function UserProfileUpdate() {
     setImageFile(undefined)
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsFormDirty(true); 
+    if (e.target.name === 'username') {
+      setUsername(e.target.value);
+    } else if (e.target.name === 'email') {
+      setEmail(e.target.value);
+    }
+  };
+
   if (isLoading) {
     return <Loader />
   }
@@ -134,19 +135,22 @@ function UserProfileUpdate() {
         </div>
         <FloatingLabel controlId="floatingInput" label="username" className="mb-3">
           <Form.Control
+            name="username"
             type="username"
             placeholder="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            required
+            onChange={handleInputChange}
           />
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
           <Form.Control
             type="email"
+            name="email"
             placeholder="name@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange}
             required
             isInvalid={!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(com)$/i.test(email)}
           />
@@ -154,7 +158,7 @@ function UserProfileUpdate() {
         </FloatingLabel>
 
         <div className="d-flex justify-content-between align-items-center">
-          <Button type="submit" className="_btn" variant="primary">Save</Button>
+          <Button type="submit" className="_btn" variant="primary" disabled={!isFormDirty}>Save</Button>
           <Button type="button" className="_btn" variant="secondary" onClick={CancelButton}>Cancel</Button>
         </div>
       </Form>
