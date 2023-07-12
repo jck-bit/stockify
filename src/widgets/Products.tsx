@@ -12,8 +12,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import MyVerticallyCenteredModal from '../components/ShowProduct';
 
-
-
 const Products = (props:any) => {
   const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);

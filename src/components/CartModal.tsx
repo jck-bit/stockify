@@ -6,8 +6,6 @@ import CartComponent from "./CartComponent";
 import ChekOutCard from "./ChekOutCard";
 import { useNavigate } from "react-router-dom";
 import {GrFormClose} from 'react-icons/gr'
-
-
 interface Props {
   setOpenCartModal: (openCartModal: boolean) => void;
 }
@@ -56,7 +54,7 @@ const CartModal = ({ setOpenCartModal }: Props) => {
           <div className="modal-body">
             {cartItems.length === 0 ? (
              <div className="text-center border-bottom pb-2 w-100">
-               <h6 className="">There are no more items in your cart</h6>
+               <h6 className="">Hmmmm.... it looks like your cart is empty. Find yourself an item!</h6>
              </div>
             ):(
               <>
