@@ -98,7 +98,7 @@ const Products = (props:any) => {
                   
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div className="product_image">
-                    <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} />
+                    {/* <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} /> */}
                   </div>
                   <div className="descrptions">
                     <Card.Title as="h6" style={{ textTransform: 'uppercase' }}>
