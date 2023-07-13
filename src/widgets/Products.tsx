@@ -23,7 +23,6 @@ const Products = (props:any) => {
   const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
-
   const handleModal = () => {
     setIsModalOpen(true);
     console.log(isModalOpen);
@@ -89,14 +88,18 @@ const Products = (props:any) => {
         products.map((product: Product) => {
           return (
             // if product.quantity is null, the display is none
-            <div key={product.id} className="col-lg-3 col-sm-6 col-10" style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}>
+            <div key={product.id}
+              className="col-lg-3 col-sm-6 col-10" 
+              style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}
+              >
               
               <Card 
                className="mb-3 shadow-sm p-3 mb-5 bg-body  rounded hover-effect" 
                onClick={() => handleProductClick(product)}
-                style={{ flex: '1 1 auto', cursor:"pointer" }}>
+               style={{ flex: '1 1 auto', cursor:"pointer" }}>
                   
-                <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <Card.Body 
+                 style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div className="product_image">
                     {/* <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} /> */}
                   </div>
@@ -107,7 +110,6 @@ const Products = (props:any) => {
                     <Card.Text>{product.description}</Card.Text>
                     <span className="product-price mb-2">KES {product.price}</span>
                   </div>
-                 
                   <div className="buttons-container p-2 mb-2" onClick={(e) => e.stopPropagation()}>
                     {cartItems.some((p: CartItem) => p.id === product.id) ? (
                       // if product is remaining one in the cart
