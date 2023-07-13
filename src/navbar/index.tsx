@@ -66,15 +66,15 @@ const AppNavbar = () => {
             <Nav className="ms-auto p-2">
                <>
                  <Nav.Link as={Link} to="/stocks" className={location.pathname === '/stocks' ? 'active' : ''}>
-                   <span><AiOutlineStock size={30}/></span>
+                   <span><AiOutlineStock size={28}/></span>
                     <p>Stocks</p>
                  </Nav.Link>
                  <Nav.Link as={Link} to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
-                   <span><MdOutlineSell size={30}  /></span>
+                   <span><MdOutlineSell size={28}  /></span>
                    <p>Sales</p>
                  </Nav.Link>
                  <Nav.Link onClick={openCart} className="cart">
-                    <span><AiOutlineShoppingCart size={30}/></span>
+                    <span><AiOutlineShoppingCart size={28}/></span>
                     <p>Cart
                     {cartItems.length > 0 && ` (${cartItems.length})`}
                     </p>
