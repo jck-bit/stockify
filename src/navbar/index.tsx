@@ -12,6 +12,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import {MdOutlineSell} from 'react-icons/md';
 
 const AppNavbar = () => {
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
@@ -69,7 +70,7 @@ const AppNavbar = () => {
                     <p>Stocks</p>
                  </Nav.Link>
                  <Nav.Link as={Link} to="/sales" className={location.pathname === '/sales' ? 'active' : ''}>
-                   <span><FcSalesPerformance size={30}/></span>
+                   <span><MdOutlineSell size={30}  /></span>
                    <p>Sales</p>
                  </Nav.Link>
                  <Nav.Link onClick={openCart} className="cart">
