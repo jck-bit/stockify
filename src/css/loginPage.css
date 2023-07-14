@@ -4,6 +4,11 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  
+}
+
+.custom-input {
+  width: 300px !important;
 }
 
 

@@ -91,6 +91,7 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             isInvalid={!isEmailValid}
+            className="custom-input"
           />
           {email && !isEmailValid && <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>}
         </FloatingLabel>
@@ -101,6 +102,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="custom-input"
           />
         </FloatingLabel>
         <div className="password-toggle mt-2">
