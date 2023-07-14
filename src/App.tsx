@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Products from './widgets/Products';
-import Navbar from './navbar';
 import { SnackbarProvider } from "notistack";
 import LoginPage from './login';
 import SalesTable from './widgets/Sales';
@@ -18,7 +17,6 @@ function App() {
 
   return (
     <>
-      
       <SnackbarProvider 
         anchorOrigin={{
          vertical: "bottom",
@@ -26,11 +24,8 @@ function App() {
        }}
       >
     <BrowserRouter>
-      {/* <Navbar/> */}
       <AppNavbar/>
-      
         <Routes>
-          {/* <Route path='/' element={ isAuth ? <HomePage/> : <Navigate to="/login" />}/> */}
            <Route path='/' element={isAuth ? <Products/> : <Navigate to="/login" />}/>
            <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
            <Route path='/login' element={<LoginPage/>}/>
@@ -40,13 +35,8 @@ function App() {
            <Route path='/sales' element={ isAuth ? <SalesTable/> : <Navigate to="/login" />}/>
            <Route path='/profile/profile-change' element={ isAuth ? <UserProfileUpdate/> :<Navigate to="/login" />}/>
            <Route path='/profile' element={isAuth ? <Profile/> :<Navigate to="/login" />}/>
-          {/* <Route path='/stocks' element={isAuth ? <OnlineStore/> : <Navigate to="/login" />}/>
-
-          
-            */}
         </Routes>
       </BrowserRouter>
-    
       </SnackbarProvider>
     </>
   )
