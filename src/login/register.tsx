@@ -106,6 +106,7 @@ const Register = () => {
             required
             //if the email is not valid
             isInvalid={!isEmailValid}
+            className="custom-input"
           />
           {email && !isEmailValid && <Form.Control.Feedback type="invalid">Invalid email address</Form.Control.Feedback>}
         </FloatingLabel>
@@ -117,6 +118,7 @@ const Register = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            className="custom-input"
           />
           <Form.Control.Feedback type="invalid">Username is required</Form.Control.Feedback>
         </FloatingLabel>
@@ -129,6 +131,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
             isInvalid={!isPasswordValid}
+            className="custom-input"
           />
           {password && !isPasswordValid && (
              <Form.Control.Feedback type="invalid">
@@ -148,6 +151,7 @@ const Register = () => {
             }}
             required
             isInvalid={password !== confirmPassword}
+            className="custom-input"
           />
           {passwordMismatch && (
             <Form.Control.Feedback type="invalid">Passwords do not match</Form.Control.Feedback>
