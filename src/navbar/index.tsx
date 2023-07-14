@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart,AiOutlineStock } from 'react-icons/ai';
-import {FcSalesPerformance} from 'react-icons/fc';
 import { useSelector, useDispatch } from 'react-redux';
 import { Rootstate, setLogout } from '../state';
 import { CartItem } from '../types';
@@ -57,9 +56,9 @@ const AppNavbar = () => {
   return (
     <>
     {isAuth && (
-       <Navbar collapseOnSelect expand="lg"  variant="tertiary" style={{top:0, position:"sticky", zIndex:1}}>
+       <Navbar collapseOnSelect expand="lg"  variant="tertiary" style={{top:0, position:"sticky", zIndex:1,paddingBottom:"5px",paddingTop:"5px"}}>
          <Navbar.Brand as={Link} to="/" className="navbar-brand p-2">
-           Home
+           <h1 className='font-weight-bold'>Stockify</h1>
          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
            <Navbar.Collapse id="responsive-navbar-nav">
