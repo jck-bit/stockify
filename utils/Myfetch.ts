@@ -1,5 +1,6 @@
 export async function myFetch(url:RequestInfo, options?:any ) {
     const token = localStorage.getItem('token');
+    
   
     if (token) {
       options = options || {};

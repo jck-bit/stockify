@@ -1,10 +1,3 @@
-.come-from-modal.left .modal-content,
-.come-from-modal.right .modal-content {
-  height: 100%;
-  overflow-y: auto;
-  border-radius: 5px;
-  transition: transform 0.9s ease-in-out;
-}
 
 .come-from-modal.right .modal-dialog {
   position: fixed;
@@ -12,6 +5,13 @@
   height: 100%;
   right: 0;
   transition-delay: 0.5s;
+  border-radius: 5px;
+  top: 0;
+  margin-top: 0;
+}
+
+.come-from-modal.right{
+   top: o;
 }
 
 
