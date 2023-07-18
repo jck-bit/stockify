@@ -151,9 +151,10 @@ const Products = (props:any) => {
       title={selectedProduct.name}
       content={
         <>
-          <h4>Product Details</h4>
+          <h4>{selectedProduct.name}</h4>
           <p>{selectedProduct.description}</p>
-          {/* Additional product details */}
+           <p>Price: {selectedProduct.price}</p>
+           <p>Quantity: {selectedProduct.quantity}</p>
         </>
       }
     />

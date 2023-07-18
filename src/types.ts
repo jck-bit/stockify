@@ -31,3 +31,5 @@ export interface AuthState {
     sales: any[];
     cart: CartItem[];
   }
+
+  

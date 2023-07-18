@@ -1,6 +1,10 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import { CartItem } from '../types';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { useDispatch,useSelector } from 'react-redux';
+import { Rootstate,addToCart, deleteOneProduct } from '../state'
+
 
 type MyVerticallyCenteredModalProps = {
   show: boolean;
@@ -10,6 +14,9 @@ type MyVerticallyCenteredModalProps = {
 };
 
 const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ show, onHide, title, content }) => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
+
   return (
     <Modal
       show={show}
@@ -21,7 +28,10 @@ const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ s
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{content}</Modal.Body>
+      <Modal.Body>
+        {content}
+        
+      </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
