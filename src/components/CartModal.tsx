@@ -33,7 +33,6 @@ const CartModal = ({ setOpenCartModal }: Props) => {
 
   return (
     <Modal show={true} onHide={handleClose} className="come-from-modal right" animation={true}>
-      <div className="modal-background" onClick={handleClose}></div>
       <div className="modal-dialog slide-from-right">
         <div className="modal-content">
           <div className="modal-header d-flex justify-content-between align-items-center pt-4">
