@@ -29,32 +29,3 @@ body  {
 .hover-effect:hover {
   transform: scale(1.01);
 }
-
-.modal-right {
-  position: fixed;
-  width: 400px;
-  right: 0;
-  left: -100%;
-  overflow: auto;
-  transition: all 5s ease;
-  opacity: 1;
-}
-
-.modal-right .modal-content {
-  position: fixed;
-  width: 400px;
-  right: 0;
-  top: 0;
-  transition: all 0.5s ease;
-}
-
-.modal-right .modal.show {
-  left: 0;
-  transition: all 5s;
-  opacity: 1;
-}
-
-.modal-right .modal-dialog {
-  margin-left: auto;
-  transition: all 5s ease;
-}
