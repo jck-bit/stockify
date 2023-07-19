@@ -148,15 +148,8 @@ const Products = (props:any) => {
       <MyVerticallyCenteredModal
       show= {modalShow}
       onHide={() => setModalShow(false)}
-      title={selectedProduct.name}
-      content={
-        <>
-          <h4>{selectedProduct.name}</h4>
-          <p>{selectedProduct.description}</p>
-           <p>Price: {selectedProduct.price}</p>
-           <p>Quantity: {selectedProduct.quantity}</p>
-        </>
-      }
+      product={selectedProduct}
+      
     />
   )}
     {isModalOpen && <AddModal setIsModalOpen={setIsModalOpen} />}
