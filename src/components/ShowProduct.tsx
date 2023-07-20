@@ -9,13 +9,20 @@ import { Rootstate,addToCart, deleteOneProduct } from '../state'
 type MyVerticallyCenteredModalProps = {
   show: boolean;
   onHide: () => void;
-  title: string;
   product: Product;
 };
 
 const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ show, onHide, product}) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
+
+  const handleAddToCart = (product: Product) => {
+    dispatch(addToCart({ product }));
+  };
+
+  const handleRemoveFromCart = (product: Product) => {
+    dispatch(deleteOneProduct(product.id));
+  };
 
   return (
     <Modal
@@ -34,15 +41,22 @@ const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ s
          </Modal.Title>
          <p>{product.description}</p>
        { cartItems.some((p: CartItem) => p.id === product.id) ? (
-                // if product is remaining one in the cart
-                <div className="card-buttons-container d-flex align-items-center">
-                  <button className='btn btn-danger'>remove From cart</button>
-                </div>
+          <div className="card-buttons-container d-flex align-items-center">
+            <button 
+              className='btn btn-danger'
+              onClick={() => handleRemoveFromCart(product)}
+              >
+                remove From cart
+            </button>
+          </div>
               ) : (
-                <Button className="btn btn-warning">
-                  Add to Cart
-                </Button>
-              )}
+          <Button 
+            className="btn btn-warning"
+            onClick={() => handleAddToCart(product)}
+            >
+            Add to Cart
+          </Button>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>
