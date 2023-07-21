@@ -118,7 +118,7 @@ const Products = (props:any) => {
                         <div>
                           <BsFillTrash3Fill
                             onClick={(e) =>{
-                              e.stopPropagation(); // Prevent event bubbling
+                              e.stopPropagation(); 
                               handleRemoveFromCart(product)
                             }}
                             style={{ transition: 'color 0.3s', width: '20px', height: '20px', marginLeft: '20px', cursor: 'pointer' }}
@@ -129,10 +129,10 @@ const Products = (props:any) => {
                     ) : (
                       <Button className="btn btn-warning rounded-0" 
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent event bubbling
+                        e.stopPropagation();
                         handleAddToCart(product);
                       }}
-                       style={{ width: '80%', marginLeft: '10%', marginTop: '' }}>
+                       style={{ width: '80%', marginLeft: '10%' }}>
                         Add to Cart
                       </Button>
                     )}
