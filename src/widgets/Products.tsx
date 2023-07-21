@@ -73,7 +73,6 @@ const Products = (props:any) => {
 
   return (
     <Container>
-    {/* a plus sign to add a new product on the top right corner */}
     <div className="row">
       <div className="row">
         <div className="col-12">
@@ -87,7 +86,6 @@ const Products = (props:any) => {
       {products &&
         products.map((product: Product) => {
           return (
-            // if product.quantity is null, the display is none
             <div key={product.id}
               className="col-lg-3 col-sm-6 col-10" 
               style={{ display: product.quantity === null ? 'none' : 'flex', flexDirection: 'column' }}
@@ -100,19 +98,15 @@ const Products = (props:any) => {
                   
                 <Card.Body 
                  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div className="product_image">
-                    {/* <Card.Img variant="top" src={product.product_pic} alt="" className=" rounded w-100" style={{ objectFit: 'cover' }} /> */}
-                  </div>
-                  <div className="descrptions">
-                    <Card.Title as="h6" style={{ textTransform: 'uppercase' }}>
-                      {product.name}
-                    </Card.Title>
-                    <Card.Text>{product.description}</Card.Text>
-                    <span className="product-price mb-2">KES {product.price}</span>
+                    <div className="descrptions">
+                      <Card.Title as="h6" style={{ textTransform: 'uppercase' }}>
+                        {product.name}
+                      </Card.Title>
+                      <Card.Text>{product.description}</Card.Text>
+                      <span className="product-price mb-2">KES {product.price}</span>
                   </div>
                   <div className="buttons-container p-2 mb-2" onClick={(e) => e.stopPropagation()}>
                     {cartItems.some((p: CartItem) => p.id === product.id) ? (
-                      // if product is remaining one in the cart
                       <div className="card-buttons-container d-flex align-items-center">
                         <CountCart product={product} />
                         <div>
