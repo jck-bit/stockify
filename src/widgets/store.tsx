@@ -48,7 +48,6 @@ const OnlineStore = () => {
         {products.map((product: Product) => (
           <div className="col-lg-3 p-2 col-sm-4 col-10" key={product.id}>
             <Card className="mb-4 h-100">
-              {/* <Card.Img variant="top" src={product.product_pic} alt={product.name} style={{ height: '200px', objectFit: 'cover' }} /> */}
               <Card.Body className="d-flex flex-column">
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>{product.quantity === null ? 'Out of stock' : product.quantity + ' in stock'}</Card.Text>
