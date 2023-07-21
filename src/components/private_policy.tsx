@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/private_policy.css";
 
 const PrivacyPolicy = () => {

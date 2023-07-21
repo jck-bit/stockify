@@ -10,7 +10,6 @@ const CountCart = ({product}:PassedProps) => {
     const dispatch = useDispatch()
     const cartItems = useSelector<Rootstate, CartItem[]>(state => state.cart);
 
-
     const handleIncrement = (product: Product) => {
         dispatch(IncrementQuantity({ product }));
       }
