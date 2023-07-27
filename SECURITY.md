@@ -5,7 +5,7 @@
 I take security very seriously and i appreciate your help in keeping this project secure. If you find a security vulnerability, please report it responsibly by following these steps:
 
 1. **Verify the vulnerability.** Before reporting a vulnerability, please make sure that it is actually a security issue. You can do this by researching the vulnerability online or by contacting me
-2. **Send an email to [jckkinajui@gmail.com]** In your email, please include the following information:
+2. **Send an email to [jckkinyanjui@gmail.com](mailto:your-email@example.com)**  In your email, please include the following information:
     * A description of the vulnerability.
     * Steps to reproduce the vulnerability.
     * Any proof of concept code or screenshots.
