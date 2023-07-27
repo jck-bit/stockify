@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 interface EditModalProps {
   selectedProduct: Product;
   setIsModalOpen: (isModalOpen: boolean) => void;
+  
 }
 
 const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
@@ -127,7 +128,7 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   return (
     <>
     
-    <Modal show={selectedProduct !== null} onHide={handleClose}>
+    <Modal show={selectedProduct !== null} onHide={handleClose} backdrop="static">
       {loading && <EditLoader />}
       <Modal.Header closeButton>
         <Modal.Title>Edit Product</Modal.Title>
