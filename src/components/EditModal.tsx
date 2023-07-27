@@ -5,6 +5,8 @@ import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import EditLoader from './EditLoader';
 import { EditProduct, DeleteProduct } from '../state';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 interface EditModalProps {
   selectedProduct: Product;
@@ -19,10 +21,14 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
-  
+
   const dispatch = useDispatch();
 
   const access_token = localStorage.getItem('token');
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,93 +118,88 @@ const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
   };
 
   const hasChangedFields =
-  name !== selectedProduct.name ||
-  quantity !== selectedProduct.quantity ||
-  description !== selectedProduct.description ||
-  price !== selectedProduct.price ||
-  image !== null;
+    name !== selectedProduct.name ||
+    quantity !== selectedProduct.quantity ||
+    description !== selectedProduct.description ||
+    price !== selectedProduct.price ||
+    image !== null;
 
   return (
-    <div className="modal" style={{ display: selectedProduct ? 'block' : '' }}>
+    <>
+    
+    <Modal show={selectedProduct !== null} onHide={handleClose}>
       {loading && <EditLoader />}
-      <div className="modal-dialog modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Edit Product</h5>
-            <button type="button" className="close" onClick={() => setIsModalOpen(false)}>
-              <span aria-hidden="true">&times;</span>
-            </button>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Product</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
-          <div className="modal-body">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="quantity">Quantity</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="quantity"
-                  value={quantity}
-                  onChange={(e) => setQuantity(parseInt(e.target.value))}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <textarea
-                  className="form-control"
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="price">Price</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="price"
-                  value={price}
-                  onChange={(e) => setPrice(parseInt(e.target.value))}
-                />
-                <small id="emailHelp" className="form-text text-muted mt-1">
-                  Price is in Ksh
-                </small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="image">Product Image</label>
-                <input
-                  type="file"
-                  className="form-control-file"
-                  id="image"
-                  onChange={(e) => setImage(e.target.files?.[0] || null)}
-                />
-              </div>
-              <div className="modal-footer d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary rounded-0" disabled={!hasChangedFields}>
-                  Save Changes
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-danger rounded-0 float-right"
-                  onClick={handleDelete}
-                >
-                  Delete Product
-                </button>
-              </div>
-            </form>
+          <div className="form-group">
+            <label htmlFor="quantity">Quantity</label>
+            <input
+              type="number"
+              className="form-control"
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+            />
           </div>
-        </div>
-      </div>
-    </div>
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              className="form-control"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="price">Price</label>
+            <input
+              type="number"
+              className="form-control"
+              id="price"
+              value={price}
+              onChange={(e) => setPrice(parseInt(e.target.value))}
+            />
+            <small id="emailHelp" className="form-text text-muted mt-1">
+              Price is in Ksh
+            </small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="image">Product Image</label>
+            <input
+              type="file"
+              className="form-control-file"
+              id="image"
+              onChange={(e) => setImage(e.target.files?.[0] || null)}
+            />
+          </div>
+          <div className="modal-footer d-flex justify-content-between">
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" disabled={!hasChangedFields} type='submit'>
+              Save Changes
+            </Button>
+            <Button variant="danger" onClick={handleDelete}>
+              Delete Product
+            </Button>
+          </div>
+        </form>
+      </Modal.Body>
+    </Modal>
+    </>
   );
 };
 
