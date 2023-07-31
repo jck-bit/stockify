@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import { useDispatch,useSelector } from 'react-redux';
 import { Rootstate,addToCart, deleteOneProduct } from '../state'
 
-
 type MyVerticallyCenteredModalProps = {
   show: boolean;
   onHide: () => void;
@@ -29,8 +28,8 @@ const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ s
       show={show}
       onHide={onHide}
       size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+      aria-labelledby="contained-modal-title-center"
+      centered 
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">{product.name}</Modal.Title>
@@ -40,7 +39,7 @@ const MyVerticallyCenteredModal: React.FC<MyVerticallyCenteredModalProps> = ({ s
             {product.name}
          </Modal.Title>
          <p>{product.description}</p>
-       { cartItems.some((p: CartItem) => p.id === product.id) ? (
+        {cartItems.some((p: CartItem) => p.id === product.id) ? (
           <div className="card-buttons-container d-flex align-items-center">
             <button 
               className='btn btn-danger'

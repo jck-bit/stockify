@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button';
 interface EditModalProps {
   selectedProduct: Product;
   setIsModalOpen: (isModalOpen: boolean) => void;
-  
 }
 
 const EditModal = ({ selectedProduct, setIsModalOpen }: EditModalProps) => {
